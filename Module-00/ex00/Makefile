@@ -15,7 +15,7 @@ $(NAME): $(OBJS)
 	c++ $(FLAGS) $(OBJS) -o $(NAME)
 
 $(PATH_OBJS)%.o: $(PATH_SRCS)%.cpp $(PATH_OBJS)
-	cc $(FLAGS) -c $< -o $@
+	c++ $(FLAGS) -c $< -o $@
 
 $(PATH_OBJS):
 	mkdir -p $(PATH_OBJS)
