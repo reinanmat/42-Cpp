@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:46:04 by revieira          #+#    #+#             */
-/*   Updated: 2023/07/28 18:46:02 by revieira         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:07:16 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,21 @@
 
 void	startPhone(void)
 {
-	int			chosen;
+	std::string	chosen;
 	PhoneBook	phone;
 	
-	std::cout << "Welcome to my Phone" << std::endl;
+	std::cout << "Welcome to my PhoneBook" << std::endl;
 	while (1)
 	{
 		std::cout << "1.ADD" << std::endl;
 		std::cout << "2.SEARCH" << std::endl;
 		std::cout << "3.EXIT" << std::endl;
-
-		std::cin >> chosen;
-		if (chosen == 1)
-			phone.addContact();
-		else if (chosen == 2){}
-			/* search_contact() */
-		else if (chosen == 3)
+		std::getline(std::cin, chosen);
+		if (chosen.compare("ADD") || chosen.compare("1") == 0)
+			phone.add_contact();
+		else if (chosen.compare("2") == 0)
+			phone.search_contact();
+		else if (chosen.compare("3") == 0)
 			break ;
 		else
 			std::cout << "Invalid option please select one of the options below" << std::endl;
