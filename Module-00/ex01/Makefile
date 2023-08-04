@@ -15,7 +15,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	c++ $(FLAGS) $(OBJS) -o $(NAME)
 
-$(PATH_OBJS)%.o: $(PATH_SRCS)%.cpp $(PATH_OBJS)
+$(PATH_OBJS)%.o: $(PATH_SRCS)%.cpp | $(PATH_OBJS)
 	c++ $(FLAGS) -c $< -o $@
 
 $(PATH_OBJS):
