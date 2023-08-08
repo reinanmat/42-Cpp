@@ -6,41 +6,60 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:04:57 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/04 15:59:28 by revieira         ###   ########.fr       */
+/*   Updated: 2023/08/08 15:50:22 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook(void)
+PhoneBook::PhoneBook()
 {
-	amount_of_contacts = 0;
+	this->_amountOfContacts = 0;
 }
 
-PhoneBook::~PhoneBook(void) {}
+PhoneBook::~PhoneBook() {}
 
-void	PhoneBook::add_contact()
+int		PhoneBook::getAmountOfContacts()
 {
-	static int	index = 0;
-	Contacts	contact;
-
-	if (index == 8)
-		index = 0;
-	contact.new_contact(index);
-	this->contacts[index] = contact;
-
-	if (amount_of_contacts != 7)
-		amount_of_contacts++;
-	index++;
+	return this->_amountOfContacts;
 }
 
-void	PhoneBook::display_all_contacts()
+void	PhoneBook::setAmountOfContacts(int amount)
 {
-	for (int i = 0; i != amount_of_contacts; i++)
-		contacts[i].display_contact();
+	this->_amountOfContacts = amount;	
 }
 
-void	PhoneBook::search_contact()
+void	PhoneBook::addContact(int index, std::string info[6])
 {
-	display_all_contacts();
+	int			currAmount;
+	Contacts	newContact;
+
+	currAmount = this->getAmountOfContacts();
+	if (currAmount != 7)
+		setAmountOfContacts(currAmount + 1);
+	newContact.setContact(index, info);
+	this->_contacts[index] = newContact;
+}
+
+void	PhoneBook::displayAllContacts()
+{
+	int	i;
+	int	amount;
+
+	i = 0;
+	amount = this->getAmountOfContacts();
+	if (amount == 0)
+	{
+		std::cout << "Phone book is empty" << std::endl;
+		return ;
+	}
+	while (i < amount)
+	{
+		this->_contacts[i].displayContact();
+		i++;
+	}
+}
+
+void	PhoneBook::displayContact(int index)
+{
 }
