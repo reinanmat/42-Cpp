@@ -27,6 +27,24 @@ static int	validedNumber(std::string number)
 	return (1);
 }
 
+static std::string	getValue(std::string key)
+{
+	std::string	value;
+
+	while (1)
+	{
+		std::cout << key << ": ";
+		std::getline(std::cin, value);
+		if (value.empty())
+			std::cout << "Error: Empty field" << std::endl;
+		else if (key.compare("phone book") == 0 && !validedNumber(value))
+			std::cout << "Error: Not a valid phone number" << std::endl;
+		else
+			break;
+	}
+	return (value);
+}
+
 	
 	phone.addContact(index, info);
 	if (index == 8)
