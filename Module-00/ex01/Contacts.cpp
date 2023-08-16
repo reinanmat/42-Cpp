@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:09:56 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/16 14:42:48 by revieira         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:46:17 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,41 @@ std::string	Contacts::getDarkestSecret() {
 	return this->_darkestSecret;
 }
 
-void	Contacts::displayContact()
+std::string	truncate(std::string s)
+{
+	std::string	truncatedStr;
+
+	if (s.length() > 10)
+		truncatedStr = s.substr(0, 9) + '.';
+	else
+		truncatedStr = s;
+	return (truncatedStr);
+}
+
+void	Contacts::displaySimplifiedContact()
 {
 	std::cout << "|";
 	std::cout << std::setfill(' ') << std::setw(10);
 	std::cout << this->getIndex();
-	/* std::cout << this->getFirstName(); */
-	/* std::cout << this->getLastName(); */
-	/* std::cout << this->getNickname(); */
+	std::cout << "|";
+	std::cout << std::setfill(' ') << std::setw(10);
+	std::cout << truncate(this->getFirstName());
+	std::cout << "|";
+	std::cout << std::setfill(' ') << std::setw(10);
+	std::cout << truncate(this->getLastName());
+	std::cout << "|";
+	std::cout << std::setfill(' ') << std::setw(10);
+	std::cout << truncate(this->getNickname());
 	std::cout << "|" << std::endl;
+}
+
+void	Contacts::displayFullContact()
+{
+	std::cout << "First Name: " << getFirstName() << std::endl;
+	std::cout << "Last Name: " << getLastName() << std::endl;
+	std::cout << "Nickname: " << getNickname() << std::endl;
+	std::cout << "Phone Number: " << getPhoneNumber() << std::endl;
+	std::cout << "Darkest Secret: " << getDarkestSecret() << std::endl;
 }
 
 Contacts& Contacts::operator=(Contacts other)

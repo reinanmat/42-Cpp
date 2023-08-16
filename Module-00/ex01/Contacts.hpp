@@ -28,7 +28,8 @@ class Contacts
 		std::string	getLastName();
 		std::string	getNickname();
 		std::string	getDarkestSecret();
-		void		displayContact();
+		void		displaySimplifiedContact();
+		void		displayFullContact();
 		Contacts&	operator=(Contacts other);
 	private:
 		int			_index;
