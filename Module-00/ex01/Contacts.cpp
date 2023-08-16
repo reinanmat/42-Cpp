@@ -6,32 +6,31 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:09:56 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/08 15:42:12 by revieira         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:42:48 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contacts.hpp"
-#include <iomanip>
 
 Contacts::Contacts() {}
 
 Contacts::~Contacts() {}
 
-void	Contacts::setContact(int index, std::string *info)
+void	Contacts::setContact(int index, std::string info[5])
 {
 	this->_index = index;
-	this->_nickname = info[1];
-	this->_firstName = info[2];
-	this->_lastName = info[3];
-	this->_phoneNumber = stoi(info[4]);
-	this->_darkestSecret = info[5];
+	this->_nickname = info[0];
+	this->_firstName = info[1];
+	this->_lastName = info[2];
+	this->_phoneNumber = info[3];
+	this->_darkestSecret = info[4];
 }
 
 int	Contacts::getIndex() {
 	return this->_index;
 }
 
-int	Contacts::getPhoneNumber() {
+std::string	Contacts::getPhoneNumber() {
 	return this->_phoneNumber;
 }
 
