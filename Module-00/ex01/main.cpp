@@ -45,20 +45,36 @@ static std::string	getValue(std::string key)
 	return (value);
 }
 
+static void	addContact(PhoneBook& phone)
+{
+	static int	index = 0;
+	std::string	info[5];
 	
+	info[0] = getValue("firt name");
+	info[1] = getValue("last name");
+	info[2] = getValue("nickname");
+	info[3] = getValue("phone book");
+	info[4] = getValue("darkest secret");
 	phone.addContact(index, info);
-	if (index == 8)
+	if (++index == 8)
 		index = 0;
 }
 
-void	seachContact(PhoneBook& phone)
+static void	seachContact(PhoneBook& phone)
 {
-	std::string	index;
-
-	phone.displayAllContacts();	
+	std::string index;
+	
+	if (phone.displayContacts() == -1)
+		return ;
 	std::cout << "Choose a contact:" << std::endl;
-	std::getline(std::cin, index);
-	/* phone.displaySpecificContact(index); */
+	while (1)
+	{
+		std::getline(std::cin, index);
+		if (!validedNumber(index))
+			std::cout << "Not a number" << std::endl;
+		if (phone.displayContacts(atoi(index.c_str())) != -1)
+			break ;
+	}
 }
 
 void	startPhone(void)
@@ -75,16 +91,17 @@ void	startPhone(void)
 		std::cout << "3.EXIT" << std::endl;
 		std::getline(std::cin, chosen);
 		if (chosen.compare("ADD") == 0 || chosen.compare("1") == 0)
-			addNewContact(phone);
-		else if (chosen.compare("2") == 0)
+			addContact(phone);
+		else if (chosen.compare("SEARCH") == 0 || chosen.compare("2") == 0)
 			seachContact(phone);
-		else if (chosen.compare("3") == 0)
+		else if (chosen.compare("EXIT") == 0 || chosen.compare("3") == 0)
 		{
 			std::cout << "Bye :)" << std::endl;
 			break ;
 		}
 		else
 			std::cout << "Invalid option please select one of the options below:" << std::endl;
+		std::cout << std::endl;
 	}
 }
 
