@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:04:57 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/08 15:50:22 by revieira         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:14:46 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,47 +19,69 @@ PhoneBook::PhoneBook()
 
 PhoneBook::~PhoneBook() {}
 
-int		PhoneBook::getAmountOfContacts()
-{
-	return this->_amountOfContacts;
-}
-
 void	PhoneBook::setAmountOfContacts(int amount)
 {
 	this->_amountOfContacts = amount;	
 }
 
-void	PhoneBook::addContact(int index, std::string info[6])
+Contacts	PhoneBook::getContact(int index)
+{
+	return this->_contacts[index];
+}
+
+int	PhoneBook::getAmountOfContacts()
+{
+	return this->_amountOfContacts;
+}
+
+void	PhoneBook::addContact(int index, std::string info[5])
 {
 	int			currAmount;
 	Contacts	newContact;
 
 	currAmount = this->getAmountOfContacts();
-	if (currAmount != 7)
+	if (currAmount != 8)
 		setAmountOfContacts(currAmount + 1);
 	newContact.setContact(index, info);
 	this->_contacts[index] = newContact;
 }
 
-void	PhoneBook::displayAllContacts()
+int	PhoneBook::displayContacts()
 {
-	int	i;
-	int	amount;
+	int			i;
+	int			amount;
+	Contacts	contact;
 
 	i = 0;
 	amount = this->getAmountOfContacts();
 	if (amount == 0)
 	{
 		std::cout << "Phone book is empty" << std::endl;
-		return ;
+		return (-1);
 	}
+	std::cout << "| index | first name | last name | nickname |" << std::endl;
 	while (i < amount)
 	{
-		this->_contacts[i].displayContact();
+		contact = this->getContact(i);
+		contact.displaySimplifiedContact();
 		i++;
 	}
+	return (0);
 }
 
-void	PhoneBook::displayContact(int index)
+int	PhoneBook::displayContacts(int index)
 {
+	int			amount;
+	Contacts	contact;
+
+	amount = this->getAmountOfContacts();
+	index = index - 1;
+	if (index < 0 || index > amount - 1)
+	{
+		std::cout << "Error: index out of range" << std::endl;
+		return (-1);
+	}
+	contact = this->getContact(index);
+	contact.displayFullContact();
+	return (0);
 }
