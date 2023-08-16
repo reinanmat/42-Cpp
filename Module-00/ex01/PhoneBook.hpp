@@ -6,13 +6,12 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 15:39:26 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/08 15:38:40 by revieira         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:16:43 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONECLASS_H 
+#ifndef PHONEBOOKCLASS_H
 
-# include <iostream>
 # include "Contacts.hpp"
 
 class PhoneBook
@@ -20,11 +19,12 @@ class PhoneBook
 	public:
 		PhoneBook();
 		~PhoneBook();
-		int		getAmountOfContacts();
-		void	setAmountOfContacts(int amount);
-		void	addContact(int index, std::string info[6]);
-		void	displayContact(int index);
-		void	displayAllContacts();
+		int			getAmountOfContacts();
+		Contacts	getContact(int index);
+		void		setAmountOfContacts(int amount);
+		void		addContact(int index, std::string info[5]);
+		int			displayContacts();
+		int			displayContacts(int index);
 	private:
 		int			_amountOfContacts;
 		Contacts	_contacts[8];
