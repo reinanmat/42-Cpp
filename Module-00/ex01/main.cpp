@@ -6,16 +6,26 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:46:04 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/08 15:40:01 by revieira         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:11:40 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
+#include <cstdlib>
 
-void	addNewContact(PhoneBook& phone)
+static int	validedNumber(std::string number)
 {
-	static int	index = 0;
-	std::string	info[6];
+	unsigned int	i;
+
+	i = 0;
+	while (i < number.size())
+	{
+		if (!isdigit(number[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 	
 	phone.addContact(index, info);
