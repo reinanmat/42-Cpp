@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:46:04 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/16 17:11:40 by revieira         ###   ########.fr       */
+/*   Updated: 2023/08/20 18:32:58 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	addContact(PhoneBook& phone)
 	static int	index = 0;
 	std::string	info[5];
 	
-	info[0] = getValue("firt name");
+	info[0] = getValue("first name");
 	info[1] = getValue("last name");
 	info[2] = getValue("nickname");
 	info[3] = getValue("phone book");
