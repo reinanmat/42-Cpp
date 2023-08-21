@@ -80,9 +80,9 @@ static void	seachContact(PhoneBook& phone)
 	
 	if (phone.displayContacts() == -1)
 		return ;
-	std::cout << "Choose a contact:" << std::endl;
 	while (1)
 	{
+		std::cout << "Choose a contact:" << std::endl;
 		std::getline(std::cin, index);
 		if (!validedNumber(index))
 			std::cout << "Not a number" << std::endl;
