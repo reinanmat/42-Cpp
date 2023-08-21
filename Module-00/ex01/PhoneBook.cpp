@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:04:57 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/16 17:14:46 by revieira         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:10:33 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	PhoneBook::displayContacts()
 		std::cout << "Phone book is empty" << std::endl;
 		return (-1);
 	}
-	std::cout << "| index | first name | last name | nickname |" << std::endl;
+	std::cout << "|  INDEX   |FIRST NAME|LAST  NAME| NICKNAME |" << std::endl;
 	while (i < amount)
 	{
 		contact = this->getContact(i);
