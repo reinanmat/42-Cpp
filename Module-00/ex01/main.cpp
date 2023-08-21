@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:46:04 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/21 13:49:17 by revieira         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:14:18 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static void	seachContact(PhoneBook& phone)
 	}
 }
 
-void	startPhone(void)
+int	main(void)
 {
 	PhoneBook	phone;
 	std::string	chosen;
@@ -117,10 +117,5 @@ void	startPhone(void)
 			std::cout << "Invalid option please select one of the options below:" << std::endl;
 		std::cout << std::endl;
 	}
-}
-
-int	main(void)
-{
-	startPhone();
 	return (0);
 }
