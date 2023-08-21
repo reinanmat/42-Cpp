@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:09:56 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/16 16:15:25 by revieira         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:14:30 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ std::string	Contacts::getDarkestSecret() {
 void	Contacts::setContact(int index, std::string info[5])
 {
 	this->_index = index + 1;
-	this->_nickname = info[0];
-	this->_firstName = info[1];
-	this->_lastName = info[2];
+	this->_firstName = info[0];
+	this->_lastName = info[1];
+	this->_nickname = info[2];
 	this->_phoneNumber = info[3];
 	this->_darkestSecret = info[4];
 }
