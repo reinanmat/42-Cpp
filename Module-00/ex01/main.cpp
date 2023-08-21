@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:46:04 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/20 18:32:58 by revieira         ###   ########.fr       */
+/*   Updated: 2023/08/21 13:49:17 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,20 @@ static int	validedNumber(std::string number)
 	return (1);
 }
 
+static int	checkEmptyField(std::string	str)
+{
+	unsigned int	i;
+
+	if (str.empty())
+		return (1);
+	i = 0;
+	while (isspace(str[i]))
+		i++;
+	if (i == str.size())
+		return (1);
+	return (0);	
+}
+
 static std::string	getValue(std::string key)
 {
 	std::string	value;
@@ -35,7 +49,7 @@ static std::string	getValue(std::string key)
 	{
 		std::cout << key << ": ";
 		std::getline(std::cin, value);
-		if (value.empty())
+		if (checkEmptyField(value))
 			std::cout << "Error: Empty field" << std::endl;
 		else if (key.compare("phone book") == 0 && !validedNumber(value))
 			std::cout << "Error: Not a valid phone number" << std::endl;
