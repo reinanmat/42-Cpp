@@ -6,11 +6,12 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 15:39:26 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/16 17:16:43 by revieira         ###   ########.fr       */
+/*   Updated: 2023/08/23 17:39:21 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOKCLASS_H
+#ifndef PHONEBOOK_H
+# define PHONEBOOK_H
 
 # include "Contacts.hpp"
 

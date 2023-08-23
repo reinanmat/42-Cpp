@@ -6,11 +6,12 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:07:28 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/16 14:36:43 by revieira         ###   ########.fr       */
+/*   Updated: 2023/08/23 17:39:02 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTACTS_H
+# define CONTACTS_H
 
 # include <iostream>
 # include <iomanip>
