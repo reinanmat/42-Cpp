@@ -6,94 +6,15 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:46:04 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/21 14:14:18 by revieira         ###   ########.fr       */
+/*   Updated: 2023/08/27 20:41:45 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
-#include <cstdlib>
-
-static int	validedNumber(std::string number)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (i < number.size())
-	{
-		if (!isdigit(number[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-static int	checkEmptyField(std::string	str)
-{
-	unsigned int	i;
-
-	if (str.empty())
-		return (1);
-	i = 0;
-	while (isspace(str[i]))
-		i++;
-	if (i == str.size())
-		return (1);
-	return (0);	
-}
-
-static std::string	getValue(std::string key)
-{
-	std::string	value;
-
-	while (1)
-	{
-		std::cout << key << ": ";
-		std::getline(std::cin, value);
-		if (checkEmptyField(value))
-			std::cout << "Error: Empty field" << std::endl;
-		else if (key.compare("phone book") == 0 && !validedNumber(value))
-			std::cout << "Error: Not a valid phone number" << std::endl;
-		else
-			break;
-	}
-	return (value);
-}
-
-static void	addContact(PhoneBook& phone)
-{
-	static int	index = 0;
-	std::string	info[5];
-	
-	info[0] = getValue("first name");
-	info[1] = getValue("last name");
-	info[2] = getValue("nickname");
-	info[3] = getValue("phone book");
-	info[4] = getValue("darkest secret");
-	phone.addContact(index, info);
-	if (++index == 8)
-		index = 0;
-}
-
-static void	seachContact(PhoneBook& phone)
-{
-	std::string index;
-	
-	if (phone.displayContacts() == -1)
-		return ;
-	while (1)
-	{
-		std::cout << "Choose a contact:" << std::endl;
-		std::getline(std::cin, index);
-		if (!validedNumber(index))
-			std::cout << "Not a number" << std::endl;
-		if (phone.displayContacts(atoi(index.c_str())) != -1)
-			break ;
-	}
-}
 
 int	main(void)
 {
-	PhoneBook	phone;
+	PhoneBook	phoneBook;
 	std::string	chosen;
 	
 	std::cout << "Welcome to My Awesome PhoneBook!" << std::endl;
@@ -105,9 +26,9 @@ int	main(void)
 		std::cout << "3.EXIT" << std::endl;
 		std::getline(std::cin, chosen);
 		if (chosen.compare("ADD") == 0 || chosen.compare("1") == 0)
-			addContact(phone);
+			phoneBook.addContact();
 		else if (chosen.compare("SEARCH") == 0 || chosen.compare("2") == 0)
-			seachContact(phone);
+			phoneBook.searchContact();
 		else if (chosen.compare("EXIT") == 0 || chosen.compare("3") == 0)
 		{
 			std::cout << "Bye :)" << std::endl;
