@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:09:56 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/21 14:14:30 by revieira         ###   ########.fr       */
+/*   Updated: 2023/08/27 20:51:56 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,38 +16,63 @@ Contacts::Contacts() {}
 
 Contacts::~Contacts() {}
 
-int	Contacts::getIndex() {
+void	Contacts::setIndex(int index)
+{
+	this->_index = index + 1;
+}
+
+void	Contacts::setPhoneNumber(std::string phoneNumber)
+{
+	this->_phoneNumber = phoneNumber;
+}
+void	Contacts::setFirstName(std::string firstName)
+{
+	this->_firstName = firstName;
+}
+
+void	Contacts::setLastName(std::string lastName)
+{
+	this->_lastName = lastName;
+}
+
+void	Contacts::setNickname(std::string nickname)
+{
+	this->_nickname = nickname;
+}
+
+void	Contacts::setDarkestSecret(std::string darkestSecret)
+{
+	this->_darkestSecret = darkestSecret;
+}
+
+int	Contacts::getIndex()
+{
 	return this->_index;
 }
 
-std::string	Contacts::getPhoneNumber() {
+std::string	Contacts::getPhoneNumber()
+{
 	return this->_phoneNumber;
 }
 
-std::string	Contacts::getFirstName() {
+std::string	Contacts::getFirstName()
+{
 	return this->_firstName;
 }
 
-std::string	Contacts::getLastName() {
+std::string	Contacts::getLastName()
+{
 	return this->_lastName;
 }
 
-std::string	Contacts::getNickname() {
+std::string	Contacts::getNickname()
+{
 	return this->_nickname;
 }
 
-std::string	Contacts::getDarkestSecret() {
-	return this->_darkestSecret;
-}
-
-void	Contacts::setContact(int index, std::string info[5])
+std::string	Contacts::getDarkestSecret()
 {
-	this->_index = index + 1;
-	this->_firstName = info[0];
-	this->_lastName = info[1];
-	this->_nickname = info[2];
-	this->_phoneNumber = info[3];
-	this->_darkestSecret = info[4];
+	return this->_darkestSecret;
 }
 
 static std::string	truncate(std::string str)
