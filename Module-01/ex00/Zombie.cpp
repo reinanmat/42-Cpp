@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 17:54:20 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/23 18:09:35 by revieira         ###   ########.fr       */
+/*   Updated: 2023/08/28 18:22:04 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ std::string	Zombie::getName(void)
 	return _name;
 }
 
-Zombie& 	Zombie::operator=(const Zombie other)
+Zombie&	Zombie::operator=(const Zombie other)
 {
-	return *this;
+	this->_name = other._name;
+	return *this;	
 }
