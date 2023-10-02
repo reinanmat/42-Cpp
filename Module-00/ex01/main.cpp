@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:46:04 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/27 20:41:45 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/02 16:21:47 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(void)
 	PhoneBook	phoneBook;
 	std::string	chosen;
 	
+	std::cout << "\e[1;1H\e[2J";
 	std::cout << "Welcome to My Awesome PhoneBook!" << std::endl;
 	std::cout << "Please choose an option:" << std::endl;
 	while (1)
