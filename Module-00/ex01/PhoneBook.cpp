@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:04:57 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/02 16:13:17 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/02 17:42:58 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	checkEmptyField(std::string	str)
 	return (0);
 }
 
-static int	validedNumber(std::string number)
+static int	checkNumber(std::string number)
 {
 	size_t	i;
 
@@ -86,7 +86,7 @@ static std::string	getValue(std::string key)
 		std::getline(std::cin, value);
 		if (checkEmptyField(value))
 			std::cout << "Error: Empty field" << std::endl;
-		else if (key.compare("phone book") == 0 && !validedNumber(value))
+		else if (key.compare("phone book") == 0 && !checkNumber(value))
 			std::cout << "Error: Not a valid phone number" << std::endl;
 		else if (checkUnicodeChar(value))
 			std::cout << "Error: Unsupported unicode characteres" << std::endl;
@@ -133,7 +133,7 @@ void	PhoneBook::searchContact()
 	{
 		std::cout << "Choose a contact:" << std::endl;
 		std::getline(std::cin, strIndex);
-		if (!validedNumber(strIndex))
+		if (!checkNumber(strIndex))
 			std::cout << "Not a number" << std::endl;
 		index = std::atoi(strIndex.c_str()) - 1;
 		if (index < 0 || index > amount - 1)
