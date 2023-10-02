@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:09:56 by revieira          #+#    #+#             */
-/*   Updated: 2023/09/27 17:36:43 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/02 15:52:06 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ std::string	Contacts::getFirstName()
 {
 	return this->_firstName;
 }
-
 std::string	Contacts::getLastName()
 {
 	return this->_lastName;

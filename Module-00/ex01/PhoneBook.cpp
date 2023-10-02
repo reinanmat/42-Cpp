@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:04:57 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/27 21:03:04 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/02 16:13:17 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	PhoneBook::setAmountOfContacts(int amount)
 
 static int	checkEmptyField(std::string	str)
 {
-	unsigned int	i;
+	size_t	i;
 
 	if (str.empty())
 		return (1);
@@ -50,12 +50,26 @@ static int	checkEmptyField(std::string	str)
 
 static int	validedNumber(std::string number)
 {
-	unsigned int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < number.size())
 	{
 		if (!isdigit(number[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+static int	checkUnicodeChar(std::string str)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < str.size())
+	{
+		if (!(str[i] & 0b10000000))
 			return (0);
 		i++;
 	}
@@ -74,6 +88,8 @@ static std::string	getValue(std::string key)
 			std::cout << "Error: Empty field" << std::endl;
 		else if (key.compare("phone book") == 0 && !validedNumber(value))
 			std::cout << "Error: Not a valid phone number" << std::endl;
+		else if (checkUnicodeChar(value))
+			std::cout << "Error: Unsupported unicode characteres" << std::endl;
 		else
 			break;
 	}
