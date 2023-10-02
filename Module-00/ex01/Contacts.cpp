@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:09:56 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/27 20:51:56 by revieira         ###   ########.fr       */
+/*   Updated: 2023/09/27 17:36:43 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ std::string	Contacts::getDarkestSecret()
 	return this->_darkestSecret;
 }
 
-static std::string	truncate(std::string str)
+static std::string	truncate_str(std::string str)
 {
 	std::string	truncated;
 
@@ -93,13 +93,13 @@ void	Contacts::displaySimplifiedContact()
 	std::cout << this->getIndex();
 	std::cout << "|";
 	std::cout << std::setfill(' ') << std::setw(10);
-	std::cout << truncate(this->getFirstName());
+	std::cout << truncate_str(this->getFirstName());
 	std::cout << "|";
 	std::cout << std::setfill(' ') << std::setw(10);
-	std::cout << truncate(this->getLastName());
+	std::cout << truncate_str(this->getLastName());
 	std::cout << "|";
 	std::cout << std::setfill(' ') << std::setw(10);
-	std::cout << truncate(this->getNickname());
+	std::cout << truncate_str(this->getNickname());
 	std::cout << "|" << std::endl;
 }
 
