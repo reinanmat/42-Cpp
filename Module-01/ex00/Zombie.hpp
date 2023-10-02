@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 17:23:06 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/28 18:19:12 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/02 18:02:02 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 #include <string>
 #include <iostream>
-
 
 class Zombie
 {
