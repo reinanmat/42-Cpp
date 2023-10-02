@@ -152,6 +152,7 @@ void	PhoneBook::displayAllContacts()
 
 	i = 0;
 	amount = this->getAmountOfContacts();
+	std::cout << "/===========================================\\" << std::endl;
 	std::cout << "|  INDEX   |FIRST NAME|LAST  NAME| NICKNAME |" << std::endl;
 	while (i < amount)
 	{
@@ -159,6 +160,7 @@ void	PhoneBook::displayAllContacts()
 		contact.displaySimplifiedContact();
 		i++;
 	}
+	std::cout << "\\===========================================/" << std::endl;
 }
 
 void	PhoneBook::displayContact(int index)
