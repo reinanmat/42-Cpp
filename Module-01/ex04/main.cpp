@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:39:49 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/04 16:39:21 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/04 17:18:29 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,17 @@ std::string	getFileContent(std::ifstream& filename)
 	return (content);
 }
 
-std::string	searchAndReplace(std::string& str, std::string s1, std::string s2)
+void	searchAndReplace(std::string& str, std::string s1, std::string s2)
 {
-	int		pos;
-	size_t	found;
-	std::string	replaced;
-
-	int i = 0;
-	pos = 0;
-	while ()
+	for (size_t i = 0; i < str.size(); i++)
 	{
-		found = str.find(&s1[i], pos);
-		if (found != std::string::npos) 
+		if (str.substr(i, s1.size()).compare(s1) == 0)
 		{
-			replaced = str.substr(0, pos);
-			replaced = replaced + s2;
+			std::cout << s2;
+			i += s1.size();
 		}
-		std::cout << str[
+		std::cout << str[i];
 	}
-	std::cout << pos << std::endl;
-	return (replaced);
 }
 
 int	main(int argc, char **argv)
@@ -63,7 +54,9 @@ int	main(int argc, char **argv)
 	}
 
 	std::string	content = getFileContent(file);
+	std::cout << "========>Texto orginal:" << std::endl;
 	std::cout << content;
+	std::cout << "\n=======>Texto modificado:" << std::endl;
 	searchAndReplace(content, argv[2], argv[3]);
 	
 	file.close();
