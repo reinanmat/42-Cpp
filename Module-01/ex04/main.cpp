@@ -6,60 +6,80 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:39:49 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/04 17:18:29 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:44:50 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <fstream>
+#include <fstream>
 #include <string>
 
-std::string	getFileContent(std::ifstream& filename)
+std::string	getFileContent(std::string filename)
 {
-	std::string	content;
+	std::ifstream	file;
+	std::string		content;
 
-	getline(filename, content, '\0');
+	file.open(filename.c_str(), std::ifstream::in);
+	getline(file, content, '\0');
+	file.close();
 	content = content + '\0';
 	return (content);
 }
 
-void	searchAndReplace(std::string& str, std::string s1, std::string s2)
+void	writeAndReplace(std::ofstream& fd, std::string& str, std::string s1, std::string s2)
 {
-	for (size_t i = 0; i < str.size(); i++)
+	size_t	stringSize;
+	size_t	replaceSize;
+	
+	stringSize = str.size();
+	replaceSize = s1.size();
+	for (size_t i = 0; i < stringSize; i++)
 	{
-		if (str.substr(i, s1.size()).compare(s1) == 0)
+		if (i + replaceSize <= stringSize && str.substr(i, replaceSize).compare(s1) == 0)
 		{
-			std::cout << s2;
-			i += s1.size();
+			fd << s2;
+			i += replaceSize;
 		}
-		std::cout << str[i];
+		fd << str[i];
 	}
+}
+
+void	toReplace(std::string originalFilename, std::string s1, std::string s2)
+{
+	std::string		content;
+	std::string		replacedFilename;
+
+	content = getFileContent(originalFilename);
+	replacedFilename = originalFilename.append(".replace");
+	std::ofstream	replacedFile(replacedFilename.c_str());
+	writeAndReplace(replacedFile, content, s1, s2);
+	replacedFile.close();
+}
+
+int	validArgs(int argc, char **argv)
+{
+	std::ifstream	file;
+	if (argc != 4)
+	{
+		std::cout << "Error: Invalid parameters" << std::endl;
+		std::cout << "Usage: <FILE> <REPLACE> <TO_REPLACE>" << std::endl;
+		return (0);
+	}
+	file.open(argv[1], std::ifstream::in);
+	if (!file.is_open())
+	{
+		std::cout << "No such file or directory" << std::endl;
+		return (0);
+	}
+	file.close();
+	return (1);
 }
 
 int	main(int argc, char **argv)
 {
-	
-	if (argc != 4)
-	{
-		std::cout << "Error" << std::endl;
+	if (!validArgs(argc, argv))
 		return (1);
-	}
-
-	std::ifstream	file(argv[1]);
-
-	if (!file.is_open())
-	{
-		std::cout << "Error 2" << std::endl;
-		return (1);
-	}
-
-	std::string	content = getFileContent(file);
-	std::cout << "========>Texto orginal:" << std::endl;
-	std::cout << content;
-	std::cout << "\n=======>Texto modificado:" << std::endl;
-	searchAndReplace(content, argv[2], argv[3]);
-	
-	file.close();
-	
+	toReplace(argv[1], argv[2], argv[3]);
 	return (0);
 }
