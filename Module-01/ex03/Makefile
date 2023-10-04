@@ -4,7 +4,7 @@ PATH_INCS = ./
 PATH_SRCS = ./
 PATH_OBJS = ./objects/
 
-FILES = Zomb
+FILES = main HumanA HumanB Weapon
 
 SRCS = ${FILES:%=$(PATH_OBJS)%.cpp}
 OBJS = ${FILES:%=$(PATH_OBJS)%.o}
