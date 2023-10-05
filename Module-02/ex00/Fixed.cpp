@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 14:16:48 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/05 15:41:01 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/05 20:15:57 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ Fixed::~Fixed()
 	std::cout << "Destructor called" << std::endl;
 }
 
-int		Fixed::getRawBits(void)
+int		Fixed::getRawBits(void) const
 {
 	std::cout << "getRawBits member function called" << std::endl;
 	return this->_rawBits;
@@ -46,6 +46,6 @@ Fixed	&Fixed::operator=(const Fixed &cpy)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &cpy)
-		this->_rawBits = cpy._rawBits;
+		this->_rawBits = cpy.getRawBits();
 	return *this;
 }

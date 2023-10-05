@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 13:51:24 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/05 19:40:33 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/05 20:19:07 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Fixed
 		Fixed(const int &num);
 		Fixed(const double &num);
 		~Fixed();
-		int		getRawBits(void);
+		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
 		int		toInt(void);
 		float	toFloat(void);
@@ -33,3 +33,5 @@ class Fixed
 		int					_fixedPoint;
 		static const int 	_fractionalBits = 8;
 };
+
+std::ostream	&operator<<(std::ostream &out, const Fixed &obj);
