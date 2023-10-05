@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:04:57 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/02 17:42:58 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/05 20:08:08 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ static std::string	getValue(std::string key)
 	while (1)
 	{
 		std::cout << key << ": ";
-		std::getline(std::cin, value);
+		if (!std::getline(std::cin, value))
+			exit(1);
 		if (checkEmptyField(value))
 			std::cout << "Error: Empty field" << std::endl;
 		else if (key.compare("phone book") == 0 && !checkNumber(value))
@@ -132,7 +133,8 @@ void	PhoneBook::searchContact()
 	while (1)
 	{
 		std::cout << "Choose a contact:" << std::endl;
-		std::getline(std::cin, strIndex);
+		if (!std::getline(std::cin, strIndex))
+			exit(1);
 		if (!checkNumber(strIndex))
 			std::cout << "Not a number" << std::endl;
 		index = std::atoi(strIndex.c_str()) - 1;

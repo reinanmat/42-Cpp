@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:46:04 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/02 16:21:47 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/05 19:13:44 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	main(void)
 		std::cout << "1.ADD" << std::endl;
 		std::cout << "2.SEARCH" << std::endl;
 		std::cout << "3.EXIT" << std::endl;
-		std::getline(std::cin, chosen);
+		if (!std::getline(std::cin, chosen))
+			break ;
 		if (chosen.compare("ADD") == 0 || chosen.compare("1") == 0)
 			phoneBook.addContact();
 		else if (chosen.compare("SEARCH") == 0 || chosen.compare("2") == 0)
