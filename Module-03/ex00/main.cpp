@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:08:09 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/06 19:13:54 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/09 13:31:08 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ static void	r(std::string a, std::string b)
 		ClapTrap(b),
 	};
 
-	ClapTraps[0].setAttackDamage(500);
-	ClapTraps[1].setAttackDamage(500);
+	ClapTraps[0].setAttackDamage(2);
+	ClapTraps[1].setAttackDamage(2);
 	ClapTraps[0].setHits(50);
 	ClapTraps[1].setHits(50);
-	ClapTraps[0].setEnergyPoints(20);
-	ClapTraps[1].setEnergyPoints(20);
+	ClapTraps[0].setEnergyPoints(50);
+	ClapTraps[1].setEnergyPoints(50);
 	srand(time(NULL));
 	std::cout << "=========The battle has begin==========" << std::endl;
 	while ((ClapTraps[0].getHits() != 0 && ClapTraps[1].getHits() != 0) &&
