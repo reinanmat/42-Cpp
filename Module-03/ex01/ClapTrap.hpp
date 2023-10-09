@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 16:51:34 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/06 17:57:27 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/09 18:29:08 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,29 @@
 
 class ClapTrap
 {
+	protected:
+		static const int defaultHits = 10;
+		static const int defaultEnergyPoints = 10;
+		static const int defaultAttackDamage = 0;
+
 	public:
 		ClapTrap();
 		ClapTrap(ClapTrap const &obj);
 		ClapTrap(std::string name);
 		~ClapTrap();
-		ClapTrap	&operator=(const ClapTrap &cpy);
-		void		setName(std::string name);
-		void		setHits(int hits);
-		void		setEnergyPoints(int energyPoints);
-		void		setAttackDamage(int attackDamage);
+		ClapTrap	&operator=(const ClapTrap &other);
 		std::string	getName(void) const;
 		int			getHits(void) const;
 		int			getEnergyPoints(void) const;
 		int			getAttackDamage(void) const;
+		void		setName(std::string name);
+		void		setHits(int hits);
+		void		setEnergyPoints(int energyPoints);
+		void		setAttackDamage(int attackDamage);
 		void		attack(const std::string& target);
 		void		takeDamage(unsigned int amount);
 		void		beRepaired(unsigned int amount);
+		void		printStatus(void) const;
 
 	private:
 		std::string	_name;
