@@ -6,32 +6,28 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 15:15:09 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/09 15:18:51 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/09 18:52:49 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
+/* CONSTRUCTORS AND DESTRUCTOR */
 FragTrap::FragTrap()
 {
 	std::cout << "FragTrap: Default Constructor Called" << std::endl;
-	this->setHits(100);
-	this->setEnergyPoints(100);
-	this->setAttackDamage(30);
-}
-
-FragTrap::~FragTrap()
-{
-	std::cout << "FragTrap: Destructor Called" << std::endl;
+	this->setHits(FragTrap::defaultHits);
+	this->setEnergyPoints(FragTrap::defaultEnergyPoints);
+	this->setAttackDamage(FragTrap::defaultAttackDamage);
 }
 
 FragTrap::FragTrap(std::string name)
 {
 	std::cout << name << " FragTrap: Constructor Called" << std::endl;
 	this->setName(name);
-	this->setHits(100);
-	this->setEnergyPoints(100);
-	this->setAttackDamage(30);
+	this->setHits(FragTrap::defaultHits);
+	this->setEnergyPoints(FragTrap::defaultEnergyPoints);
+	this->setAttackDamage(FragTrap::defaultAttackDamage);
 }
 
 FragTrap::FragTrap(const FragTrap &obj)
@@ -41,45 +37,27 @@ FragTrap::FragTrap(const FragTrap &obj)
 		*this = obj;
 }
 
+FragTrap::~FragTrap()
+{
+	std::cout << "FragTrap: Destructor Called" << std::endl;
+}
+
+/* OPERATORS OVERLOADING */
 FragTrap	&FragTrap::operator=(FragTrap const &cpy)
 {
 	std::cout << "Copy Assignment Operator Called" << std::endl;
 	if (this != &cpy)
+	{
 		this->setName(cpy.getName());
+		this->setHits(cpy.getHits());
+		this->setAttackDamage(cpy.getAttackDamage());
+		this->setEnergyPoints(cpy.getEnergyPoints());
+	}
 	return (*this);
 }
 
-void	FragTrap::attack(const std::string& target)
+/* MEMBER FUNCTIONS */
+void	FragTrap::highFivesGuys(void)
 {
-	if (this->getEnergyPoints() == 0)
-	{
-		std::cout << "FragTrap " << this->getName() << " doens't have enough energy points" << std::endl;
-		return ;
-	}
-	std::cout << "FragTrap " << this->getName() << " attacks " << target << 
-		", causing " << this->getAttackDamage() << 
-		" points of damage!" << std::endl;
-	this->setEnergyPoints(this->getEnergyPoints() - 1);
-}
-
-void	FragTrap::takeDamage(unsigned int amount)
-{
-	std::cout << "FragTrap " << this->getName() << " Take Damage " << 
-		amount << " points of damage!" << std::endl;
-	if (this->getHits() - (int)amount <= 0)
-		this->setHits(0);
-	else 
-		this->setHits(this->getHits() - amount);
-}
-
-void	FragTrap::beRepaired(unsigned int amount)
-{
-	if (this->getEnergyPoints() == 0)
-	{
-		std::cout << "FragTrap " << this->getName() << " doens't have enough energy points" << std::endl;
-		return ;
-	}
-	std::cout << "FragTrap " << this->getName() << " be Repareired " << 
-		amount << " points of lifes" << std::endl;
-	this->setEnergyPoints(this->getEnergyPoints() - 1);
+	std::cout << "FragTrap " << this->getName() << " request a high five" << std::endl;
 }
