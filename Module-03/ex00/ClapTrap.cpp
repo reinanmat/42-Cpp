@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 16:50:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/09 18:31:58 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/09 18:34:31 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@
 ClapTrap::ClapTrap()
 {
 	std::cout << "ClapTrap: Default Constructor Called" << std::endl;
-	this->_hits = 10;
-	this->_energyPoints = 10;
-	this->_attackDamage = 0;
+	this->_hits = ClapTrap::defaultHits;
+	this->_energyPoints = ClapTrap::defaultEnergyPoints;
+	this->_attackDamage = ClapTrap::defaultAttackDamage;
 }
 
 ClapTrap::ClapTrap(std::string name)
 {
 	std::cout << "ClapTrap " << name << ": Constructor Called" << std::endl;
 	this->_name = name;
-	this->_hits = 10;
-	this->_energyPoints = 10;
-	this->_attackDamage = 0;
+	this->_hits = ClapTrap::defaultHits;
+	this->_energyPoints = ClapTrap::defaultEnergyPoints;
+	this->_attackDamage = ClapTrap::defaultAttackDamage;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &obj)
@@ -122,7 +122,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 	std::cout << this->getName() << " take damage " <<
 		amount << " points of damage!";
 	if (this->getHits() - (int)amount <= 0) {
-		std::cout << " and was deafeted" << std::endl;
+		std::cout << " and was defeated!" << std::endl;
 		this->_hits = 0;
 	} else {
 		std::cout << std::endl;
