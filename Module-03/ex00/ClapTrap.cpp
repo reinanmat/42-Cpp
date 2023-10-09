@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 16:50:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/09 17:21:13 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/09 18:31:58 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,10 +119,10 @@ void	ClapTrap::attack(const std::string& target)
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
-	std::cout << "ClapTrap " << this->getName() << " take damage " << 
+	std::cout << this->getName() << " take damage " <<
 		amount << " points of damage!";
 	if (this->getHits() - (int)amount <= 0) {
-		std::cout << "and was deafeted" << std::endl;
+		std::cout << " and was deafeted" << std::endl;
 		this->_hits = 0;
 	} else {
 		std::cout << std::endl;
@@ -134,11 +134,11 @@ void	ClapTrap::beRepaired(unsigned int amount)
 {
 	if (this->getEnergyPoints() == 0)
 	{
-		std::cout << "ClapTrap " << this->getName() 
+		std::cout << this->getName()
 			<< " cannot be repaired, has no energy points!" << std::endl;
 		return ;
 	}
-	std::cout << "ClapTrap " << this->getName() << " was repaired and healed " << 
+	std::cout << this->getName() << " was repaired and healed " <<
 		amount << " hits points!" << std::endl;
 	this->_hits += amount;
 	this->_energyPoints--;
