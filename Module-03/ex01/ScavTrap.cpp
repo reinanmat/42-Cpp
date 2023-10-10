@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:17:03 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/10 17:31:58 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/10 17:58:16 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	this->_attackDamage = ScavTrap::defaultAttackDamage;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &obj)
+ScavTrap::ScavTrap(const ScavTrap &obj) : ClapTrap(obj)
 {
 	std::cout << "Copy Constructor Called" << std::endl;
 	if (this != &obj)
