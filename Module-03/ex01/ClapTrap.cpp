@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 16:50:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/09 18:27:54 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:51:16 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 ClapTrap::ClapTrap()
 {
 	std::cout << "ClapTrap: Default Constructor Called" << std::endl;
+	this->_name = "";
 	this->_hits = ClapTrap::defaultHits;
 	this->_energyPoints = ClapTrap::defaultEnergyPoints;
 	this->_attackDamage = ClapTrap::defaultAttackDamage;
@@ -98,7 +99,7 @@ void	ClapTrap::setAttackDamage(int attackDamage)
 }
 
 /* MEMBER FUNCTIONS */
-void	ClapTrap::attack(const std::string& target)
+void	ClapTrap::attack(const std::string &target)
 {
 	if (this->getHits() == 0)
 	{
@@ -119,7 +120,7 @@ void	ClapTrap::attack(const std::string& target)
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
-	std::cout << this->getName() << " take damage " << 
+	std::cout << this->getName() << " take damage " <<
 		amount << " points of damage!";
 	if (this->getHits() - (int)amount <= 0) {
 		std::cout << " and was defeated!" << std::endl;
@@ -134,11 +135,11 @@ void	ClapTrap::beRepaired(unsigned int amount)
 {
 	if (this->getEnergyPoints() == 0)
 	{
-		std::cout << this->getName() 
+		std::cout << this->getName()
 			<< " cannot be repaired, has no energy points!" << std::endl;
 		return ;
 	}
-	std::cout << this->getName() << " was repaired and healed " << 
+	std::cout << this->getName() << " was repaired and healed " <<
 		amount << " hits points!" << std::endl;
 	this->_hits += amount;
 	this->_energyPoints--;
