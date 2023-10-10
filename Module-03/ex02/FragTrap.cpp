@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 15:15:09 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/10 17:53:37 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/10 18:06:09 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,19 @@
 FragTrap::FragTrap() : ClapTrap()
 {
 	std::cout << "FragTrap: Default Constructor Called" << std::endl;
-	this->setHits(FragTrap::defaultHits);
-	this->setEnergyPoints(FragTrap::defaultEnergyPoints);
-	this->setAttackDamage(FragTrap::defaultAttackDamage);
+	this->_name = "";
+	this->_hits = FragTrap::defaultHits;
+	this->_energyPoints = FragTrap::defaultEnergyPoints;
+	this->_attackDamage = FragTrap::defaultAttackDamage;
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
 	std::cout << name << " FragTrap: Constructor Called" << std::endl;
-	this->setName(name);
-	this->setHits(FragTrap::defaultHits);
-	this->setEnergyPoints(FragTrap::defaultEnergyPoints);
-	this->setAttackDamage(FragTrap::defaultAttackDamage);
+	this->_name = name;
+	this->_hits = FragTrap::defaultHits;
+	this->_energyPoints = FragTrap::defaultEnergyPoints;
+	this->_attackDamage = FragTrap::defaultAttackDamage;
 }
 
 FragTrap::FragTrap(const FragTrap &obj) : ClapTrap(obj)
