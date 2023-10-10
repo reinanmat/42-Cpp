@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:08:09 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/09 17:22:03 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:51:40 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ int	main(void)
 		kobi.printStatus();
 		std::cout << std::endl;
 	}
-	ClapTrapFight("Oal", "Riny");
+	{
+		ClapTrapFight("Oal", "Riny");
+	}
 	return (0);
 }

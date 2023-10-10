@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 16:50:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/10 14:52:08 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:51:16 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	ClapTrap::setAttackDamage(int attackDamage)
 }
 
 /* MEMBER FUNCTIONS */
-void	ClapTrap::attack(const std::string& target)
+void	ClapTrap::attack(const std::string &target)
 {
 	if (this->getHits() == 0)
 	{

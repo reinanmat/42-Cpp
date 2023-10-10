@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 16:51:34 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/09 18:29:08 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:51:24 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ class ClapTrap
 		void		setHits(int hits);
 		void		setEnergyPoints(int energyPoints);
 		void		setAttackDamage(int attackDamage);
-		void		attack(const std::string& target);
+		void		attack(const std::string &target);
 		void		takeDamage(unsigned int amount);
 		void		beRepaired(unsigned int amount);
 		void		printStatus(void) const;
