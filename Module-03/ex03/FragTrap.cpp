@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 15:15:09 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/10 18:06:09 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/10 18:33:56 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ FragTrap::FragTrap() : ClapTrap()
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
-	std::cout << name << " FragTrap: Constructor Called" << std::endl;
+	std::cout << "FragTrap " << name << ": Constructor Called" << std::endl;
 	this->_name = name;
 	this->_hits = FragTrap::defaultHits;
 	this->_energyPoints = FragTrap::defaultEnergyPoints;
@@ -49,10 +49,10 @@ FragTrap	&FragTrap::operator=(FragTrap const &other)
 	std::cout << "Copy Assignment Operator Called" << std::endl;
 	if (this != &other)
 	{
-		this->setName(other.getName());
-		this->setHits(other.getHits());
-		this->setAttackDamage(other.getAttackDamage());
-		this->setEnergyPoints(other.getEnergyPoints());
+		this->_name = other._name;
+		this->_hits = other._hits;
+		this->_attackDamage = other._attackDamage;
+		this->_energyPoints = other._energyPoints;
 	}
 	return (*this);
 }
