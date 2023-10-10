@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 15:11:12 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/09 18:53:04 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:49:11 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ class FragTrap : public ClapTrap
 		FragTrap(FragTrap const &obj);
 		FragTrap(std::string name);
 		~FragTrap();
-		FragTrap&	operator=(const FragTrap &cpy);
+		FragTrap&	operator=(const FragTrap &other);
 		void		highFivesGuys(void);
-		void		attack(const std::string& target);
+		void		attack(const std::string &target);
 		void		takeDamage(unsigned int amount);
 		void		beRepaired(unsigned int amount);
 };
