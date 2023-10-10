@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 16:50:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/09 18:34:31 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/10 14:52:08 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 ClapTrap::ClapTrap()
 {
 	std::cout << "ClapTrap: Default Constructor Called" << std::endl;
+	this->_name = "";
 	this->_hits = ClapTrap::defaultHits;
 	this->_energyPoints = ClapTrap::defaultEnergyPoints;
 	this->_attackDamage = ClapTrap::defaultAttackDamage;
