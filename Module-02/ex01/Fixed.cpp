@@ -6,12 +6,13 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 14:16:48 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/06 14:11:35 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/13 17:53:35 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
+/* CONSTRUCTORS AND DESTRUCTOR */
 Fixed::Fixed()
 {
 	std::cout << "Default constructor called" << std::endl;
@@ -23,11 +24,6 @@ Fixed::Fixed(Fixed const &obj)
 	std::cout << "Copy constructor called" << std::endl;
 	if (this != &obj)
 		*this = obj;
-}
-
-Fixed::~Fixed()
-{
-	std::cout << "Destructor called" << std::endl;
 }
 
 Fixed::Fixed(const int &num)
@@ -42,6 +38,27 @@ Fixed::Fixed(const float &num)
 	this->_fixedPoint = (int)roundf(num * (1 << this->_fractionalBits));
 }
 
+Fixed::~Fixed()
+{
+	std::cout << "Destructor called" << std::endl;
+}
+
+/* OPERATORS OVERLOADING */
+Fixed	&Fixed::operator=(const Fixed &other)
+{
+	std::cout << "Copy assignment operator called" << std::endl;
+	if (this != &other)
+		this->_fixedPoint = other.getRawBits();
+	return (*this);
+}
+
+std::ostream	&operator<<(std::ostream &out, const Fixed &obj)
+{
+	out << obj.toFloat();
+	return out;
+}
+
+/* GETTERS AND SETTERS */
 int		Fixed::getRawBits(void) const
 {
 	/* std::cout << "getRawBits member function called" << std::endl; */
@@ -54,14 +71,7 @@ void	Fixed::setRawBits(int const raw)
 	this->_fixedPoint = raw;
 }
 
-Fixed	&Fixed::operator=(const Fixed &cpy)
-{
-	std::cout << "Copy assignment operator called" << std::endl;
-	if (this != &cpy)
-		this->_fixedPoint = cpy.getRawBits();
-	return (*this);
-}
-
+/* MEMBER FUNCTIONS */
 int	Fixed::toInt(void) const
 {
 	return (this->_fixedPoint / (1 << this->_fractionalBits));
@@ -70,10 +80,4 @@ int	Fixed::toInt(void) const
 float	Fixed::toFloat(void) const
 {
 	return (this->_fixedPoint / (float)(1 << this->_fractionalBits));
-}
-
-std::ostream	&operator<<(std::ostream &out, const Fixed &obj)
-{
-	out << obj.toFloat();
-	return out;
 }

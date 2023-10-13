@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 13:51:24 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/06 16:21:50 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/13 18:01:57 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,25 @@ class Fixed
 		Fixed(const int &num);
 		Fixed(const float &num);
 		~Fixed();
-		int		getRawBits(void) const;
-		void	setRawBits(int const raw);
-		int		toInt(void) const;
-		float	toFloat(void) const;
-		Fixed	&operator=(const Fixed &cpy);
-		Fixed	operator+(const Fixed &x) const;
-		Fixed	operator-(const Fixed &x) const;
-		Fixed	operator*(const Fixed &x) const;
-		Fixed	operator/(const Fixed &x) const;
-		bool	operator==(const Fixed &cmp) const;
-		bool	operator!=(const Fixed &cmp) const;
-		bool	operator<(const Fixed &cmp) const;
-		bool	operator>(const Fixed &cmp) const;
-		bool	operator>=(const Fixed &cmp) const;
-		bool	operator<=(const Fixed &cmp) const;
-		Fixed	operator++(int);
-		Fixed	operator--(int);
-		Fixed	&operator++();
-		Fixed	&operator--();
+		int				getRawBits(void) const;
+		void			setRawBits(int const raw);
+		int				toInt(void) const;
+		float			toFloat(void) const;
+		Fixed			&operator=(const Fixed &other);
+		Fixed			operator+(const Fixed &x) const;
+		Fixed			operator-(const Fixed &x) const;
+		Fixed			operator*(const Fixed &x) const;
+		Fixed			operator/(const Fixed &x) const;
+		bool			operator==(const Fixed &cmp) const;
+		bool			operator!=(const Fixed &cmp) const;
+		bool			operator<(const Fixed &cmp) const;
+		bool			operator>(const Fixed &cmp) const;
+		bool			operator>=(const Fixed &cmp) const;
+		bool			operator<=(const Fixed &cmp) const;
+		Fixed			operator++(int);
+		Fixed			operator--(int);
+		Fixed			&operator--();
+		Fixed			&operator++();
 		static Fixed	&min(Fixed &a, Fixed &b);
 		static Fixed	&max(Fixed &a, Fixed &b);
 		static Fixed	&min(const Fixed &a, const Fixed &b);
