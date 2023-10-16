@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 15:31:39 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/16 15:20:18 by revieira         ###   ########.fr       */
+/*   Created: 2023/10/16 14:55:17 by revieira          #+#    #+#             */
+/*   Updated: 2023/10/16 15:13:05 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <string>
-#include <iostream>
+#include "Animal.hpp"
 
-class Animal
+class Cat : public Animal
 {
-	protected:
-		std::string	type;
-
 	public:
-		Animal();
-		Animal(const Animal &obj);
-		virtual ~Animal();
-		Animal		  &operator=(Animal const &other);
-		std::string	  getType(void) const;
-		void		  setType(std::string type);
-		virtual void  makeSound(void) const;
+		Cat();
+		Cat(const Cat &obj);
+		~Cat();
+		Cat	&operator=(Cat const &other);
+		void  makeSound(void) const;
 };
