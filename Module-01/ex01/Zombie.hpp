@@ -6,12 +6,11 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 17:23:06 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/02 19:30:09 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/20 18:49:53 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_H
-# define ZOMBIE_H
+#pragma once
 
 #include <string>
 #include <iostream>
@@ -22,14 +21,13 @@ class Zombie
 		Zombie();
 		Zombie(std::string name);
 		~Zombie();
-		void		announce(void);
+		Zombie		&operator=(const Zombie &other);
 		std::string	getName(void);
 		void		setName(std::string name);
-		Zombie& 	operator=(const Zombie other);
+		void		announce(void);
+
 	private:
 		std::string	_name;
 };
 
 Zombie*	zombieHorde(int N, std::string name);
-
-#endif

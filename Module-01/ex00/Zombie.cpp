@@ -6,12 +6,13 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 17:54:20 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/02 18:34:40 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/20 18:45:55 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
+/* CONSTRUCTORS AND DESTRUCTOR */
 Zombie::Zombie() {}
 
 Zombie::Zombie(std::string name)
@@ -21,21 +22,29 @@ Zombie::Zombie(std::string name)
 
 Zombie::~Zombie()
 {
-	std::cout << getName() << ": is dead" << std::endl;
+	std::cout << this->_name << ": is dead" << std::endl;
 }
 
-void	Zombie::announce(void)
+/* OPERATORS OVERLOADING */
+Zombie	&Zombie::operator=(const Zombie &other)
 {
-	std::cout << getName() << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	this->_name = other._name;
+	return *this;
 }
 
+/* GETTERS AND SETTERS*/
 std::string	Zombie::getName(void)
 {
 	return this->_name;
 }
 
-Zombie&	Zombie::operator=(const Zombie other)
+void	Zombie::setName(std::string name)
 {
-	this->_name = other._name;
-	return *this;	
+	this->_name = name;
+}
+
+/* MEMBER FUNCTIONS */
+void	Zombie::announce(void)
+{
+	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }

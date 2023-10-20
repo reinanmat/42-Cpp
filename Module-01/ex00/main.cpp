@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 17:17:23 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/02 18:42:19 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/20 18:45:02 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,14 @@
 int	main(void)
 {
 	std::string	names[] = {"Jubileu", "Cleiton", "Funestos"};
-	for (int i = 0; i != 3; i++)
-		randomChump(names[(i + 1 + 3) % 3]);
+
+	for (int i = 0; i != 5; i++)
+		randomChump(names[(i + 3) % 3]);
+	Zombie *zombie1 = newZombie("Zombie1");
+	Zombie *zombie2 = newZombie("Zombie2");
+	zombie1->announce();
+	zombie2->announce();
+	delete zombie1;
+	delete zombie2;
 	return (0);
 }

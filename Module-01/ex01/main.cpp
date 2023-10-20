@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 19:14:38 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/02 19:32:57 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/20 18:53:16 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,9 @@ int	main(void)
 {
 	Zombie *horde;
 	
-	horde = zombieHorde(10, "douglas");
-	for (int i = 0; i < 10; i++) {
-		try {
-			horde[i].announce();
-		}
-		catch (...) {
-			std::cout << "Error" << std::endl;
-		}
+	horde = zombieHorde(100, "zombie");
+	for (int i = 0; i < 100; i++) {
+		horde[i].announce();
 	}
 	delete[] horde;
 }
