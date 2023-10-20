@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 20:01:50 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/18 16:50:29 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/20 14:20:04 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,23 @@
 # define ACCOUNT_H
 
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
 class Account
 {
 	public:
 		Account();
+		Account(const Account &obj);
 		Account(int amount);
 		~Account();
+		Account	&operator=(const Account &other);
 		typedef Account	t;
 
 		int			getIndex(void);
 		int			getAmount(void);
 		int			getDeposits(void);
 		int			getWithdrawals(void);
-
-		int			getNumberAccounts(void);
-		int			getTotalAmount(void);
-		int			getTotalDeposits(void);
-		int			getTotalWithdrawals(void);
 
 		void		setIndex(int index);
 		void		setAmount(int amount);
@@ -48,10 +47,6 @@ class Account
 		int	_amount;
 		int	_deposits;
 		int	_withdrawals;
-		static int	_nbAccounts;
-		static int	_totalAmount;
-		static int	_totalDeposits;
-		static int	_totalWithdrawals;
 };
 
 #endif

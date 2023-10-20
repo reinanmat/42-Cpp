@@ -6,13 +6,11 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:15:37 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/18 19:51:28 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/20 14:25:31 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
-#include <fstream>
-#include <sstream>
 
 static int index = 0;
 static int nbAccounts = 0;
@@ -20,11 +18,46 @@ static int totalAmount = 0;
 static int totalDeposits = 0;
 static int totalWithdrawals = 0;
 
-static	std::string	getCurrentDateTime(void);
-static	void		writeInLogFile(std::string logMsg);
-static	std::string	to_string(int value);
+/* AUX FUNCTIONS */
+static	std::string	getCurrentDateTime(void)
+{
+	time_t		now = time(0);
+	char		buffer[80];
+	struct tm	timeInfo;
+
+	timeInfo = *localtime(&now);
+	strftime(buffer, sizeof(buffer), "%Y%m%d_%H%M%S", &timeInfo);
+	return (buffer);
+}
+
+static	std::string	to_string(int value)
+{
+	std::stringstream ss;
+
+	ss << value;
+	return (ss.str());
+}
+
+static	void	writeInLogFile(std::string logMsg)
+{
+	std::string now;
+	std::string filename;
+
+	now = getCurrentDateTime();
+	filename = now + ".log";
+	std::ofstream	logFile(filename.c_str(), std::ofstream::out | std::ofstream::app);
+	logFile << "[" + now + "] " << logMsg << std::endl;
+	logFile.close();
+}
+
 /* CONSTRUCTORS AND DESTRUCTOR */
 Account::Account() {}
+
+Account::Account(const Account &obj)
+{
+	if (this != &obj)
+		*this = obj;
+}
 
 Account::Account(int amount)
 {
@@ -54,50 +87,27 @@ Account::~Account()
 /* GETTERS AND SETTERS */
 int		Account::getIndex(void) { return this->_index; }
 int		Account::getAmount(void) { return this->_amount; }
+int		Account::getDeposits(void) { return this->_deposits; }
 int		Account::getWithdrawals(void) { return this->_withdrawals; }
-
-// int		Account::getNumberAccounts(void) { return this->_nbAccounts; }
-// int		Account::getTotalAmount(void) { return this->_totalAmount; }
-// int		Account::getTotalDeposits(void) { return this->_totalDeposits; }
-// int		Account::getTotalWithdrawals(void) { return this->_totalWithdrawals; }
-
 void	Account::setIndex(int index) { this->_index = index; };
 void	Account::setAmount(int amount) { this->_amount = amount; }
 void	Account::setDeposits(int deposit) { this->_deposits = deposit ;}
 void	Account::setWithdrawals(int withdrawals) { this->_withdrawals = withdrawals; }
 
+/* OPERATORS OVERLOADING */
+Account	&Account::operator=(const Account &other)
+{
+	if (this != &other)
+	{
+		this->_index = other._index;
+		this->_amount = other._amount;
+		this->_deposits = other._deposits;
+		this->_withdrawals = other._withdrawals;
+	}
+	return (*this);
+}
+
 /* MEMBER FUNCTIONS */
-static	std::string	to_string(int value)
-{
-	std::stringstream ss;
-
-	ss << value;
-	return (ss.str());
-}
-
-static	void	writeInLogFile(std::string logMsg)
-{
-	std::string now;
-	std::string filename;
-
-	now = getCurrentDateTime();
-	filename = now + ".log";
-	std::ofstream	logFile(filename.c_str(), std::ofstream::out | std::ofstream::app);
-	logFile << "[" + now + "] " << logMsg << std::endl;
-	logFile.close();
-}
-
-static	std::string	getCurrentDateTime(void)
-{
-	time_t		now = time(0);
-	char		buffer[80];
-	struct tm	timeInfo;
-
-	timeInfo = *localtime(&now);
-	strftime(buffer, sizeof(buffer), "%Y%m%d_%H%M%S", &timeInfo);
-	return (buffer);
-}
-
 void	Account::displayAccountsInfos(void)
 {
 	std::string	logMsg;
