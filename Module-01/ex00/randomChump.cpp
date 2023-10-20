@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:06:04 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/23 18:08:38 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/20 18:46:52 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	randomChump(std::string name)
 {
-	Zombie *zombie = new Zombie(name);
-	
-	zombie->announce();
-	delete(zombie);
+	Zombie zombie(name);
+	zombie.announce();
 }
