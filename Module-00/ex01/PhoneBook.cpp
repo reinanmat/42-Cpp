@@ -6,25 +6,45 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:04:57 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/05 20:08:08 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/20 18:18:00 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
+/* CONSTRUCTORS AND DESTRUCTOR */
 PhoneBook::PhoneBook()
 {
 	this->_amountOfContacts = 0;
 }
 
+PhoneBook::PhoneBook(const PhoneBook &obj)
+{
+	if (this != &obj)
+		*this = obj;
+}
+
 PhoneBook::~PhoneBook() {}
 
-Contacts	PhoneBook::getContact(int index)
+/* OPERATOR OVERLOADING */
+PhoneBook	&PhoneBook::operator=(const PhoneBook &cpy)
+{
+	if (this != &cpy)
+	{
+		this->_amountOfContacts = cpy._amountOfContacts;
+		for (int i = 0; i < cpy._amountOfContacts; i++)
+			this->_contacts[i] = cpy._contacts[i];
+	}
+	return (*this);
+}
+
+/* GETTERS AND SETTERS */
+Contacts	PhoneBook::getContact(int index) const
 {
 	return this->_contacts[index];
 }
 
-int	PhoneBook::getAmountOfContacts()
+int	PhoneBook::getAmountOfContacts() const
 {
 	return this->_amountOfContacts;
 }
@@ -34,99 +54,33 @@ void	PhoneBook::setAmountOfContacts(int amount)
 	this->_amountOfContacts = amount;	
 }
 
-static int	checkEmptyField(std::string	str)
-{
-	size_t	i;
-
-	if (str.empty())
-		return (1);
-	i = 0;
-	while (isspace(str[i]))
-		i++;
-	if (i == str.size())
-		return (1);
-	return (0);
-}
-
-static int	checkNumber(std::string number)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < number.size())
-	{
-		if (!isdigit(number[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-static int	checkUnicodeChar(std::string str)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < str.size())
-	{
-		if (!(str[i] & 0b10000000))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-static std::string	getValue(std::string key)
-{
-	std::string	value;
-
-	while (1)
-	{
-		std::cout << key << ": ";
-		if (!std::getline(std::cin, value))
-			exit(1);
-		if (checkEmptyField(value))
-			std::cout << "Error: Empty field" << std::endl;
-		else if (key.compare("phone book") == 0 && !checkNumber(value))
-			std::cout << "Error: Not a valid phone number" << std::endl;
-		else if (checkUnicodeChar(value))
-			std::cout << "Error: Unsupported unicode characteres" << std::endl;
-		else
-			break;
-	}
-	return (value);
-}
-
+/* MEMBER FUNCTIONS */
 void	PhoneBook::addContact()
 {
 	static int	index = 0;
-	int			currAmount;
 	Contacts	newContact;
 
-	currAmount = this->getAmountOfContacts();
-	if (currAmount != 8)
-		setAmountOfContacts(currAmount + 1);
+	if (this->_amountOfContacts != 8)
+		this->_amountOfContacts += 1;
 	newContact.setIndex(index);
-	newContact.setFirstName(getValue("first name"));
-	newContact.setLastName(getValue("last name"));
-	newContact.setNickname(getValue("nickname"));
-	newContact.setPhoneNumber(getValue("phone book"));
-	newContact.setDarkestSecret(getValue("darkest secret"));
+	newContact.setFirstName(getInput("first name"));
+	newContact.setLastName(getInput("last name"));
+	newContact.setNickname(getInput("nickname"));
+	newContact.setPhoneNumber(getInput("phone book"));
+	newContact.setDarkestSecret(getInput("darkest secret"));
 	this->_contacts[index] = newContact;
 	if (++index == 8)
 		index = 0;
 }
 
-void	PhoneBook::searchContact()
+void	PhoneBook::searchContact() const
 {
 	std::string strIndex;
 	int			index;
-	int			amount;
 
-	amount = this->getAmountOfContacts();
-	if (amount == 0)
+	if (this->_amountOfContacts == 0)
 	{
-		std::cout << "Phone book is empty" << std::endl;
+		std::cout << YEL "Phone book is empty!" RESET << std::endl;
 		return ;
 	}
 	this->displayAllContacts();
@@ -136,27 +90,28 @@ void	PhoneBook::searchContact()
 		if (!std::getline(std::cin, strIndex))
 			exit(1);
 		if (!checkNumber(strIndex))
-			std::cout << "Not a number" << std::endl;
+		{
+			std::cout << RED "Error: Invalid number" RESET << std::endl;
+			continue ;
+		}
 		index = std::atoi(strIndex.c_str()) - 1;
-		if (index < 0 || index > amount - 1)
-			std::cout << "Error: index out of range" << std::endl;
+		if (index < 0 || index > this->_amountOfContacts - 1)
+			std::cout << RED "Error: Index out of range" RESET << std::endl;
 		else
 			break ;
 	}
 	this->displayContact(index);
 }
 
-void	PhoneBook::displayAllContacts()
+void	PhoneBook::displayAllContacts() const
 {
 	int			i;
-	int			amount;
 	Contacts	contact;
 
 	i = 0;
-	amount = this->getAmountOfContacts();
 	std::cout << "/===========================================\\" << std::endl;
 	std::cout << "|  INDEX   |FIRST NAME|LAST  NAME| NICKNAME |" << std::endl;
-	while (i < amount)
+	while (i < this->_amountOfContacts)
 	{
 		contact = this->getContact(i);
 		contact.displaySimplifiedContact();
@@ -165,7 +120,7 @@ void	PhoneBook::displayAllContacts()
 	std::cout << "\\===========================================/" << std::endl;
 }
 
-void	PhoneBook::displayContact(int index)
+void	PhoneBook::displayContact(int index) const
 {
 	Contacts	contact;
 

@@ -6,37 +6,38 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:07:28 by revieira          #+#    #+#             */
-/*   Updated: 2023/08/27 20:02:59 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/20 18:06:25 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTACTS_H
-# define CONTACTS_H
+#pragma once
 
-# include <iostream>
-# include <iomanip>
-# include <string>
+#include <iostream>
+#include <iomanip>
+#include <string>
 
 class Contacts
 {
 	public:
 		Contacts();
+		Contacts(const Contacts &obj);
 		~Contacts();
+		Contacts	&operator=(const Contacts &other);
+		int			getIndex() const;
+		std::string	getPhoneNumber() const;
+		std::string	getFirstName() const;
+		std::string	getLastName() const;
+		std::string	getNickname() const;
+		std::string	getDarkestSecret();
 		void		setIndex(int index);
 		void		setPhoneNumber(std::string phoneNumber);
 		void		setFirstName(std::string firstName);
 		void		setLastName(std::string lastName);
 		void		setNickname(std::string nickName);
 		void		setDarkestSecret(std::string darkestSecret);
-		int			getIndex();
-		std::string	getPhoneNumber();
-		std::string	getFirstName();
-		std::string	getLastName();
-		std::string	getNickname();
-		std::string	getDarkestSecret();
-		void		displaySimplifiedContact();
-		void		displayFullContact();
-		Contacts&	operator=(Contacts other);
+		void		displaySimplifiedContact() const;
+		void		displayFullContact() const;
+
 	private:
 		int			_index;
 		std::string	_phoneNumber;
@@ -45,5 +46,3 @@ class Contacts
 		std::string _nickname;
 		std::string	_darkestSecret;
 };
-
-#endif
