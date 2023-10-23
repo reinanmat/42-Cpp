@@ -1,4 +1,4 @@
-NAME = a.out
+NAME = brain
 
 PATH_INCS = ./
 PATH_SRCS = ./
