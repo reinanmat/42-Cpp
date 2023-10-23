@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 20:04:26 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/04 14:22:12 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/23 14:24:49 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ class HumanA
 		~HumanA();
 		HumanA(std::string name, Weapon& weapon);
 		void	attack(void);
+
 	private:
-		Weapon		*weapon;
-		std::string	name;
+		Weapon		*_weapon;
+		std::string	_name;
 };

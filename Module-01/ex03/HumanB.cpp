@@ -6,28 +6,34 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 20:14:19 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/04 14:30:45 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/23 14:19:46 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanB.hpp"
 
+/* CONSTRUCTORS AND DESTRUCTOR */
 HumanB::HumanB() {}
 
 HumanB::~HumanB() {}
 
 HumanB::HumanB(std::string name)
 {
-	this->name = name;
-	this->weapon = NULL;
+	this->_name = name;
+	this->_weapon = NULL;
 }
 
+/* MEMBER FUNCTIONS */
 void	HumanB::setWeapon(Weapon& weapon)
 {
-	this->weapon = &weapon;
+	this->_weapon = &weapon;
 }
 
 void	HumanB::attack(void)
 {
-	std::cout << this->name + " attacks with their " + this->weapon->getType() << std::endl;
+	std::cout << this->_name;
+	if (!this->_weapon)
+		 std::cout << " is disarmed" << std::endl;
+	else
+		std::cout <<" attacks with their " + this->_weapon->getType() << std::endl;
 }
