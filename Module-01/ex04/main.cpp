@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:39:49 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/04 18:44:50 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:17:10 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,37 +23,40 @@ std::string	getFileContent(std::string filename)
 	file.open(filename.c_str(), std::ifstream::in);
 	getline(file, content, '\0');
 	file.close();
-	content = content + '\0';
 	return (content);
 }
 
-void	writeAndReplace(std::ofstream& fd, std::string& str, std::string s1, std::string s2)
+void	searchAndReplace(std::ofstream& fd, std::string content, std::string s1, std::string s2)
 {
-	size_t	stringSize;
+	size_t	contentSize;
 	size_t	replaceSize;
 	
-	stringSize = str.size();
+	contentSize = content.size();
 	replaceSize = s1.size();
-	for (size_t i = 0; i < stringSize; i++)
+	for (size_t i = 0; i < contentSize; i++)
 	{
-		if (i + replaceSize <= stringSize && str.substr(i, replaceSize).compare(s1) == 0)
+		if (i + replaceSize <= contentSize && content.substr(i, replaceSize).compare(s1) == 0)
 		{
 			fd << s2;
 			i += replaceSize;
 		}
-		fd << str[i];
+		fd << content[i];
 	}
 }
 
-void	toReplace(std::string originalFilename, std::string s1, std::string s2)
+void	createReplacedFile(std::string originalFile, std::string s1, std::string s2)
 {
 	std::string		content;
 	std::string		replacedFilename;
+	std::ofstream	replacedFile;
 
-	content = getFileContent(originalFilename);
-	replacedFilename = originalFilename.append(".replace");
-	std::ofstream	replacedFile(replacedFilename.c_str());
-	writeAndReplace(replacedFile, content, s1, s2);
+	content = getFileContent(originalFile);
+	replacedFilename = originalFile.append(".replace");
+	replacedFile.open(replacedFilename.c_str());
+	if (s1 == s2)
+		replacedFile << content;
+	else
+		searchAndReplace(replacedFile, content, s1, s2);
 	replacedFile.close();
 }
 
@@ -80,6 +83,6 @@ int	main(int argc, char **argv)
 {
 	if (!validArgs(argc, argv))
 		return (1);
-	toReplace(argv[1], argv[2], argv[3]);
+	createReplacedFile(argv[1], argv[2], argv[3]);
 	return (0);
 }
