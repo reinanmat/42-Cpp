@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:09:56 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/20 15:37:24 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:35:02 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void		Contacts::setNickname(std::string nickname) { this->_nickname = nickname; 
 void		Contacts::setDarkestSecret(std::string darkestSecret) { this->_darkestSecret = darkestSecret; }
 
 /* AUX FUNCTIONS */
-static std::string	truncate_str(std::string str)
+static std::string	truncateString(std::string str)
 {
 	std::string	truncated;
 
@@ -72,13 +72,13 @@ void	Contacts::displaySimplifiedContact() const
 	std::cout << this->_index;
 	std::cout << "|";
 	std::cout << std::setfill(' ') << std::setw(10);
-	std::cout << truncate_str(this->_firstName);
+	std::cout << truncateString(this->_firstName);
 	std::cout << "|";
 	std::cout << std::setfill(' ') << std::setw(10);
-	std::cout << truncate_str(this->_lastName);
+	std::cout << truncateString(this->_lastName);
 	std::cout << "|";
 	std::cout << std::setfill(' ') << std::setw(10);
-	std::cout << truncate_str(this->_nickname);
+	std::cout << truncateString(this->_nickname);
 	std::cout << "|" << std::endl;
 }
 
