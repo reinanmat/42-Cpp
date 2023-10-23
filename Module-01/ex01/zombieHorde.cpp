@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 18:49:41 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/02 19:31:04 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/23 13:14:14 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ Zombie*	zombieHorde(int N, std::string name)
 
 	for (int i = 0; i < N; i++)
 		zombies[i].setName(name);
-	return zombies;
+	return (zombies);
 }
