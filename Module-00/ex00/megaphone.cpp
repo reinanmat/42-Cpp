@@ -6,11 +6,12 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 15:51:55 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/23 15:51:59 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/24 13:43:50 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <string>
 
 void	printInUpperCase(std::string str)
 {
