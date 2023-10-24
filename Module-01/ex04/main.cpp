@@ -6,12 +6,11 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:39:49 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/23 15:17:10 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/24 19:01:56 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <fstream>
 #include <fstream>
 #include <string>
 
@@ -21,7 +20,7 @@ std::string	getFileContent(std::string filename)
 	std::string		content;
 
 	file.open(filename.c_str(), std::ifstream::in);
-	getline(file, content, '\0');
+	std::getline(file, content, '\0');
 	file.close();
 	return (content);
 }
@@ -35,7 +34,7 @@ void	searchAndReplace(std::ofstream& fd, std::string content, std::string s1, st
 	replaceSize = s1.size();
 	for (size_t i = 0; i < contentSize; i++)
 	{
-		if (i + replaceSize <= contentSize && content.substr(i, replaceSize).compare(s1) == 0)
+		if (i + replaceSize <= contentSize && content.compare(i, replaceSize, s1) == 0)
 		{
 			fd << s2;
 			i += replaceSize;
