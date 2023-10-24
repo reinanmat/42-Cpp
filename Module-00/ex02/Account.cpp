@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:55:38 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/23 18:58:03 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/24 17:30:12 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ Account::Account( int initial_deposit )
 {
 	this->_accountIndex = _nbAccounts++;
 	this->_amount = initial_deposit;
+	this->_nbDeposits = 0;
+	this->_nbWithdrawals = 0;
 	_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ";";
 	std::cout << "amount:" << this->_amount << ";";
