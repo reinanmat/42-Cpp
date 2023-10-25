@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:00:32 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/25 17:36:18 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:20:01 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
 	std::cout << "Bureaucrat: Copy Assignment Operator Called" << std::endl;
 	if (this != &other)
+	{
+		(std::string)this->_name = (std::string)other._name;
 		this->_grade = other._grade;
+	}
 	return (*this);
 }
 
