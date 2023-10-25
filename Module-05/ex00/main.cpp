@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:53:10 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/25 17:39:37 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/25 19:25:15 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,5 @@ int	main(void)
 			std::cerr << e.what() << std::endl;
 		}
 	}
-
 	return (0);
 }
