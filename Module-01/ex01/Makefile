@@ -1,4 +1,4 @@
-NAME = zombie
+NAME = hordeOfZombies
 
 PATH_INCS = ./
 PATH_SRCS = ./
