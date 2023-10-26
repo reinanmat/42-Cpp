@@ -6,21 +6,21 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:44:09 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/25 20:05:24 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/26 18:54:53 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
 /* CONSTRUCTORS AND DESTRUCTOR */
-Form::Form() : _name(""), _gradeToExecute(0), _gradeToSign(0), _isSigned(false)
+Form::Form() : _name(""), _isSigned(false), _gradeToExecute(0), _gradeToSign(0)
 {
 	#ifdef DEBUG
 		std::cout << "Form: Default Constructor Called" << std::endl;
 	#endif
 }
 
-Form::Form(const Form &obj) : _gradeToExecute(0), _gradeToSign(0), _isSigned(false)
+Form::Form(const Form &obj) : _name(""), _isSigned(false), _gradeToExecute(0), _gradeToSign(0)
 {
 	#ifdef DEBUG
 		std::cout << "Form: Copy Constructor Called" << std::endl;
@@ -30,7 +30,7 @@ Form::Form(const Form &obj) : _gradeToExecute(0), _gradeToSign(0), _isSigned(fal
 }
 
 Form::Form(std::string name, int gradeToSign, int gradeToExecute) : _name(name), 
-	_gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute), _isSigned(false)
+	_isSigned(false), _gradeToExecute(gradeToExecute), _gradeToSign(gradeToSign)
 {
 	#ifdef DEBUG
 		std::cout << "Form " << name << ": Copy Constructor Called" << std::endl;
@@ -69,10 +69,10 @@ std::ostream	&operator<<(std::ostream &out, const Form &obj)
 	#ifdef DEBUG
 		std::cout << "Form: Insertion Operator Called" << std::endl;
 	#endif
-	out << obj.getName() + ", ";
-	out << "grade to sign: "  << obj.getGradeToSign() << ", ";
-	out << "grade to execute" << obj.getGradeToExecute() << std::endl;
-	out << (obj.getIsSigned() ? "it was signed" : "was not signed");
+	out << "Form: " << obj.getName() << std::endl;
+	out << "Grade to sign: "  << obj.getGradeToSign() << std::endl;
+	out << "Grade to execute: " << obj.getGradeToExecute() << std::endl;
+	out << "Signed: " << (obj.getIsSigned() ? "it was signed" : "was not signed");
 	return (out);
 }
 
@@ -124,5 +124,6 @@ void	Form::beSigned(const Bureaucrat &b)
 		std::cout << "because aaaaah" << std::endl;
 	} else {
 		std::cout << " signed " << this->_name << std::endl;
+		this->_isSigned = true;
 	}
 }

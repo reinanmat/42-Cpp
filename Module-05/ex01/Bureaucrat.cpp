@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:00:32 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/25 19:37:03 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/26 18:42:46 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ Bureaucrat::Bureaucrat(int grade, std::string name) : _name(name)
 {
 	#ifdef DEBUG
 		std::cout << "Bureaucrat " << name << ": Constructor Called" << std::endl;
-	#endif // 0
+	#endif
 	if (grade < 1)
 		throw(GradeTooHighExpection());
 	else if (grade > 150)
