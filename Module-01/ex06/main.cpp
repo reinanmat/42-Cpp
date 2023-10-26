@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:59:00 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/13 13:47:37 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/26 17:37:34 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	validProblem(std::string parameter)
 	
 	for (int i = 0; i < 4; i++)
 		if (levels[i] == parameter)
-			return (i + 1);
-	return (0);
+			return (i);
+	return (-1);
 }
 
 int	main(int argc, char **argv)
@@ -37,16 +37,16 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	switch (validProblem(argv[1])) {
-		case 0:
+		case -1:
 			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 			break ;
-		case 1:
+		case 0:
 			harl.complain(0);
-		case 2:
+		case 1:
 			harl.complain(1);
-		case 3:
+		case 2:
 			harl.complain(2);
-		case 4:
+		case 3:
 			harl.complain(3);
 	}
 	return (0);
