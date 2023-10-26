@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 20:14:19 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/23 14:20:54 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/26 17:14:21 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ void	HumanA::attack(void)
 	if (!this->_weapon)
 		 std::cout << " is disarmed" << std::endl;
 	else
-		std::cout <<" attacks with their " + this->_weapon->getType() << std::endl;
+		std::cout << " attacks with their " + this->_weapon->getType() << std::endl;
 }

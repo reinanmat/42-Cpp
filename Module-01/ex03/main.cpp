@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:45:20 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/23 14:23:07 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/26 17:12:40 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int	main(void)
 		HumanA	jim("Jim", *invalidWeapon);
 		HumanB	bob("Bob"); 
 		jim.attack();
+		bob.attack();
+		bob.setWeapon(*invalidWeapon);
 		bob.attack();
 	}
 }
