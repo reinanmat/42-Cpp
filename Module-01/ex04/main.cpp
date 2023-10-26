@@ -72,7 +72,7 @@ int	validArgs(int argc, char **argv)
 	file.open(argv[1], std::ifstream::in);
 	if (!file.is_open())
 	{
-		std::cout << "No such file or directory" << std::endl;
+		std::cout << "Error: No such file or directory" << std::endl;
 		return (0);
 	}
 	file.close();
