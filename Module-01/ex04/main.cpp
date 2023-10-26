@@ -19,7 +19,7 @@ std::string	getFileContent(std::string filename)
 	std::ifstream	file;
 	std::string		content;
 
-	file.open(filename.c_str(), std::ifstream::in);
+	file.open(filename.c_str());
 	std::getline(file, content, '\0');
 	file.close();
 	return (content);
