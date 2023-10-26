@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:39:49 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/24 19:01:56 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/26 18:01:49 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,13 @@ void	searchAndReplace(std::ofstream& fd, std::string content, std::string s1, st
 	replaceSize = s1.size();
 	for (size_t i = 0; i < contentSize; i++)
 	{
-		if (i + replaceSize <= contentSize && content.compare(i, replaceSize, s1) == 0)
+		if (content.compare(i, replaceSize, s1) == 0)
 		{
 			fd << s2;
-			i += replaceSize;
+			i += replaceSize - 1;
 		}
-		fd << content[i];
+		else
+			fd << content[i];
 	}
 }
 
