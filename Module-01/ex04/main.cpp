@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:39:49 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/26 18:01:49 by revieira         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:32:38 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	validArgs(int argc, char **argv)
 	if (argc != 4)
 	{
 		std::cout << "Error: Invalid parameters" << std::endl;
-		std::cout << "Usage: <FILE> <REPLACE> <TO_REPLACE>" << std::endl;
+		std::cout << "Usage: <FILE> <REPLACE_THIS> <WITH_THIS>" << std::endl;
 		return (0);
 	}
 	file.open(argv[1], std::ifstream::in);
