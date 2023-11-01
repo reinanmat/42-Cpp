@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 13:51:24 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/13 18:01:57 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/01 15:58:16 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class Fixed
 {
 	public:
 		Fixed();
-		Fixed(Fixed const &obj);
+		Fixed(const Fixed &obj);
 		Fixed(const int &num);
 		Fixed(const float &num);
 		~Fixed();

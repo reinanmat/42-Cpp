@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 14:16:48 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/13 18:00:27 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/01 16:14:46 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Fixed::Fixed()
 	this->_fixedPoint = 0;
 }
 
-Fixed::Fixed(Fixed const &obj)
+Fixed::Fixed(const Fixed &obj)
 {
 	/* std::cout << "Copy constructor called" << std::endl; */
 	if (this != &obj)
@@ -69,12 +69,12 @@ float	Fixed::toFloat(void) const
 
 Fixed	&Fixed::min(Fixed &a, Fixed &b)
 {
-	return (a > b ? b : a);
+	return (a <= b ? a : b);
 }
 
 Fixed	&Fixed::max(Fixed &a, Fixed &b)
 {
-	return (a > b ? a : b);
+	return (a >= b ? a : b);
 }
 
 Fixed	&Fixed::min(const Fixed &a, const Fixed &b)
@@ -110,22 +110,22 @@ std::ostream	&operator<<(std::ostream &out, const Fixed &obj)
 
 Fixed	Fixed::operator+(const Fixed &x) const
 {
-	return (Fixed((this->toFloat() + x.toFloat())));
+	return (this->toFloat() + x.toFloat());
 }
 
 Fixed	Fixed::operator-(const Fixed &x) const
 {
-	return (Fixed((this->toFloat() - x.toFloat())));
+	return (this->toFloat() - x.toFloat());
 }
 
 Fixed	Fixed::operator*(const Fixed &x) const
 {
-	return (Fixed((this->toFloat() * x.toFloat())));
+	return (this->toFloat() * x.toFloat());
 }
 
 Fixed	Fixed::operator/(const Fixed &x) const
 {
-	return (Fixed(this->toFloat() / x.toFloat()));
+	return (this->toFloat() / x.toFloat());
 }
 
 bool	Fixed::operator==(const Fixed &cmp) const
