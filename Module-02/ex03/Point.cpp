@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 14:11:00 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/13 15:58:45 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/01 16:39:59 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Point::Point()
 	this->_y = Fixed(0);
 }
 
-Point::Point(Point const &obj)
+Point::Point(const Point &obj)
 {
 	/* std::cout << "Point: Copy Constructor Called" << std::endl; */
 	if (this != &obj)
@@ -59,8 +59,8 @@ Point	&Point::operator=(const Point &other)
 	return (*this);
 }
 
-Point	Point::operator-(const Point &b) const
+std::ostream	&operator<<(std::ostream &out, const Point &obj)
 {
-	Point result(this->getX() - b.getX(), this->getY() - b.getY());
-	return (result);
+	out << "(" << obj.getX() << ", " << obj.getY() << ")";
+	return (out);
 }

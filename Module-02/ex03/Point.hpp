@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 14:05:06 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/13 15:59:20 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/01 16:38:44 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ class Point
 		Fixed _y;
 };
 
+std::ostream	&operator<<(std::ostream &out, const Point &obj);
 bool bsp(Point const a, Point const b, Point const c, Point const point);
