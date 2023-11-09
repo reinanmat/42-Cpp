@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:17:03 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/10 17:58:16 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/09 19:20:47 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,24 +60,23 @@ ScavTrap	&ScavTrap::operator=(ScavTrap const &other)
 /* MEMBER FUNCTIONS */
 void	ScavTrap::attack(const std::string &target)
 {
-	if (this->getHits() == 0)
+	std::cout << "ScavTrap " << this->_name;
+	if (this->_hits == 0)
 	{
-		std::cout << "ScavTrap " << this->getName() 
-			<< " can't attack, has no hits points!" << std::endl;
+		std::cout << " can't attack, has no hits points!" << std::endl;
 		return ;
 	}
-	if (this->getEnergyPoints() == 0)
+	if (this->_energyPoints == 0)
 	{
-		std::cout << "ScavTrap " << this->getName() 
-			<< " can't attack, has no energy points!" << std::endl;
+		std::cout << " can't attack, has no energy points!" << std::endl;
 		return ;
 	}
-	std::cout << "ScavTrap " << this->getName() << " attacks " << target << 
-		", causing " << this->getAttackDamage() << " points of damage!" << std::endl;
+	std::cout << " attacks " << target << ", causing " << 
+		this->_attackDamage << " points of damage!" << std::endl;
 	this->_energyPoints--;
 }
 
 void	ScavTrap::guardGate()
 {
-	std::cout << "ScavTrap " << this->getName() << " is now in Gate keeper mode" << std::endl;
+	std::cout << "ScavTrap " << this->_name << " is now in Gate keeper mode" << std::endl;
 }

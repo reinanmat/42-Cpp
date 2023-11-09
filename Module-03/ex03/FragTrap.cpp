@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 15:15:09 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/10 18:33:56 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/09 19:14:27 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,5 @@ FragTrap	&FragTrap::operator=(FragTrap const &other)
 /* MEMBER FUNCTIONS */
 void	FragTrap::highFivesGuys(void)
 {
-	std::cout << "FragTrap " << this->getName() << " request a high five" << std::endl;
+	std::cout << "FragTrap " << this->_name << " request a high five" << std::endl;
 }
