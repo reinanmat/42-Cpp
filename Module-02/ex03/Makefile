@@ -8,7 +8,11 @@ FILES = main Fixed Point bsp
 SRCS = ${FILES:%=$(PATH_OBJS)%.cpp}
 OBJS = ${FILES:%=$(PATH_OBJS)%.o}
 
-FLAGS = -Wall -Wextra -Werror -std=c++98 -g3
+ifeq ($(DEBUG), 1)
+	FLAGS = -Wall -Wextra -Werror -std=c++98 -g3 -D DEBUG
+else
+	FLAGS = -Wall -Wextra -Werror -std=c++98 -g3
+endif
 
 all: $(NAME)
 
@@ -29,4 +33,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+debug: fclean
+	@make DEBUG=1 --no-print-directory
+
+.PHONY: all clean fclean re debug

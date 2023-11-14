@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 14:27:21 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/01 16:28:01 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:46:30 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,5 @@ bool bsp(Point const a, Point const b, Point const c, Point const point)
 	triangleABP = calculateAreaOfTriangle(a, b, point);
 	triangleBCP = calculateAreaOfTriangle(b, c, point);
 	triangleACP = calculateAreaOfTriangle(a, c, point);
-	if (triangleABC == triangleACP + triangleBCP + triangleABP)
-		return (true);
-	else
-		return (false);
+	return (triangleABC == triangleACP + triangleBCP + triangleABP);
 }

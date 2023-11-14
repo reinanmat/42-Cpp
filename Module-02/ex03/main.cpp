@@ -6,22 +6,11 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 14:55:59 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/01 19:19:19 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/14 14:46:52 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
-
-# define INSIDE " is inside the triangle "
-# define NOT_INSIDE " is not inside the triangle "
-#define RED   "\x1B[31m"
-#define GRN   "\x1B[32m"
-#define YEL   "\x1B[33m"
-#define BLU   "\x1B[34m"
-#define MAG   "\x1B[35m"
-#define CYN   "\x1B[36m"
-#define WHT   "\x1B[37m"
-#define RESET "\x1B[0m"
 
 int	main(void)
 {
