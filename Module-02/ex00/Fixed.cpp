@@ -6,17 +6,16 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 14:16:48 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/01 14:53:28 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:41:37 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
 /* CONSTRUCTORS AND DESTRUCTOR */
-Fixed::Fixed()
+Fixed::Fixed() : _fixedPoint(0)
 {
 	std::cout << "Default constructor called" << std::endl;
-	this->_fixedPoint = 0;
 }
 
 Fixed::Fixed(Fixed const &obj)
