@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 13:51:24 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/13 17:53:43 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:18:28 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ class Fixed
 	public:
 		Fixed();
 		Fixed(Fixed const &obj);
-		Fixed(const int &num);
-		Fixed(const float &num);
+		Fixed(const int num);
+		Fixed(const float num);
 		~Fixed();
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);

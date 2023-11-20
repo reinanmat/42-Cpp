@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 14:16:48 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/14 16:41:24 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:18:18 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ Fixed::Fixed(Fixed const &obj)
 		*this = obj;
 }
 
-Fixed::Fixed(const int &num)
+Fixed::Fixed(const int num)
 {
 	std::cout << "Int constructor called" << std::endl;
 	this->_fixedPoint = num * (1 << this->_fractionalBits);
 }
 
-Fixed::Fixed(const float &num)
+Fixed::Fixed(const float num)
 {
 	std::cout << "Float constructor called" << std::endl;
-	this->_fixedPoint = (int)roundf(num * (1 << this->_fractionalBits));
+	this->_fixedPoint = roundf(num * (1 << this->_fractionalBits));
 }
 
 Fixed::~Fixed()
