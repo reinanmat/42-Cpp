@@ -6,14 +6,14 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:00:32 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/25 19:29:22 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/20 13:20:48 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
 /* CONSTRUCTOS AND DESTRUCTOR */
-Bureaucrat::Bureaucrat() 
+Bureaucrat::Bureaucrat()
 {
 	#ifdef DEBUG
 		std::cout << "Bureaucrat: Default Constructor Called" << std::endl;
@@ -33,7 +33,7 @@ Bureaucrat::Bureaucrat(int grade, std::string name) : _name(name)
 {
 	#ifdef DEBUG
 		std::cout << "Bureaucrat " << name << ": Constructor Called" << std::endl;
-	#endif // 0
+	#endif
 	if (grade < 1)
 		throw(GradeTooHighExpection(*this));
 	else if (grade > 150)
@@ -74,8 +74,8 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 	#endif
 	if (this != &other)
 	{
-		(std::string)this->_name = (std::string)other._name;
-		this->_grade = other._grade;
+		this->~Bureaucrat();
+		new(this) Bureaucrat(other._grade, other._name);
 	}
 	return (*this);
 }
