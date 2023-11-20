@@ -6,14 +6,15 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:00:32 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/26 18:42:46 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:04:03 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include <exception>
 
 /* CONSTRUCTOS AND DESTRUCTOR */
-Bureaucrat::Bureaucrat() 
+Bureaucrat::Bureaucrat() : _grade(150)
 {
 	#ifdef DEBUG
 		std::cout << "Bureaucrat: Default Constructor Called" << std::endl;
@@ -74,8 +75,8 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 	#endif
 	if (this != &other)
 	{
-		(std::string)this->_name = (std::string)other._name;
-		this->_grade = other._grade;
+		this->~Bureaucrat();
+		new(this) Bureaucrat(other._grade, other._name);
 	}
 	return (*this);
 }
@@ -110,4 +111,14 @@ void	Bureaucrat::decrementGrade(void)
 		throw(GradeTooLowExpection());
 	else
 		this->_grade++;
+}
+
+void	Bureaucrat::signForm(Form &f) const
+{
+	try {
+		f.beSigned(*this);
+		std::cout << this->_name << " signed " << f.getName() << std::endl;
+	} catch (std::exception &e) {
+		std::cout << this->_name << " couldn’t sign " << f.getName() << "because ahhhhhhhhhhhhh" << std::endl;
+	}
 }

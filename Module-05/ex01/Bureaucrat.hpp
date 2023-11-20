@@ -6,17 +6,18 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:53:19 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/26 19:12:39 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:45:18 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <string>
-#include <iostream>
 #include <exception>
-
+#include <iostream>
 #include "Form.hpp"
+
+class Form;
 
 class Bureaucrat
 {
@@ -30,7 +31,7 @@ class Bureaucrat
 		int			getGrade(void) const;
 		void		incrementGrade(void);
 		void		decrementGrade(void);
-		void		signForm()
+		void		signForm(Form &f) const;
 
 	private:
 		int					_grade;

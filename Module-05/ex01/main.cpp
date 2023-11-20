@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:53:10 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/26 18:59:51 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:34:49 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,18 @@ int	main(void)
 	}
 	{
 		std::cout << "TEST 2" << std::endl;
-		Form	f = Form("Probably Something Very Important", 1, 1);
+
+		Bureaucrat	b(1, "Someone Important");
+		Bureaucrat	bob(150, "Bob");
+		Form		f = Form("Probably Something Very Important", 1, 1);
+
 		std::cout << f << std::endl;
-		try {
-			Bureaucrat	b(150, "Someone Important");
-			std::cout << b << std::endl;
-			// Form	f = Form("Probably Something Very Important", 1, 1);
-			// std::cout << f << std::endl;
-			f.beSigned(b);
-			std::cout << f << std::endl;
-		} catch (std::exception &e) {
-			std::cout << e.what() << std::endl;
-		}
-		try {
-			Bureaucrat	b(1, "Someone");
-			std::cout << b << std::endl;
-			// Form	f = Form("Probably Something Very Important", 1, 1);
-			// std::cout << f << std::endl;
-			f.beSigned(b);
-			std::cout << f << std::endl;
-		} catch (std::exception &e) {
-			std::cout << e.what() << std::endl;
-		}
+		std::cout << b << std::endl;
+		std::cout << bob << std::endl;
+		// f.beSigned(bob);
+		f.beSigned(b);
+		f.beSigned(b);
+		std::cout << f << std::endl;
 	}
 	return (0);
 }

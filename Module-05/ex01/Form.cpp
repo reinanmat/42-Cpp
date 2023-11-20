@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:44:09 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/26 18:54:53 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:29:29 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,18 @@ Form::Form(std::string name, int gradeToSign, int gradeToExecute) : _name(name),
 	_isSigned(false), _gradeToExecute(gradeToExecute), _gradeToSign(gradeToSign)
 {
 	#ifdef DEBUG
-		std::cout << "Form " << name << ": Copy Constructor Called" << std::endl;
+		std::cout << "Form " << name << ": Constructor Called" << std::endl;
 	#endif
 	if (gradeToSign > 150 || gradeToExecute > 150)
 		throw (GradeTooLowExpection());
-	if (gradeToSign < 1 || gradeToExecute < 1)
+	else if (gradeToSign < 1 || gradeToExecute < 1)
 		throw (GradeTooHighExpection());
 }
 
 Form::~Form()
 {
 	#ifdef DEBUG
-		std::cout << "Form: Desctructor Called" << std::endl;
+		std::cout << "Form: Destructor Called" << std::endl;
 	#endif
 }
 
@@ -56,10 +56,9 @@ Form	&Form::operator=(const Form &other)
 	#endif
 	if (this != &other)
 	{
-		(std::string)this->_name = other._name;
+		this->~Form();
+		new(this) Form(other._name, other._gradeToSign, other._gradeToExecute);
 		this->_isSigned = other._isSigned;
-		(*const_cast<int*>(&this->_gradeToSign)) = other._gradeToExecute;
-		(*const_cast<int*>(&this->_gradeToExecute)) = other._gradeToExecute;
 	}
 	return (*this);
 }
@@ -115,15 +114,11 @@ void	Form::beSigned(const Bureaucrat &b)
 	#if DEBUG
 		std::cout << "Form: beSigned Member Function Called" << std::endl;
 	#endif
-	std::cout << b.getName();
 	if (this->_isSigned) {
-		std::cout << " couldn't sign " << b.getGrade();
-		std::cout << "because it has already been signed" << std::endl;
+		throw ;
 	} else if (b.getGrade() < this->_gradeToSign) {
-		std::cout << " couldn't sign " << b.getGrade();
-		std::cout << "because aaaaah" << std::endl;
+		throw (GradeTooLowExpection());
 	} else {
-		std::cout << " signed " << this->_name << std::endl;
 		this->_isSigned = true;
 	}
 }
