@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 15:15:09 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/09 19:14:27 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:10:09 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* CONSTRUCTORS AND DESTRUCTOR */
 FragTrap::FragTrap() : ClapTrap()
 {
-	std::cout << "FragTrap: Default Constructor Called" << std::endl;
+	std::cout << BLU "FragTrap: Default Constructor Called" RESET << std::endl;
 	this->_name = "";
 	this->_hits = FragTrap::defaultHits;
 	this->_energyPoints = FragTrap::defaultEnergyPoints;
@@ -24,7 +24,7 @@ FragTrap::FragTrap() : ClapTrap()
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
-	std::cout << "FragTrap " << name << ": Constructor Called" << std::endl;
+	std::cout << BLU "FragTrap " << name << ": Constructor Called" RESET << std::endl;
 	this->_name = name;
 	this->_hits = FragTrap::defaultHits;
 	this->_energyPoints = FragTrap::defaultEnergyPoints;
@@ -33,20 +33,20 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
 
 FragTrap::FragTrap(const FragTrap &obj) : ClapTrap(obj)
 {
-	std::cout << "Copy Constructor Called" << std::endl;
+	std::cout << BLU "Copy Constructor Called" RESET << std::endl;
 	if (this != &obj)
 		*this = obj;
 }
 
 FragTrap::~FragTrap()
 {
-	std::cout << "FragTrap: Destructor Called" << std::endl;
+	std::cout << RED "FragTrap: Destructor Called" RESET << std::endl;
 }
 
 /* OPERATORS OVERLOADING */
 FragTrap	&FragTrap::operator=(FragTrap const &other)
 {
-	std::cout << "Copy Assignment Operator Called" << std::endl;
+	std::cout << CYN "Copy Assignment Operator Called" RESET << std::endl;
 	if (this != &other)
 	{
 		this->_name = other._name;
@@ -60,5 +60,5 @@ FragTrap	&FragTrap::operator=(FragTrap const &other)
 /* MEMBER FUNCTIONS */
 void	FragTrap::highFivesGuys(void)
 {
-	std::cout << "FragTrap " << this->_name << " request a high five" << std::endl;
+	std::cout << GRN "FragTrap " << this->_name << " request a high five" RESET << std::endl;
 }

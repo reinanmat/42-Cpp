@@ -6,32 +6,32 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 19:02:46 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/10 16:46:44 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:30:57 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
 /* CONSTRUCTORS AND DESTRUCTOR */
-DiamondTrap::DiamondTrap() : FragTrap(), ScavTrap()
+DiamondTrap::DiamondTrap() : ClapTrap(), FragTrap(), ScavTrap()
 {
-	std::cout << "DiamondTrap: Default Constructor Called" << std::endl;
+	std::cout << BLU "DiamondTrap: Default Constructor Called" RESET << std::endl;
 	this->_name = "";
 	this->_hits = FragTrap::defaultHits;
 	this->_energyPoints = ScavTrap::defaultEnergyPoints;
 	this->_attackDamage = FragTrap::defaultAttackDamage;
 }
 
-DiamondTrap::DiamondTrap(DiamondTrap const &obj)
+DiamondTrap::DiamondTrap(DiamondTrap const &obj) : ClapTrap(obj), FragTrap(obj), ScavTrap(obj)
 {
-	std::cout << "DiamonTrap: Copy Constructor Called" << std::endl;
+	std::cout << BLU "DiamonTrap: Copy Constructor Called" RESET << std::endl;
 	if (this != &obj)
 		*this = obj;
 }
 
-DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name")
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), FragTrap(name), ScavTrap(name)
 {
-	std::cout << "DiamondTrap " << name << ": Constructor Called" << std::endl;
+	std::cout << BLU "DiamondTrap " << name << ": Constructor Called" RESET << std::endl;
 	this->_name = name;
 	this->_hits = FragTrap::defaultHits;
 	this->_energyPoints = ScavTrap::defaultEnergyPoints;
@@ -40,7 +40,7 @@ DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name")
 
 DiamondTrap::~DiamondTrap()
 {
-	std::cout << "DiamondTrap: Destructor Called" << std::endl;
+	std::cout << RED "DiamondTrap: Destructor Called" RESET << std::endl;
 }
 
 /* GETTERS AND SETTERS */
@@ -63,7 +63,7 @@ void	DiamondTrap::setName(std::string name)
 /* OPERATORS OVERLOADING */
 DiamondTrap &DiamondTrap::operator=(const DiamondTrap &cpy)
 {
-	std::cout << "Copy Assignment Operator Called" << std::endl;
+	std::cout << CYN "Copy Assignment Operator Called" RESET << std::endl;
 	if (this != &cpy)
 	{
 		ClapTrap::_name = cpy._name + "_clap_name";
@@ -83,6 +83,6 @@ void	DiamondTrap::attack(const std::string &target)
 
 void	DiamondTrap::whoAmI()
 {
-	std::cout << "Name: " << this->_name << std::endl;
-	std::cout << "ClapTrap name: " << ClapTrap::_name << std::endl;
+	std::cout << CYN "Name: " << this->_name << std::endl;
+	std::cout << "ClapTrap name: " << ClapTrap::_name << RESET << std::endl;
 }

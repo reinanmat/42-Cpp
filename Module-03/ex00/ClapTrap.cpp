@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 16:50:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/22 17:29:43 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:56:43 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,17 +103,17 @@ void	ClapTrap::attack(const std::string &target)
 {
 	if (this->_hits == 0)
 	{
-		std::cout << YEL << this->_name << " can't attack, has no hits points!"
-			RESET << std::endl;
+		std::cout << YEL "ClapTrap " << this->_name <<
+			" can't attack, has no hits points!" RESET << std::endl;
 		return ;
 	}
 	if (this->_energyPoints == 0)
 	{
-		std::cout << YEL << this->_name << " can't attack, has no energy points!"
-			RESET << std::endl;
+		std::cout << YEL "ClapTrap " << this->_name <<
+			" can't attack, has no energy points!" RESET << std::endl;
 		return ;
 	}
-	std::cout << GRN << this->_name << " attacks " << target << ", causing " <<
+	std::cout << GRN "ClapTrap " << this->_name << " attacks " << target << ", causing " <<
 		this->_attackDamage << " points of damage!" RESET << std::endl;
 	this->_energyPoints--;
 }
@@ -138,7 +138,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 {
 	if (this->_energyPoints == 0)
 	{
-		std::cout << YEL << this->_name 
+		std::cout << YEL << this->_name
 			<< " cannot be repaired, has no energy points!" RESET << std::endl;
 		return ;
 	}

@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:08:09 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/22 17:28:30 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:57:11 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int	main(void)
 
 		oal.printStatus();
 		riny.printStatus();
-		std::cout << std::endl;
 	}
+	std::cout << std::endl;
 	{
 		std::cout << "TEST 2" << std::endl;
 		ClapTrap	flopi;
@@ -91,8 +91,8 @@ int	main(void)
 		flopi.attack(kobi.getName());
 		flopi.printStatus();
 		kobi.printStatus();
-		std::cout << std::endl;
 	}
+	std::cout << std::endl;
 	{
 		std::cout << "TEST 3" << std::endl;
 		clapTrapFight("Oal", "Riny");
