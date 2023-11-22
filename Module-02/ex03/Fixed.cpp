@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 14:16:48 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/20 16:18:59 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:13:00 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ Fixed::Fixed(const float num)
 	#ifdef DEBUG
 		std::cout << "Fixed: Float constructor called" << std::endl;
 	#endif
-	this->_fixedPoint = (int)roundf(num * (1 << this->_fractionalBits));
+	this->_fixedPoint = roundf(num * (1 << this->_fractionalBits));
 }
 
 Fixed::~Fixed()
