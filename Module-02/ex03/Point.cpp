@@ -6,12 +6,13 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 14:11:00 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/14 16:18:26 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:08:22 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
 
+/* CONSTRUCTORS AND DESTRUCTOR */
 Point::Point() : _x(Fixed(0)), _y(Fixed(0))
 {
 	#ifdef DEBUG
@@ -42,6 +43,7 @@ Point::~Point()
 	#endif
 }
 
+/* GETTERS */
 float	Point::getX(void) const
 {
 	#ifdef DEBUG
@@ -58,6 +60,7 @@ float	Point::getY(void) const
 	return (this->_y.toFloat());
 }
 
+/* OPERATOR OVERLOADING */
 Point	&Point::operator=(const Point &other)
 {
 	#ifdef DEBUG
