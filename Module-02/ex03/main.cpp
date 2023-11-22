@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 14:55:59 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/22 15:00:30 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:48:15 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ int	main(void)
 		std::cout << "(before assignment)point c" << c << std::endl;
 		c = b;
 		std::cout << "(after assignment)point c" << c << std::endl;
+		std::cout << std::endl;
 	}
 	{
-		std::cout << "\nTEST 2" << std::endl;
+		std::cout << "TEST 2" << std::endl;
 		Point	v1;
 		Point	v2;
 		Point	v3;

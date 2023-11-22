@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 14:55:59 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/01 15:55:46 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:47:48 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(void)
 		std::cout << b << std::endl;
 
 		std::cout << Fixed::max(a, b) << std::endl;
+		std::cout << std::endl;
 	}
 	{
 		std::cout << "TEST 2" << std::endl;
