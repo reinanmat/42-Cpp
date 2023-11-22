@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:17:03 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/09 19:25:34 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:49:59 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* CONSTRUCTORS AND DESTRUCTOR */
 ScavTrap::ScavTrap() : ClapTrap()
 {
-	std::cout << "ScavTrap: Default Constructor Called" << std::endl;
+	std::cout << BLU "ScavTrap: Default Constructor Called" RESET << std::endl;
 	this->_name = "";
 	this->_hits = ScavTrap::defaultHits;
 	this->_energyPoints = ScavTrap::defaultEnergyPoints;
@@ -24,7 +24,7 @@ ScavTrap::ScavTrap() : ClapTrap()
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-	std::cout << "ScavTrap " << name << ": Constructor Called" << std::endl;
+	std::cout << BLU "ScavTrap " << name << ": Constructor Called" RESET << std::endl;
 	this->_name = name;
 	this->_hits = ScavTrap::defaultHits;
 	this->_energyPoints = ScavTrap::defaultEnergyPoints;
@@ -33,20 +33,20 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 
 ScavTrap::ScavTrap(const ScavTrap &obj) : ClapTrap(obj)
 {
-	std::cout << "Copy Constructor Called" << std::endl;
+	std::cout << BLU "Copy Constructor Called" RESET << std::endl;
 	if (this != &obj)
 		*this = obj;
 }
 
 ScavTrap::~ScavTrap()
 {
-	std::cout << "ScavTrap: Destructor Called" << std::endl;
+	std::cout << RED "ScavTrap: Destructor Called" RESET << std::endl;
 }
 
 /* OPERATORS OVERLOADING */
 ScavTrap	&ScavTrap::operator=(ScavTrap const &other)
 {
-	std::cout << "Copy Assignment Operator Called" << std::endl;
+	std::cout << CYN "Copy Assignment Operator Called" RESET << std::endl;
 	if (this != &other)
 	{
 		this->_name = other._name;
@@ -60,23 +60,25 @@ ScavTrap	&ScavTrap::operator=(ScavTrap const &other)
 /* MEMBER FUNCTIONS */
 void	ScavTrap::attack(const std::string &target)
 {
-	std::cout << "ScavTrap " << this->_name;
 	if (this->_hits == 0)
 	{
-		std::cout << " can't attack, has no hits points!" << std::endl;
+		std::cout << YEL "ScavTrap " << this->_name <<
+			" can't attack, has no hits points!" RESET << std::endl;
 		return ;
 	}
 	if (this->_energyPoints == 0)
 	{
-		std::cout << " can't attack, has no energy points!" << std::endl;
+		std::cout << YEL "ScavTrap " << this->_name <<
+			" can't attack, has no energy points!" RESET << std::endl;
 		return ;
 	}
-	std::cout << " attacks " << target << ", causing " << 
-		this->_attackDamage << " points of damage!" << std::endl;
+	std::cout << GRN "ScavTrap " << this->_name << " attacks " << target << ", causing " <<
+		this->_attackDamage << " points of damage!" RESET << std::endl;
 	this->_energyPoints--;
 }
 
 void	ScavTrap::guardGate()
 {
-	std::cout << "ScavTrap " << this->_name << " is now in Gate keeper mode" << std::endl;
+	std::cout << GRN "ScavTrap " << this->_name <<
+		" is now in Gate keeper mode" RESET << std::endl;
 }

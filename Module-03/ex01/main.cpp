@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:08:09 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/10 18:23:26 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:18:09 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(void)
 {
 	{
+		std::cout << "TEST 1" << std::endl;
 		ClapTrap	oal("Oal");
 		ScavTrap	riny("Riny");
 
@@ -26,6 +27,7 @@ int	main(void)
 	}
 	std::cout << std::endl;
 	{
+		std::cout << "TEST 2" << std::endl;
 		ClapTrap	oal;
 		ClapTrap	riny;
 
