@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:08:09 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/22 18:57:11 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/24 13:51:09 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ static void	clapTrapFight(std::string a, std::string b)
 	ClapTraps[0].setEnergyPoints(50);
 	ClapTraps[1].setEnergyPoints(50);
 	srand(time(NULL));
-	std::cout << CYN "=============THE-BATTLE-HAS-BEGIN=============" RESET << std::endl;
 	ClapTraps[0].printStatus();
 	ClapTraps[1].printStatus();
+	std::cout << std::endl;
+	std::cout << CYN "=============THE-BATTLE-HAS-BEGIN=============" RESET << std::endl;
+	std::cout << std::endl;
 	while ((ClapTraps[0].getHits() != 0 && ClapTraps[1].getHits() != 0) &&
 			(ClapTraps[0].getEnergyPoints() != 0 && ClapTraps[1].getEnergyPoints() != 0))
 	{
@@ -40,7 +42,9 @@ static void	clapTrapFight(std::string a, std::string b)
 		ClapTraps[attacker].attack(ClapTraps[defender].getName());
 		ClapTraps[defender].takeDamage(ClapTraps[attacker].getAttackDamage());
 	}
+	std::cout << std::endl;
 	std::cout << CYN "==============THE-BATTLE-IS-OVER==============" RESET << std::endl;
+	std::cout << std::endl;
 	ClapTraps[0].printStatus();
 	ClapTraps[1].printStatus();
 	if ((ClapTraps[0].getHits() != 0 && ClapTraps[1].getHits() == 0))
@@ -60,26 +64,33 @@ int	main(void)
 {
 	{
 		std::cout << "TEST 1" << std::endl;
+		std::cout << "Constructors: " << std::endl;
 		ClapTrap	oal("Oal");
 		ClapTrap	riny("Riny");
+		std::cout << std::endl;
 
 		oal.setAttackDamage(3);
 		oal.attack(riny.getName());
 		riny.takeDamage(oal.getAttackDamage());
 		riny.attack(oal.getName());
 		oal.takeDamage(riny.getAttackDamage());
+		std::cout << std::endl;
 
 		oal.printStatus();
 		riny.printStatus();
+		std::cout << "Destructors:" << std::endl;
 	}
 	std::cout << std::endl;
 	{
 		std::cout << "TEST 2" << std::endl;
+		std::cout << "Constructors: " << std::endl;
 		ClapTrap	flopi;
 		ClapTrap	kobi("Kobi");
+		std::cout << std::endl;
 
 		flopi = kobi;
 		flopi.setName("Flopi");
+		std::cout << std::endl;
 
 		flopi.printStatus();
 		kobi.printStatus();
@@ -91,10 +102,13 @@ int	main(void)
 		flopi.attack(kobi.getName());
 		flopi.printStatus();
 		kobi.printStatus();
+		std::cout << std::endl;
+		std::cout << "Destructors:" << std::endl;
 	}
 	std::cout << std::endl;
 	{
 		std::cout << "TEST 3" << std::endl;
+		std::cout << CYN "=================CLAP-FIGHT===================" RESET << std::endl;
 		clapTrapFight("Oal", "Riny");
 	}
 	return (0);

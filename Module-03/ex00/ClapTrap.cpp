@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 16:50:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/22 18:56:43 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:43:39 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ void	ClapTrap::printStatus(void) const
 {
 	std::cout << CYN "====================STATUS====================" << std::endl;
 	std::cout << "\t\tNAME:\t" << this->_name << std::endl;
-	std::cout << "\t\tHP:\t" << this->_hits << std::endl;
 	std::cout << "\t\tATK:\t" << this->_attackDamage << std::endl;
+	std::cout << "\t\tHP:\t" << this->_hits << std::endl;
 	std::cout << "\t\tEP:\t" << this->_energyPoints << RESET << std::endl;
 }
