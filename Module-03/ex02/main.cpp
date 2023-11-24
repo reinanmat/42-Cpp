@@ -6,38 +6,55 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:08:09 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/10 18:29:08 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:41:55 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
-#include <cstdlib>
 
 int	main(void)
 {
+	std::cout << std::endl;
 	{
+		std::cout << "TEST 1" << std::endl;
+		std::cout << "Constructors:" << std::endl;
+
+		FragTrap	flokis("Flokis");
+
+		std::cout << std::endl;
+
+		flokis.printStatus();
+		flokis.attack("anything");
+		flokis.printStatus();
+
+		std::cout << std::endl;
+		std::cout << "Destructors:" << std::endl;
+	}
+	std::cout << std::endl;
+	{
+		std::cout << "TEST 2" << std::endl;
+		std::cout << "Constructors:" << std::endl;
+
 		ClapTrap	oal("Oal");
 		ScavTrap	riny("Riny");
 		FragTrap	flokis("Flokis");
+
+		std::cout << std::endl;
 
 		oal.printStatus();
 		riny.printStatus();
 		flokis.printStatus();
 		flokis.highFivesGuys();
-	}
-	std::cout << std::endl;
-	{
-		FragTrap	oal("Oal");
-		FragTrap	flokis;
-
-		flokis = oal;
-		flokis.setName("Flokis");
-		flokis.setHits(999);
-		flokis.setEnergyPoints(999);
-		flokis.setAttackDamage(999);
+		oal.attack(flokis.getName());
+		flokis.takeDamage(oal.getAttackDamage());
+		riny.attack(flokis.getName());
+		flokis.takeDamage(riny.getAttackDamage());
 		flokis.printStatus();
+
+		std::cout << std::endl;
+		std::cout << "Destructors:" << std::endl;
 	}
 	return (0);
 }
