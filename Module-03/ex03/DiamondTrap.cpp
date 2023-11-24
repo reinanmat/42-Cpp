@@ -85,4 +85,13 @@ void	DiamondTrap::whoAmI()
 {
 	std::cout << CYN "Name: " << this->_name << std::endl;
 	std::cout << "ClapTrap name: " << ClapTrap::_name << RESET << std::endl;
+
+void	DiamondTrap::printStatus(void) const
+{
+	std::cout << CYN "====================STATUS====================" << std::endl;
+	std::cout << "\t\tC_NAME:\t" << ClapTrap::_name << std::endl;
+	std::cout << "\t\tNAME:\t" << this->_name << std::endl;
+	std::cout << "\t\tATK:\t" << this->_attackDamage << std::endl;
+	std::cout << "\t\tHP:\t" << this->_hits << std::endl;
+	std::cout << "\t\tEP:\t" << this->_energyPoints << RESET << std::endl;
 }

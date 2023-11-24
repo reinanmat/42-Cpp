@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:54:54 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/10 18:12:14 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:27:31 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class DiamondTrap : virtual public FragTrap, virtual public ScavTrap
 		void		setName(std::string name);
 		void		whoAmI();
 		void		attack(const std::string &target);
+		void		printStatus(void) const;
 
 	private:
 		std::string	_name;
