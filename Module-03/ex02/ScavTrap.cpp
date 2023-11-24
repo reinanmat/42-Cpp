@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:17:03 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/22 18:49:59 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:09:31 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ void	ScavTrap::attack(const std::string &target)
 
 void	ScavTrap::guardGate()
 {
-	std::cout << GRN "ScavTrap " << this->_name <<
+	std::cout << MAG "ScavTrap " << this->_name <<
 		" is now in Gate keeper mode" RESET << std::endl;
 }

@@ -84,8 +84,9 @@ void	DiamondTrap::attack(const std::string &target)
 
 void	DiamondTrap::whoAmI()
 {
-	std::cout << CYN "Name: " << this->_name << std::endl;
-	std::cout << "ClapTrap name: " << ClapTrap::_name << RESET << std::endl;
+	std::cout << MAG "Name: " << this->_name << ", ClapTrap name: "
+		<< ClapTrap::_name << RESET << std::endl;
+}
 
 void	DiamondTrap::printStatus(void) const
 {
