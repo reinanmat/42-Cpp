@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 19:02:46 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/22 18:30:57 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:05:28 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ DiamondTrap::DiamondTrap(DiamondTrap const &obj) : ClapTrap(obj), FragTrap(obj),
 		*this = obj;
 }
 
-DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), FragTrap(name), ScavTrap(name)
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"),
+FragTrap(name + "_clap_name"), ScavTrap(name + "_clap_name")
 {
 	std::cout << BLU "DiamondTrap " << name << ": Constructor Called" RESET << std::endl;
 	this->_name = name;
