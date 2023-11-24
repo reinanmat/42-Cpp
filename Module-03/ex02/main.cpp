@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:08:09 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/24 15:41:55 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:29:55 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ int	main(void)
 		std::cout << std::endl;
 
 		flokis.printStatus();
-		flokis.attack("anything");
+		flokis.attack("ANYTHING");
 		flokis.printStatus();
+		flokis.highFivesGuys();
 
 		std::cout << std::endl;
 		std::cout << "Destructors:" << std::endl;

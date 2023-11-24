@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:08:09 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/24 16:56:21 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:24:49 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(void)
 		diamond.highFivesGuys();
 		diamond.whoAmI();
 		diamond.printStatus();
+		diamond.attack("ANYTHING");
 
 		std::cout << std::endl;
 		std::cout << "Destructors:" << std::endl;
