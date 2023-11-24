@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:08:09 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/24 16:13:25 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:56:21 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,19 +74,18 @@ int	main(void)
 	}
 	std::cout << std::endl;
 	{
-		std::cout << std::endl << "Test 3" << std::endl;
+		std::cout << "Test 3" << std::endl;
 		std::cout << "Constructors:" << std::endl;
 
-		DiamondTrap	diamond;
+		DiamondTrap	diamond("Diamond");
 
 		std::cout << std::endl;
 		
-
 		diamond.printStatus();
-		diamond = DiamondTrap("Test");
-		diamond.printStatus();
+		diamond.whoAmI();
 
-		diamond.setName("name");
+		diamond.setName("OtherName");
+		diamond.printStatus();
 		diamond.whoAmI();
 
 		std::cout << std::endl;
