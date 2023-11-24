@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:08:09 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/10 18:12:35 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:13:25 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,37 @@
 int	main(void)
 {
 	{
-		std::cout << "Test 2" << std::endl;
-		ClapTrap	clap("Clap");
-		clap.printStatus();
-		std::cout << std::endl;
-
-		ScavTrap	scav("Scav");
-		scav.printStatus();
-		std::cout << std::endl;
-
-		FragTrap	frag("Frag");
-		frag.printStatus();
-		std::cout << std::endl;
+		std::cout << "Test 1" << std::endl;
+		std::cout << "Constructors:" << std::endl;
 
 		DiamondTrap	diamond("Diamond");
-		diamond.printStatus();
+
 		std::cout << std::endl;
+
+		diamond.guardGate();
+		diamond.highFivesGuys();
+		diamond.whoAmI();
+		diamond.printStatus();
+
+		std::cout << std::endl;
+		std::cout << "Destructors:" << std::endl;
+	}
+	std::cout << std::endl;
+	{
+		std::cout << "Test 2" << std::endl;
+		std::cout << "Constructors:" << std::endl;
+
+		ClapTrap	clap("Clap");
+		ScavTrap	scav("Scav");
+		FragTrap	frag("Frag");
+		DiamondTrap	diamond("Diamond");
+
+		std::cout << std::endl;
+
+		clap.printStatus();
+		frag.printStatus();
+		scav.printStatus();
+		diamond.printStatus();
 
 		clap.attack(diamond.getName());
 		diamond.takeDamage(clap.getAttackDamage());
@@ -53,15 +68,29 @@ int	main(void)
 		scav.printStatus();
 		frag.printStatus();
 		diamond.printStatus();
+
+		std::cout << std::endl;
+		std::cout << "Destructors:" << std::endl;
 	}
+	std::cout << std::endl;
 	{
-		std::cout << std::endl << "Test 2" << std::endl;
+		std::cout << std::endl << "Test 3" << std::endl;
+		std::cout << "Constructors:" << std::endl;
+
 		DiamondTrap	diamond;
+
+		std::cout << std::endl;
 		
+
+		diamond.printStatus();
 		diamond = DiamondTrap("Test");
+		diamond.printStatus();
 
 		diamond.setName("name");
 		diamond.whoAmI();
+
+		std::cout << std::endl;
+		std::cout << "Destructors:" << std::endl;
 	}
 	return (0);
 }
