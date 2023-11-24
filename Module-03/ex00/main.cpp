@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:08:09 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/24 13:51:09 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:17:29 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,6 @@ static void	clapTrapFight(std::string a, std::string b)
 	}
 	std::cout << std::endl;
 	std::cout << CYN "==============THE-BATTLE-IS-OVER==============" RESET << std::endl;
-	std::cout << std::endl;
-	ClapTraps[0].printStatus();
-	ClapTraps[1].printStatus();
 	if ((ClapTraps[0].getHits() != 0 && ClapTraps[1].getHits() == 0))
 		std::cout << GRN << ClapTraps[0].getName() << " is the winner!";
 	else if ((ClapTraps[1].getHits() != 0 && ClapTraps[0].getHits() == 0))
@@ -58,12 +55,30 @@ static void	clapTrapFight(std::string a, std::string b)
 	else
 		std::cout << YEL << "Draw!";
 	std::cout << RESET << std::endl;
+	ClapTraps[0].printStatus();
+	ClapTraps[1].printStatus();
 }
 
 int	main(void)
 {
 	{
 		std::cout << "TEST 1" << std::endl;
+		std::cout << "Constructors: " << std::endl;
+
+		ClapTrap	oal("Oal");
+
+		std::cout << std::endl;
+
+		oal.printStatus();
+		oal.attack("anything");
+
+		std::cout << std::endl;
+
+		std::cout << "Destructors:" << std::endl;
+	}
+	std::cout << std::endl;
+	{
+		std::cout << "TEST 2" << std::endl;
 		std::cout << "Constructors: " << std::endl;
 		ClapTrap	oal("Oal");
 		ClapTrap	riny("Riny");
@@ -82,7 +97,7 @@ int	main(void)
 	}
 	std::cout << std::endl;
 	{
-		std::cout << "TEST 2" << std::endl;
+		std::cout << "TEST 3" << std::endl;
 		std::cout << "Constructors: " << std::endl;
 		ClapTrap	flopi;
 		ClapTrap	kobi("Kobi");
@@ -107,7 +122,7 @@ int	main(void)
 	}
 	std::cout << std::endl;
 	{
-		std::cout << "TEST 3" << std::endl;
+		std::cout << "TEST 4" << std::endl;
 		std::cout << CYN "=================CLAP-FIGHT===================" RESET << std::endl;
 		clapTrapFight("Oal", "Riny");
 	}
