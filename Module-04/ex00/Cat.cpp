@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:51:10 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/16 15:12:25 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:42:39 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,26 @@
 /* CONSTRUCTORS AND DESTRUCTOR */
 Cat::Cat() : Animal()
 {
-	std::cout << "Cat: Default Constructor Called" << std::endl;
+	std::cout << BLU "Cat: Default Constructor Called" RESET << std::endl;
 	this->type = "Cat";
 }
 
 Cat::Cat(const Cat &obj) : Animal(obj)
 {
-	std::cout << "Cat: Copy Constructor Called" << std::endl;
+	std::cout << BLU "Cat: Copy Constructor Called" RESET << std::endl;
 	if (this != &obj)
 		*this = obj;
 }
 
 Cat::~Cat()
 {
-	std::cout << "Cat: Destructor Called" << std::endl;
+	std::cout << RED "Cat: Destructor Called" RESET << std::endl;
 }
 
 /* OPERATORS OVERLOADING */
 Cat	&Cat::operator=(Cat const &other)
 {
-	std::cout << "Cat: Copy Assignment Operator Called" << std::endl;
+	std::cout << CYN "Cat: Copy Assignment Operator Called" RESET << std::endl;
 	if (this != &other)
 		this->type = type;
 	return (*this);
@@ -43,5 +43,5 @@ Cat	&Cat::operator=(Cat const &other)
 /* MEMBER FUNCTIONS */
 void  Cat::makeSound(void) const
 {
-	std::cout << "The cat say: Meow!" << std::endl;
+	std::cout << GRN "The cat say: Meow!" RESET << std::endl;
 }

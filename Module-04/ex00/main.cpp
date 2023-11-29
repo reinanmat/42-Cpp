@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:55:59 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/16 15:28:57 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:59:15 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 int	main(void)
 {
 	{
-		std::cout << "\nSUBJECT-TEST" << std::endl;
+		std::cout << "TEST 1 (SUBJECT-TEST)" << std::endl;
 		const Animal	*meta = new Animal();
 		const Animal	*j = new Dog();
 		const Animal	*i = new Cat();
@@ -34,24 +34,38 @@ int	main(void)
 		delete j;
 		delete i;
 	}
+	std::cout << std::endl;
 	{
-		std::cout << "\nANIMAL-AND-WRONG-ANIMAL-TEST" << std::endl;
-		std::cout << "Animal:" << std::endl;
+		std::cout << "TEST 2 (ANIMAL-AND-WRONG-ANIMAL-TEST)" << std::endl;
+		std::cout << "-ANIMAL:" << std::endl;
+		std::cout << "Constructors:" << std::endl;
 		Animal	*base;
-		Cat		derived;
+		Cat		derived1;
+		Dog		derived2;
+		std::cout << std::endl;
 
-		base = &derived;
-		derived.makeSound();
+		derived1.makeSound();
+		base = &derived1;
 		base->makeSound();
-	}
-	{
-		std::cout << "Wrong Animal:" << std::endl;
+
+		derived2.makeSound();
+		base = &derived2;
+		base->makeSound();
+
+		std::cout << std::endl;
+
+		std::cout << "-WRONG ANIMAL:" << std::endl;
+		std::cout << "Constructors:" << std::endl;
 		WrongAnimal	*wrongBase;
 		WrongCat	wrongDerived;
+		std::cout << std::endl;
 
 		wrongBase = &wrongDerived;
-		wrongDerived.makeSound();
 		wrongBase->makeSound();
+		wrongDerived.makeSound();
+
+		std::cout << std::endl;
+		std::cout << "Destructors:" << std::endl;
 	}
 	return (0);
 }
