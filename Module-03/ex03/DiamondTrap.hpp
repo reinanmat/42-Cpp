@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:54:54 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/24 16:27:31 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/29 14:45:20 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 
-class DiamondTrap : virtual public FragTrap, virtual public ScavTrap
+class DiamondTrap : public FragTrap, public ScavTrap
 {
 	public:
 		DiamondTrap();
