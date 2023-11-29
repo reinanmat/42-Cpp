@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:51:02 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/29 17:35:09 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/29 18:10:57 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,20 @@ Dog	&Dog::operator=(Dog const &other)
 	if (this != &other)
 	{
 		this->type = other.type;
-		this->_brain = other._brain;
+		*(this->_brain) = *(other._brain);
 	}
 	return (*this);
+}
+
+/* GETTERS AND SETTERS */
+std::string	Dog::getIdeaOfBrain(size_t index) const
+{
+	return (this->_brain->getIdea(index));
+}
+
+void	Dog::setIdeaOfBrain(size_t index, std::string idea)
+{
+	this->_brain->setIdea(index, idea);
 }
 
 /* MEMBER FUNCTIONS */

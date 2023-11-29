@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:51:10 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/29 17:41:57 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:59:38 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,17 @@ Cat	&Cat::operator=(Cat const &other)
 		this->_brain = other._brain;
 	}
 	return (*this);
+}
+
+/* GETTERS AND SETTERS */
+std::string	Cat::getIdeaOfBrain(size_t index) const
+{
+	return (this->_brain->getIdea(index));
+}
+
+void	Cat::setIdeaOfBrain(size_t index, std::string idea)
+{
+	this->_brain->setIdea(index, idea);
 }
 
 /* MEMBER FUNCTIONS */
