@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                          :+:      :+:    :+:   */
+/*   AAnimal.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 15:33:57 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/29 16:57:17 by revieira         ###   ########.fr       */
+/*   Created: 2023/10/09 15:31:39 by revieira          #+#    #+#             */
+/*   Updated: 2023/11/29 18:50:55 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,21 @@
 #include <string>
 #include <iostream>
 
-class Brain
+class AAnimal
 {
-	public:
-		Brain();
-		Brain(const Brain &obj);
-		~Brain();
-		Brain	&operator=(const Brain &cpy);
-		std::string	getIdea(size_t index) const;
-		void		setIdea(size_t index, std::string idea);
+	protected:
+		std::string	type;
 
+	public:
+		AAnimal(const AAnimal &obj);
+		virtual	~AAnimal();
+		AAnimal	&operator=(AAnimal const &other);
+		std::string		getType(void) const;
+		void			setType(std::string type);
+		virtual void	makeSound(void) const;
+	
 	private:
-		std::string	_ideas[100];
+		AAnimal();
 };
+
+void	prevTests(void);

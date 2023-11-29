@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:54:21 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/16 15:12:49 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:46:42 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,26 @@
 /* CONSTRUCTORS AND DESTRUCTOR */
 WrongCat::WrongCat() : WrongAnimal()
 {
-	std::cout << "WrongCat: Default Constructor Called" << std::endl;
+	std::cout << BLU "WrongCat: Default Constructor Called" RESET << std::endl;
 	this->type = "Cat";
 }
 
 WrongCat::WrongCat(const WrongCat &obj) : WrongAnimal(obj)
 {
-	std::cout << "WrongCat: Copy Constructor Called" << std::endl;
+	std::cout << BLU "WrongCat: Copy Constructor Called" RESET << std::endl;
 	if (this != &obj)
 		*this = obj;
 }
 
 WrongCat::~WrongCat()
 {
-	std::cout << "WrongCat: Destructor Called" << std::endl;
+	std::cout << RED "WrongCat: Destructor Called" RESET << std::endl;
 }
 
 /* OPERATORS OVERLOADING */
 WrongCat	&WrongCat::operator=(WrongCat const &other)
 {
-	std::cout << "WrongCat: Copy Assignment Operator Called" << std::endl;
+	std::cout << CYN "WrongCat: Copy Assignment Operator Called" RESET << std::endl;
 	if (this != &other)
 		this->type = type;
 	return (*this);
@@ -43,5 +43,5 @@ WrongCat	&WrongCat::operator=(WrongCat const &other)
 /* MEMBER FUNCTIONS */
 void  WrongCat::makeSound(void) const
 {
-	std::cout << "The WrongCat say: Meow!" << std::endl;
+	std::cout << GRN "The WrongCat say: Meow!" RESET << std::endl;
 }

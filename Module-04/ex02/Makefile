@@ -4,7 +4,7 @@ PATH_INCS = ./
 PATH_SRCS = ./
 PATH_OBJS = ./objects/
 
-FILES = main Animal Dog Cat WrongAnimal WrongCat Brain
+FILES = main Animal AAnimal Dog Cat WrongAnimal WrongCat Brain prevTests
 SRCS = ${FILES:%=$(PATH_OBJS)%.cpp}
 OBJS = ${FILES:%=$(PATH_OBJS)%.o}
 

@@ -6,11 +6,20 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 15:31:39 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/16 17:43:06 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:40:01 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+
+#define RED   "\x1B[31m"
+#define GRN   "\x1B[32m"
+#define YEL   "\x1B[33m"
+#define BLU   "\x1B[34m"
+#define MAG   "\x1B[35m"
+#define CYN   "\x1B[36m"
+#define WHT   "\x1B[37m"
+#define RESET "\x1B[0m"
 
 #include <string>
 #include <iostream>
@@ -19,10 +28,10 @@ class Animal
 {
 	protected:
 		std::string	type;
-		Animal();
-		Animal(const Animal &obj);
 
 	public:
+		Animal();
+		Animal(const Animal &obj);
 		virtual ~Animal();
 		Animal		  &operator=(Animal const &other);
 		std::string	  getType(void) const;
