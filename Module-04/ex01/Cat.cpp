@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:51:10 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/29 17:59:38 by revieira         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:32:41 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ Cat	&Cat::operator=(Cat const &other)
 	if (this != &other)
 	{
 		this->type = other.type;
-		this->_brain = other._brain;
+		*(this->_brain) = *(other._brain);
 	}
 	return (*this);
 }
