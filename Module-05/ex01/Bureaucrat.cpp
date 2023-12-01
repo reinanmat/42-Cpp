@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:00:32 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/20 17:04:03 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:39:41 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,23 @@
 Bureaucrat::Bureaucrat() : _grade(150)
 {
 	#ifdef DEBUG
-		std::cout << "Bureaucrat: Default Constructor Called" << std::endl;
+		std::cout << BLU "Bureaucrat: Default Constructor Called" RESET << std::endl;
 	#endif
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &obj)
 {
 	#ifdef DEBUG
-		std::cout << "Bureaucrat: Copy Constructor Called" << std::endl;
+		std::cout << BLU "Bureaucrat: Copy Constructor Called" RESET << std::endl;
 	#endif
 	if (this != &obj)
 		*this = obj;
 }
 
-Bureaucrat::Bureaucrat(int grade, std::string name) : _name(name)
+Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
 	#ifdef DEBUG
-		std::cout << "Bureaucrat " << name << ": Constructor Called" << std::endl;
+		std::cout << BLU "Bureaucrat " << name << ": Constructor Called" RESET << std::endl;
 	#endif
 	if (grade < 1)
 		throw(GradeTooHighExpection());
@@ -46,24 +46,18 @@ Bureaucrat::Bureaucrat(int grade, std::string name) : _name(name)
 Bureaucrat::~Bureaucrat()
 {
 	#ifdef DEBUG
-		std::cout << "Bureaucrat: Destructor Called" << std::endl;
+		std::cout << RED "Bureaucrat: Destructor Called" RESET << std::endl;
 	#endif
 }
 
 /* GETTERS */
 std::string	Bureaucrat::getName(void) const
 {
-	#ifdef DEBUG
-		std::cout << "Bureaucrat: getName Member Function Called" << std::endl;
-	#endif
 	return this->_name;
 }
 
 int	Bureaucrat::getGrade(void) const
 {
-	#ifdef DEBUG
-		std::cout << "Bureaucrat: getGrade Member Function Called" << std::endl;
-	#endif
 	return this->_grade;
 }
 
@@ -71,22 +65,23 @@ int	Bureaucrat::getGrade(void) const
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
 	#ifdef DEBUG
-		std::cout << "Bureaucrat: Copy Assignment Operator Called" << std::endl;
+		std::cout << CYN "Bureaucrat: Copy Assignment Operator Called" RESET << std::endl;
 	#endif
 	if (this != &other)
 	{
 		this->~Bureaucrat();
-		new(this) Bureaucrat(other._grade, other._name);
+		new(this) Bureaucrat(other._name, other._grade);
 	}
 	return (*this);
 }
 
 std::ostream	&operator<<(std::ostream &out, const Bureaucrat &obj)
 {
-	#ifdef DEBUG
-		std::cout << "Bureaucrat: Insertion Operator Called" << std::endl;
-	#endif
-	out << obj.getName() << ", bureaucrat grade " << obj.getGrade();
+	out << CYN;
+	out <<  "=================Bureaucrat=================" << std::endl;
+	out << "Name:\t" << obj.getName() << std::endl;
+	out << "Grade:\t" << obj.getGrade() << RESET;
+	out << RESET;
 	return (out);
 }
 
@@ -94,7 +89,7 @@ std::ostream	&operator<<(std::ostream &out, const Bureaucrat &obj)
 void	Bureaucrat::incrementGrade(void)
 {
 	#ifdef DEBUG
-		std::cout << "Bureaucrat: incrementGrade Member Function Called" << std::endl;
+		std::cout << MAG "Bureaucrat: incrementGrade Member Function Called" RESET << std::endl;
 	#endif
 	if (this->_grade - 1 < 1)
 		throw(GradeTooHighExpection());
@@ -105,7 +100,7 @@ void	Bureaucrat::incrementGrade(void)
 void	Bureaucrat::decrementGrade(void)
 {
 	#ifdef DEBUG
-		std::cout << "Bureaucrat: decrementGrade Member Function Called" << std::endl;
+		std::cout << MAG "Bureaucrat: decrementGrade Member Function Called" RESET << std::endl;
 	#endif
 	if (this->_grade + 1 > 150)
 		throw(GradeTooLowExpection());
@@ -115,10 +110,15 @@ void	Bureaucrat::decrementGrade(void)
 
 void	Bureaucrat::signForm(Form &f) const
 {
+	#ifdef DEBUG
+		std::cout << MAG "Bureaucrat: signForm Member Function Called" RESET << std::endl;
+	#endif
 	try {
 		f.beSigned(*this);
-		std::cout << this->_name << " signed " << f.getName() << std::endl;
+		std::cout << GRN "Bureaucrat " << this->_name << " signed Form \""
+			<< f.getName() << "\"" RESET << std::endl;
 	} catch (std::exception &e) {
-		std::cout << this->_name << " couldn’t sign " << f.getName() << "because ahhhhhhhhhhhhh" << std::endl;
+		std::cout << RED "Bureaucrat " << this->_name << " couldn’t sign \""
+			<< f.getName() <<"\" because " << e.what() << RESET << std::endl;
 	}
 }

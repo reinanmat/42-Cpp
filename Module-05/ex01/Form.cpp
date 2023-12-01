@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:44:09 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/20 17:29:29 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:48:22 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,24 @@
 Form::Form() : _name(""), _isSigned(false), _gradeToExecute(0), _gradeToSign(0)
 {
 	#ifdef DEBUG
-		std::cout << "Form: Default Constructor Called" << std::endl;
+		std::cout << BLU "Form: Default Constructor Called" RESET << std::endl;
 	#endif
 }
 
 Form::Form(const Form &obj) : _name(""), _isSigned(false), _gradeToExecute(0), _gradeToSign(0)
 {
 	#ifdef DEBUG
-		std::cout << "Form: Copy Constructor Called" << std::endl;
+		std::cout << BLU "Form: Copy Constructor Called" RESET << std::endl;
 	#endif
 	if (this != &obj)
 		*this = obj;
 }
 
 Form::Form(std::string name, int gradeToSign, int gradeToExecute) : _name(name), 
-	_isSigned(false), _gradeToExecute(gradeToExecute), _gradeToSign(gradeToSign)
+_isSigned(false), _gradeToExecute(gradeToExecute), _gradeToSign(gradeToSign)
 {
 	#ifdef DEBUG
-		std::cout << "Form " << name << ": Constructor Called" << std::endl;
+		std::cout << BLU "Form " << name << ": Constructor Called" RESET << std::endl;
 	#endif
 	if (gradeToSign > 150 || gradeToExecute > 150)
 		throw (GradeTooLowExpection());
@@ -44,7 +44,7 @@ Form::Form(std::string name, int gradeToSign, int gradeToExecute) : _name(name),
 Form::~Form()
 {
 	#ifdef DEBUG
-		std::cout << "Form: Destructor Called" << std::endl;
+		std::cout << RED "Form: Destructor Called" RESET << std::endl;
 	#endif
 }
 
@@ -52,7 +52,7 @@ Form::~Form()
 Form	&Form::operator=(const Form &other) 
 {
 	#if DEBUG
-		std::cout << "Form: Copy Constructor Called" << std::endl;
+		std::cout << CYN "Form: Copy Constructor Called" RESET << std::endl;
 	#endif
 	if (this != &other)
 	{
@@ -66,45 +66,36 @@ Form	&Form::operator=(const Form &other)
 std::ostream	&operator<<(std::ostream &out, const Form &obj)
 {
 	#ifdef DEBUG
-		std::cout << "Form: Insertion Operator Called" << std::endl;
+		std::cout << CYN "Form: Insertion Operator Called" RESET << std::endl;
 	#endif
-	out << "Form: " << obj.getName() << std::endl;
-	out << "Grade to sign: "  << obj.getGradeToSign() << std::endl;
-	out << "Grade to execute: " << obj.getGradeToExecute() << std::endl;
-	out << "Signed: " << (obj.getIsSigned() ? "it was signed" : "was not signed");
+	out << CYN;
+	out << "====================Form====================" << std::endl;
+	out << "Name:\t\t" << obj.getName() << std::endl;
+	out << "Grade To Sign:\t"  << obj.getGradeToSign() << std::endl;
+	out << "Grade To Exec:\t" << obj.getGradeToExecute() << std::endl;
+	out << "Signed:\t\t" << (obj.getIsSigned() ? "It was signed" : "Was not signed");
+	out << RESET;
 	return (out);
 }
 
 /* GETTERS */
 std::string	Form::getName(void) const
 {
-	#if DEBUG
-		std::cout << "Form: getName Member Function Called" << std::endl;
-	#endif
 	return (this->_name);
 }
 
 int	Form::getGradeToSign(void) const
 {
-	#if DEBUG
-		std::cout << "Form: getGradeToSign Member Function Called" << std::endl;
-	#endif
 	return (this->_gradeToSign);
 }
 
 int	Form::getGradeToExecute(void) const
 {
-	#if DEBUG
-		std::cout << "Form: getGradeToExecute Member Function Called" << std::endl;
-	#endif
 	return (this->_gradeToExecute);
 }
 
 int	Form::getIsSigned(void) const
 {
-	#if DEBUG
-		std::cout << "Form: getIsSing Member Function Called" << std::endl;
-	#endif
 	return (this->_isSigned);
 }
 
@@ -112,13 +103,10 @@ int	Form::getIsSigned(void) const
 void	Form::beSigned(const Bureaucrat &b)
 {
 	#if DEBUG
-		std::cout << "Form: beSigned Member Function Called" << std::endl;
+		std::cout << MAG "Form: beSigned Member Function Called" RESET << std::endl;
 	#endif
-	if (this->_isSigned) {
-		throw ;
-	} else if (b.getGrade() < this->_gradeToSign) {
+	if (b.getGrade() > this->_gradeToSign)
 		throw (GradeTooLowExpection());
-	} else {
+	else
 		this->_isSigned = true;
-	}
 }
