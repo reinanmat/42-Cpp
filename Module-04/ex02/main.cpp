@@ -6,11 +6,10 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:55:59 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/29 18:59:49 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:54:27 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
 #include "AAnimal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
@@ -22,9 +21,21 @@ int	main(void)
 	{
 		prevTests();
 	}
+	std::cout << std::endl;
 	{
-		AAnimal a = Dog();
-		AAnimal b = Cat();
+		std::cout << "FINAL TEST" << std::endl;
+		std::cout << "Constructors:" << std::endl;
+		Dog dog;
+		Cat cat;
+		AAnimal *a = &dog;
+		AAnimal *b = &cat;
+		std::cout << std::endl;
+		
+		a->makeSound();
+		b->makeSound();
+
+		std::cout << std::endl;
+		std::cout << "Destructors" << std::endl;
 	}
 	return (0);
 }
