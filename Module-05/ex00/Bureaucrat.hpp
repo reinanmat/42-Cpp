@@ -6,22 +6,31 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:53:19 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/25 19:13:28 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:14:07 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
+#define RED   "\x1B[31m"
+#define GRN   "\x1B[32m"
+#define YEL   "\x1B[33m"
+#define BLU   "\x1B[34m"
+#define MAG   "\x1B[35m"
+#define CYN   "\x1B[36m"
+#define WHT   "\x1B[37m"
+#define RESET "\x1B[0m"
+
 #include <string>
-#include <iostream>
 #include <exception>
+#include <iostream>
 
 class Bureaucrat
 {
 	public:
 		Bureaucrat();
 		Bureaucrat(const Bureaucrat &obj);
-		Bureaucrat(int grade, std::string name);
+		Bureaucrat(std::string name, int grade);
 		~Bureaucrat();
 		Bureaucrat &operator=(const Bureaucrat &other);
 		std::string	getName(void) const;
@@ -37,33 +46,21 @@ class Bureaucrat
 class GradeTooHighExpection : public std::exception
 {
 	public:
-		GradeTooHighExpection(const Bureaucrat &b) {
-			_msgException = "Error: exception: Bureaucrat " 
-				+ b.getName() + " receive a very high grade";
-		} 
 		virtual const char *what() const throw()
 		{
-			return (this->_msgException.c_str());
+			return ("Bureaucrat::exception : Grade is too high");
 		}
 		virtual ~GradeTooHighExpection() throw() {};
-	private:
-		std::string	_msgException;
 };
 
 class GradeTooLowExpection : public std::exception
 {
 	public:
-		GradeTooLowExpection(const Bureaucrat &b) {
-			_msgException = "Error: exception: Bureaucrat " 
-				+ b.getName() + " receive a very low grade";
-		} 
 		virtual const char *what() const throw()
 		{
-			return (this->_msgException.c_str());
+			return ("Bureaucrat::exception : Grade is too low");
 		}
 		virtual ~GradeTooLowExpection() throw() {};
-	private:
-		std::string	_msgException;
 };
 
 std::ostream	&operator<<(std::ostream &out, const Bureaucrat &obj);
