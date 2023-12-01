@@ -6,13 +6,13 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:53:10 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/01 17:36:16 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:51:15 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-static void	TryCreateABureaucrat(std::string name, int grade)
+static void	tryCreateABureaucrat(std::string name, int grade)
 {
 	std::cout << "Trying to create the Bureaucrat: " << name;
 	std::cout << ", with grade: " << grade << std::endl;
@@ -31,10 +31,10 @@ int	main(void)
 {
 	{
 		std::cout << "TEST 1" << std::endl;
-		TryCreateABureaucrat("Bob", 151);
-		TryCreateABureaucrat("Anne", 0);
-		TryCreateABureaucrat("Viktor", 150);
-		TryCreateABureaucrat("Marvin", 1);
+		tryCreateABureaucrat("Bob", 151);
+		tryCreateABureaucrat("Anne", 0);
+		tryCreateABureaucrat("Viktor", 150);
+		tryCreateABureaucrat("Marvin", 1);
 	}
 	std::cout << std::endl;
 	{
