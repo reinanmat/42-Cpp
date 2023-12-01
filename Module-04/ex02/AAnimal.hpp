@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 15:31:39 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/29 18:50:55 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:47:41 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,13 @@ class AAnimal
 		std::string	type;
 
 	public:
+		AAnimal();
 		AAnimal(const AAnimal &obj);
 		virtual	~AAnimal();
 		AAnimal	&operator=(AAnimal const &other);
 		std::string		getType(void) const;
 		void			setType(std::string type);
-		virtual void	makeSound(void) const;
-	
-	private:
-		AAnimal();
+		virtual void	makeSound(void) const = 0;
 };
 
 void	prevTests(void);
