@@ -4,7 +4,7 @@ PATH_INCS = ./
 PATH_SRCS = ./
 PATH_OBJS = ./objects/
 
-FILES = main Bureaucrat AForm
+FILES = main Bureaucrat AForm PresidentialPardonForm RobotomyRequestForm ShrubberyCreationForm
 SRCS = ${FILES:%=$(PATH_OBJS)%.cpp}
 OBJS = ${FILES:%=$(PATH_OBJS)%.o}
 
