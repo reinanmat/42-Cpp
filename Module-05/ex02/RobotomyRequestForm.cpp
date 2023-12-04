@@ -6,23 +6,21 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 18:35:22 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/01 18:52:02 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:54:32 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm("Robotomy Request Form", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm() : AForm("Robotomy Request", 72, 45), _target("default")
 {
-	this->_target = "";
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("Robotomy Request Form", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("Robotomy Request", 72, 45), _target(target)
 {
-	this->_target = target;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &obj) : AForm("Robotomy Request Form", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &obj) : AForm("Robotomy Request", 72, 45)
 {
 	if (this != &obj)
 		*this = obj;
@@ -39,8 +37,16 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &o
 	return (*this);
 }
 
-void	RobotomyRequestForm::execute(Bureaucrat const &executor)
+void	RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
-	if (this->getIsSigned() == false)
-		return ;
+	AForm::checkExecute(executor);
+	std::cout << "Initiating robotomy procedure on " << this->_target << "..." << std::endl;
+	std::cout << "* * * drilling noises * * *" << std::endl;
+	std::srand(time(0));
+	bool sucess = rand() % 2 == 0;
+	if (sucess)
+		std::cout << GRN << this->_target << " has been robotomized successfully." RESET << std::endl;
+	else
+		std::cout << RED << this->_target << " failed to be robotized" RESET << std::endl;
+	
 }
