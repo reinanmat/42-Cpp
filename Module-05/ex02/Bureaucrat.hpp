@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:53:19 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/01 18:05:39 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/04 17:27:10 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,31 +40,25 @@ class Bureaucrat
 		int			getGrade(void) const;
 		void		incrementGrade(void);
 		void		decrementGrade(void);
-		void		signForm(AForm &f) const;
+		void		signForm(AForm &form) const;
+		void		executeForm(AForm const &form) const;
+
+		class GradeTooHighExpection : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
+
+		class GradeTooLowExpection : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
 
 	private:
 		int					_grade;
 		const std::string	_name;
-};
 
-class GradeTooHighExpection : public std::exception
-{
-	public:
-		virtual const char *what() const throw()
-		{
-			return ("Bureaucrat::exception : Grade is too high");
-		}
-		virtual ~GradeTooHighExpection() throw() {};
-};
-
-class GradeTooLowExpection : public std::exception
-{
-	public:
-		virtual const char *what() const throw()
-		{
-			return ("Bureaucrat::exception : Grade is too low");
-		}
-		virtual ~GradeTooLowExpection() throw() {};
 };
 
 std::ostream	&operator<<(std::ostream &out, const Bureaucrat &obj);
