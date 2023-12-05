@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:44:18 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/20 15:28:50 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:08:27 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,18 @@ class Form
 		int			getGradeToSign(void) const;
 		int			getGradeToExecute(void) const;
 		void		beSigned(const Bureaucrat &b);
+
+		class GradeTooHighExpection : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
+
+		class GradeTooLowExpection : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
 	
 	private:
 		const std::string	_name;
