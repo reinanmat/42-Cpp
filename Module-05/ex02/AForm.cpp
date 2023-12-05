@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:44:09 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/05 14:34:08 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/05 16:46:02 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int	AForm::getIsSigned(void) const
 }
 
 /* MEMBERS FUNCTIONS */
-
 const char *AForm::GradeTooHighExpection::what() const throw()
 {
 	return ("AForm::exception : Grade is too high");
