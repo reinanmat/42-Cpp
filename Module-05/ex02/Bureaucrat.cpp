@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:00:32 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/05 14:54:19 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:28:30 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 		std::cout << BLU "Bureaucrat " << name << ": Constructor Called" RESET << std::endl;
 	#endif
 	if (grade < 1)
-		throw(GradeTooHighExpection());
+		throw(Bureaucrat::GradeTooHighExpection());
 	else if (grade > 150)
-		throw(GradeTooLowExpection());
+		throw(Bureaucrat::GradeTooLowExpection());
 	else
 		this->_grade = grade;
 }
@@ -95,7 +95,7 @@ const char *Bureaucrat::GradeTooLowExpection::what() const throw()
 void	Bureaucrat::incrementGrade(void)
 {
 	if (this->_grade - 1 < 1)
-		throw(GradeTooHighExpection());
+		throw(Bureaucrat::GradeTooHighExpection());
 	else
 		this->_grade--;
 }
@@ -103,7 +103,7 @@ void	Bureaucrat::incrementGrade(void)
 void	Bureaucrat::decrementGrade(void)
 {
 	if (this->_grade + 1 > 150)
-		throw(GradeTooLowExpection());
+		throw(Bureaucrat::GradeTooLowExpection());
 	else
 		this->_grade++;
 }
