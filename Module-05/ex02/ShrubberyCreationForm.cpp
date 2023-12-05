@@ -6,28 +6,28 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 18:37:31 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/05 14:57:27 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/05 16:45:14 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
 /* CONSTRUCTORS AND DESTRUCTOR */
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Robotomy Request Form", 145, 137), _target("default")
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Shrubbery Creation", 145, 137), _target("default")
 {
 	#ifdef DEBUG
 		std::cout << BLU "ShrubberyCreationForm: Default Constructor Called" RESET << std::endl;
 	#endif
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("Robotomy Request Form", 145, 137), _target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("Shrubbery Creation", 145, 137), _target(target)
 {
 	#ifdef DEBUG
 		std::cout << BLU "ShrubberyCreationForm " << target << ": Constructor Called" RESET << std::endl;
 	#endif
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &obj) : AForm("Robotomy Request Form", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &obj) : AForm("Shrubbery Creation", 145, 137)
 {
 	#ifdef DEBUG
 		std::cout << BLU "ShrubberyCreationForm: Copy Constructor Called" RESET << std::endl;
