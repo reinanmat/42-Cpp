@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 18:19:44 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/04 17:25:02 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/05 14:50:11 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ class ShrubberyCreationForm : public AForm
 		{
 			public:
 				virtual const char *what() const throw();
-				// virtual ~FailedToOpenFile() throw();
 		};
 
 	private:

@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:44:09 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/04 17:24:38 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/05 14:34:08 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,16 @@
 /* CONSTRUCTORS AND DESTRUCTOR */
 AForm::AForm() : _name(""), _isSigned(false), _gradeToExecute(0), _gradeToSign(0)
 {
+	#ifdef DEBUG
+		std::cout << BLU "AForm: Default Constructor Called" RESET << std::endl;
+	#endif
 }
 
 AForm::AForm(const AForm &obj) : _name(""), _isSigned(false), _gradeToExecute(0), _gradeToSign(0)
 {
+	#ifdef DEBUG
+		std::cout << BLU "AForm: Copy Constructor Called" RESET << std::endl;
+	#endif
 	if (this != &obj)
 		*this = obj;
 }
@@ -26,6 +32,9 @@ AForm::AForm(const AForm &obj) : _name(""), _isSigned(false), _gradeToExecute(0)
 AForm::AForm(std::string name, int gradeToSign, int gradeToExecute) : _name(name), 
 _isSigned(false), _gradeToExecute(gradeToExecute), _gradeToSign(gradeToSign)
 {
+	#ifdef DEBUG
+		std::cout << BLU "AForm " << name << ": Constructor Called" RESET << std::endl;
+	#endif
 	if (gradeToSign > 150 || gradeToExecute > 150)
 		throw (AForm::GradeTooLowExpection());
 	else if (gradeToSign < 1 || gradeToExecute < 1)
@@ -34,6 +43,9 @@ _isSigned(false), _gradeToExecute(gradeToExecute), _gradeToSign(gradeToSign)
 
 AForm::~AForm()
 {
+	#ifdef DEBUG
+		std::cout << RED "AForm: Destructor Called" RESET << std::endl;
+	#endif
 }
 
 /* OPERATORS OVERLOADING */
