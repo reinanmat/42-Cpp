@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:53:19 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/01 17:14:07 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:18:59 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,29 +38,21 @@ class Bureaucrat
 		void		incrementGrade(void);
 		void		decrementGrade(void);
 
+		class GradeTooHighExpection : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
+
+		class GradeTooLowExpection : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
+
 	private:
 		int					_grade;
 		const std::string	_name;
-};
-
-class GradeTooHighExpection : public std::exception
-{
-	public:
-		virtual const char *what() const throw()
-		{
-			return ("Bureaucrat::exception : Grade is too high");
-		}
-		virtual ~GradeTooHighExpection() throw() {};
-};
-
-class GradeTooLowExpection : public std::exception
-{
-	public:
-		virtual const char *what() const throw()
-		{
-			return ("Bureaucrat::exception : Grade is too low");
-		}
-		virtual ~GradeTooLowExpection() throw() {};
 };
 
 std::ostream	&operator<<(std::ostream &out, const Bureaucrat &obj);

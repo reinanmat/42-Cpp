@@ -6,19 +6,31 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:00:32 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/01 17:34:07 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:20:02 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include <exception>
 
 /* CONSTRUCTOS AND DESTRUCTOR */
-Bureaucrat::Bureaucrat() : _grade(150)
+Bureaucrat::Bureaucrat() : _grade(150), _name("")
 {
 	#ifdef DEBUG
 		std::cout << BLU "Bureaucrat: Default Constructor Called" RESET << std::endl;
 	#endif
+}
+
+Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
+{
+	#ifdef DEBUG
+		std::cout << BLU "Bureaucrat " << name << ": Constructor Called" RESET << std::endl;
+	#endif
+	if (grade < 1)
+		throw(Bureaucrat::GradeTooHighExpection());
+	else if (grade > 150)
+		throw(Bureaucrat::GradeTooLowExpection());
+	else
+		this->_grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &obj)
@@ -30,24 +42,22 @@ Bureaucrat::Bureaucrat(const Bureaucrat &obj)
 		*this = obj;
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
-{
-	#ifdef DEBUG
-		std::cout << BLU "Bureaucrat " << name << ": Constructor Called" RESET << std::endl;
-	#endif
-	if (grade < 1)
-		throw(GradeTooHighExpection());
-	else if (grade > 150)
-		throw(GradeTooLowExpection());
-	else
-		this->_grade = grade;
-}
-
 Bureaucrat::~Bureaucrat()
 {
 	#ifdef DEBUG
 		std::cout << RED "Bureaucrat: Destructor Called" RESET << std::endl;
 	#endif
+}
+
+/* OPERATORS OVERLOADING */
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
+{
+	if (this != &other)
+	{
+		this->~Bureaucrat();
+		new(this) Bureaucrat(other._name, other._grade);
+	}
+	return (*this);
 }
 
 /* GETTERS */
@@ -61,20 +71,6 @@ int	Bureaucrat::getGrade(void) const
 	return this->_grade;
 }
 
-/* OPERATORS OVERLOADING */
-Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
-{
-	#ifdef DEBUG
-		std::cout << CYN "Bureaucrat: Copy Assignment Operator Called" RESET << std::endl;
-	#endif
-	if (this != &other)
-	{
-		this->~Bureaucrat();
-		new(this) Bureaucrat(other._name, other._grade);
-	}
-	return (*this);
-}
-
 std::ostream	&operator<<(std::ostream &out, const Bureaucrat &obj)
 {
 	out << CYN;
@@ -86,24 +82,28 @@ std::ostream	&operator<<(std::ostream &out, const Bureaucrat &obj)
 }
 
 /* MEMBER FUNCTIONS */
+const char *Bureaucrat::GradeTooHighExpection::what() const throw()
+{
+	return ("Bureaucrat::exception : Grade is too high");
+}
+
+const char *Bureaucrat::GradeTooLowExpection::what() const throw()
+{
+	return ("Bureaucrat::exception : Grade is too low");
+}
+
 void	Bureaucrat::incrementGrade(void)
 {
-	#ifdef DEBUG
-		std::cout << MAG "Bureaucrat: incrementGrade Member Function Called" RESET << std::endl;
-	#endif
 	if (this->_grade - 1 < 1)
-		throw(GradeTooHighExpection());
+		throw(Bureaucrat::GradeTooHighExpection());
 	else
 		this->_grade--;
 }
 
 void	Bureaucrat::decrementGrade(void)
 {
-	#ifdef DEBUG
-		std::cout << MAG "Bureaucrat: decrementGrade Member Function Called" RESET << std::endl;
-	#endif
 	if (this->_grade + 1 > 150)
-		throw(GradeTooLowExpection());
+		throw(Bureaucrat::GradeTooLowExpection());
 	else
 		this->_grade++;
 }
