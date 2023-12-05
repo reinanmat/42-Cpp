@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:53:10 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/01 17:53:59 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:15:34 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	tryCreateAForm(std::string name, int gradeToSign, int gradeToExec)
 {
 	std::cout << "Trying to create the Form: " << name;
 	std::cout << ", " << gradeToSign << " grade to sign";
-	std::cout << " and " << gradeToExec << " grade to execute" << std::endl;
+	std::cout << " and " << gradeToExec << " grade to execute..." << std::endl;
 	try {
 		Form a(name, gradeToSign, gradeToExec);
 		std::cout << GRN "Form created" RESET << std::endl;
