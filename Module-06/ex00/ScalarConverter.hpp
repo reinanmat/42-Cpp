@@ -6,15 +6,15 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:54:38 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/05 18:41:50 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/06 14:48:23 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
-#include <sstream>
 #include <cstdlib>
+#include <limits>
 
 class ScalarConverter
 {

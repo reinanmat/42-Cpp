@@ -6,16 +6,15 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:48:10 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/05 18:21:11 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:04:16 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	{
-		ScalarConverter::convert("12aa");
-	}
+	if (argc == 2)
+		ScalarConverter::convert(argv[1]);
 	return (0);
 }
