@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:36:36 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/07 16:26:56 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/07 16:32:03 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	identify(Base &p)
 			std::cout << "The actual type of the object is B" << std::endl;
 		} catch (...) {
 			try {
-				B b = dynamic_cast<B &>(p);
+				C b = dynamic_cast<C &>(p);
 				std::cout << "The actual type of the object is C" << std::endl;
 			} catch (...) {
 				std::cout << "impossible" << std::endl;
