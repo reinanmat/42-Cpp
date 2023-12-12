@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:34:42 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/12 16:19:15 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/12 17:19:44 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,16 +90,16 @@ size_t	Span::shortestSpan(void) const
 	std::vector<int>			tmp;
 	std::vector<int>::iterator	it;
 	std::vector<int>::iterator	itNext;
-	size_t	smallest;
+	size_t	smallest = -1;
 
 	tmp = this->_vec;
 	std::sort(tmp.begin(), tmp.end());
 	it = tmp.begin();
-	for (itNext = (tmp.begin() + 1); it != tmp.end(); itNext++)
+	for (itNext = (tmp.begin() + 1); itNext != tmp.end(); itNext++)
 	{
 		if (smallest == 1)
 			break ;
-		if (size_t(*itNext - *it) < smallest)
+		if (*itNext != *it && size_t(*itNext - *it) < smallest)
 			smallest = *itNext - *it;
 		it++;
 	}
