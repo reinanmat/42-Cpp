@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:07:17 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/12 17:09:54 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/12 17:23:24 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,19 @@ static Span	randSpan(size_t size, int seed)
 int	main(void)
 {
 	{
-		std::cout << "TEST 1" << std::endl;
+		std::cout << "TEST 1 (SUBJECT)" << std::endl;
+		Span sp = Span(5);
+		sp.addNumber(6);
+		sp.addNumber(3);
+		sp.addNumber(17);
+		sp.addNumber(9);
+		sp.addNumber(11);
+		std::cout << sp.shortestSpan() << std::endl;
+		std::cout << sp.longestSpan() << std::endl;
+	}
+	std::cout << std::endl;
+	{
+		std::cout << "TEST 2" << std::endl;
 		std::vector<int>	test;
 		test.push_back(1);
 		test.push_back(2);
@@ -39,7 +51,7 @@ int	main(void)
 	}
 	std::cout << std::endl;
 	{
-		std::cout << "TEST 2" << std::endl;
+		std::cout << "TEST 3" << std::endl;
 		Span	b(5);
 
 		for (int i = 0; i < 6; i++)
@@ -50,20 +62,6 @@ int	main(void)
 				std::cerr << e.what() << std::endl;
 			}
 		}
-	}
-	std::cout << std::endl;
-	{
-		std::cout << "TEST 3" << std::endl;
-		Span	c(5);
-		c.addNumber(1);
-		c.addNumber(23);
-		c.addNumber(50);
-		c.addNumber(76);
-		c.addNumber(100);
-
-		std::cout << c << std::endl;
-		std::cout << c.longestSpan() << std::endl;
-		std::cout << c.shortestSpan() << std::endl;
 	}
 	std::cout << std::endl;
 	{
@@ -84,9 +82,6 @@ int	main(void)
 		std::cout << c << std::endl;
 		std::cout << "shortest Span: " << c.shortestSpan() << std::endl;
 		std::cout << "longest Span: " << c.longestSpan() << std::endl;
-		
-		
 	}
-	
 	return (0);
 }
