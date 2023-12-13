@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:40:06 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/13 15:06:50 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/13 18:01:39 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class Character : public ICharacter
 		void use(int idx, ICharacter& target);
 	
 	private:
+		int			_size;
 		std::string	_name;
 		AMateria	*_invetory[4];
 };
