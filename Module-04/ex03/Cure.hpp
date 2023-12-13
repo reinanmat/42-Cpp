@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:37:29 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/01 14:42:40 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/13 14:38:15 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ class Cure : public AMateria
 		Cure(const Cure &obj);
 		~Cure();
 		Cure		&operator=(const Cure &obj);
-		AMateria	*clone();
+		AMateria	*clone() const;
 		void		use(ICharacter &target);
 };

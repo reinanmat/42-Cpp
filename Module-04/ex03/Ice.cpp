@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:29:26 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/01 15:32:09 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/13 14:38:41 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ Ice	&Ice::operator=(const Ice &obj)
 	return (*this);
 }
 
-AMateria	*Ice::clone()
+AMateria	*Ice::clone() const
 {
 	return (new Ice());
 }

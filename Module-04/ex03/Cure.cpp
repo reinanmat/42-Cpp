@@ -6,12 +6,11 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:39:34 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/01 15:31:21 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/13 15:11:32 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cure.hpp"
-#include "AMateria.hpp"
 
 Cure::Cure() : AMateria("ice")
 {
@@ -36,9 +35,9 @@ Cure	&Cure::operator=(const Cure &obj)
 	return (*this);
 }
 
-AMateria	*Cure::clone()
+AMateria	*Cure::clone() const
 {
-	AMateria *tmp = new (Cure);
+	AMateria *tmp = new Cure(*this);
 	return (tmp);
 }
 
