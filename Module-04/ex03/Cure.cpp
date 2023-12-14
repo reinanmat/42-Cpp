@@ -6,18 +6,18 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:39:34 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/13 15:11:32 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:09:57 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cure.hpp"
 
-Cure::Cure() : AMateria("ice")
+Cure::Cure() : AMateria("cure")
 {
-	this->_type = "ice";
+	this->_type = "cure";
 }
 
-Cure::Cure(const Cure &obj) : AMateria("ice")
+Cure::Cure(const Cure &obj) : AMateria("cure")
 {
 	if (this != &obj)
 		*this = obj;
@@ -37,11 +37,10 @@ Cure	&Cure::operator=(const Cure &obj)
 
 AMateria	*Cure::clone() const
 {
-	AMateria *tmp = new Cure(*this);
-	return (tmp);
+	return (new Cure());
 }
 
 void	Cure::use(ICharacter &target)
 {
-	std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;;
+	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;;
 }

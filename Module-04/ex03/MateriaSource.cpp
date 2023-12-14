@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:12:42 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/13 17:46:17 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:06:52 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ static	void deleteMaterialsLearned(AMateria **array)
 
 MateriaSource::MateriaSource() : _size(0)
 {
-	for (int i = 0; i < 4; i++)
-		this->_types[i] = NULL;
+	std::memset(this->_types, 0, sizeof(MateriaSource *) * 4);
 }
 
 MateriaSource::MateriaSource(const MateriaSource &obj) : _size(0)
@@ -64,7 +63,7 @@ void MateriaSource::learnMateria(AMateria *m)
 
 AMateria* MateriaSource::createMateria(std::string const & type)
 {
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < this->_size; i++)
 		if (this->_types[i] && this->_types[i]->getType() == type)
 			return (this->_types[i]->clone());
 	return (NULL);

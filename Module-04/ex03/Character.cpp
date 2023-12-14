@@ -6,16 +6,16 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:42:48 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/13 18:08:43 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/14 14:54:20 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
+#include <cstring>
 
 Character::Character() : ICharacter(), _size(0), _name("")
 {
-	for (int i = 0; i < 4; i++)
-		this->_invetory[i] = NULL;
+	std::memset(this->_invetory, 0, sizeof(AMateria *) * 4);
 }
 
 Character::Character(std::string name) : ICharacter(), _size(0), _name(name)
@@ -42,7 +42,11 @@ Character	&Character::operator=(const Character *other)
 	if (this != other)
 	{
 		this->_name = other->_name;
-		//copy invetory;
+		this->_size = other->_size;
+		std::memset(this->_invetory, 0, sizeof(AMateria *) * 4);
+		for (int i = 0; i < 4; i++)
+			if (other->_invetory[i])
+				this->_invetory[i] = other->_invetory[i];
 	}
 	return (*this);
 }
@@ -56,18 +60,26 @@ void Character::equip(AMateria* m)
 {
 	if (this->_size + 1 > 4)
 		return ;
-	this->_invetory[this->_size] = m;
 	this->_size++;
+	for (int i = 0; i < 4; i++)
+	{
+		if (!this->_invetory[i])
+		{
+			this->_invetory[i] = m;
+			break ;
+		}
+	}
 }
 
 void Character::unequip(int idx)
 {
 	this->_invetory[idx] = NULL;
+	this->_size--;
 }
 
 void Character::use(int idx, ICharacter& target)
 {
-	if (idx > _size)
+	if (!this->_invetory[idx])
 		std::cout << "Error" << std::endl;
 	this->_invetory[idx]->use(target);
 }
