@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:12:55 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/14 14:39:22 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/14 16:33:42 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include "IMateriaSource.hpp"
 #include <cstring>
 
+#define MAX_MATERIALS 4
+
 class MateriaSource : public IMateriaSource
 {
 	public:
@@ -25,10 +27,10 @@ class MateriaSource : public IMateriaSource
 		MateriaSource(const MateriaSource &obj);
 		~MateriaSource();
 		MateriaSource	&operator=(const MateriaSource &other);
-		void learnMateria(AMateria* obj);
+		void	learnMateria(AMateria* obj);
 		AMateria* createMateria(std::string const & type);
 	
 	private:
-		int			_size;
-		AMateria	*_types[4];
+		int			_currSize;
+		AMateria	*_materials[MAX_MATERIALS];
 };

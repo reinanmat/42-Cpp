@@ -6,65 +6,83 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:12:42 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/14 15:06:52 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/14 16:30:50 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MateriaSource.hpp"
 
-static	void deleteMaterialsLearned(AMateria **array)
+static void	initMaterials(AMateria **materials);
+static void	copyMaterials(AMateria **dest, AMateria **src);
+static void	deleteMaterials(AMateria **materials);
+
+/* CONSTRUCTORS AND DESTRUCTOR */
+MateriaSource::MateriaSource() : _currSize(0)
 {
-	for (int i = 0; i < 4; i++)
-	{
-		if (array[i])
-		{
-			delete array[i];
-			array[i] = NULL;
-		}
-	}
+	initMaterials(this->_materials);
 }
 
-MateriaSource::MateriaSource() : _size(0)
+MateriaSource::MateriaSource(const MateriaSource &obj) : _currSize(0)
 {
-	std::memset(this->_types, 0, sizeof(MateriaSource *) * 4);
-}
-
-MateriaSource::MateriaSource(const MateriaSource &obj) : _size(0)
-{
+	initMaterials(this->_materials);
 	if (this != &obj)
 		*this = obj;
 }
 
 MateriaSource::~MateriaSource()
 {
-	deleteMaterialsLearned(this->_types);
+	deleteMaterials(this->_materials);
 }
 
+/* OPERATORS OVERLOADING */
 MateriaSource	&MateriaSource::operator=(const MateriaSource &other)
 {
 	if (this != &other)
 	{
-		this->_size = other._size;
-		deleteMaterialsLearned(this->_types);
-		for (int i = 0; i < 4; i++)
-			if (other._types[i])
-				this->_types[i] = other._types[i];
+		this->_currSize = other._currSize;
+		deleteMaterials(this->_materials);
+		copyMaterials(this->_materials, const_cast<AMateria **>(other._materials));
 	}
 	return (*this);
 }
 
+/* MEMBER FUNCTIONS */
 void MateriaSource::learnMateria(AMateria *m)
 {
-	if (this->_size + 1 >  4)
+	if (this->_currSize + 1 > MAX_MATERIALS)
+	{
+		std::cout << "Maximum number of materials learned" << std::endl;
 		return ;
-	this->_types[this->_size] = m;
-	this->_size++;
+	}
+	this->_materials[this->_currSize] = m;
+	this->_currSize++;
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type)
 {
-	for (int i = 0; i < this->_size; i++)
-		if (this->_types[i] && this->_types[i]->getType() == type)
-			return (this->_types[i]->clone());
+	for (int i = 0; i < this->_currSize; i++)
+		if (this->_materials[i] && this->_materials[i]->getType() == type)
+			return (this->_materials[i]->clone());
 	return (NULL);
+}
+
+/* UTILS */
+static void	initMaterials(AMateria **materials)
+{
+	std::memset(materials, 0, sizeof(MateriaSource *) * MAX_MATERIALS);
+}
+
+static void	copyMaterials(AMateria **dest, AMateria **src)
+{
+	for (int i = 0; i < 4; i++)
+		if (src[i])
+			dest[i] = src[i]->clone();
+}
+
+static	void deleteMaterials(AMateria **materials)
+{
+	for (int i = 0; i < 4; i++)
+		if (materials[i])
+			delete materials[i];
+	std::memset(materials, 0, sizeof(MateriaSource *) * MAX_MATERIALS);
 }

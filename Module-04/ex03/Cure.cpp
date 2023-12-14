@@ -6,12 +6,13 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:39:34 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/14 15:09:57 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/14 18:38:17 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cure.hpp"
 
+/* CONSTRUCTORS AND DESTRUCTOR */
 Cure::Cure() : AMateria("cure")
 {
 	this->_type = "cure";
@@ -28,6 +29,7 @@ Cure::~Cure()
 	return ;
 }
 
+/* OPERATORS OVERLOADING */
 Cure	&Cure::operator=(const Cure &obj)
 {
 	if (this != &obj)
@@ -35,9 +37,10 @@ Cure	&Cure::operator=(const Cure &obj)
 	return (*this);
 }
 
+/* MEMBER FUNCTIONS */
 AMateria	*Cure::clone() const
 {
-	return (new Cure());
+	return (new Cure(*this));
 }
 
 void	Cure::use(ICharacter &target)

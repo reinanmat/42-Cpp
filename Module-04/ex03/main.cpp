@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:31:37 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/13 17:07:29 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/14 19:15:49 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,37 @@
 
 int main(void)
 {
-	IMateriaSource* src = new MateriaSource();
-	src->learnMateria(new Ice());
-	src->learnMateria(new Cure());
-	ICharacter* me = new Character("me");
-	AMateria* tmp;
-	tmp = src->createMateria("ice");
-	me->equip(tmp);
-	tmp = src->createMateria("cure");
-	me->equip(tmp);
-	ICharacter* bob = new Character("bob");
-	me->use(0, *bob);
-	me->use(1, *bob);
-	delete bob;
-	delete me;
-	delete src;
+	{
+		IMateriaSource* src = new MateriaSource();
+		src->learnMateria(new Ice());
+		src->learnMateria(new Cure());
+		ICharacter* me = new Character("me");
+		AMateria* tmp;
+		tmp = src->createMateria("ice");
+		me->equip(tmp);
+		tmp = src->createMateria("cure");
+		me->equip(tmp);
+		ICharacter* bob = new Character("bob");
+		me->use(0, *bob);
+		me->use(1, *bob);
+		delete bob;
+		delete me;
+		delete src;
+	}
+	std::cout << std::endl;
+	{
+		MateriaSource src;
+		src.learnMateria(new Ice());
+		src.learnMateria(new Cure());
+
+		Character bob("bob");
+		Character anne("anne");
+
+		AMateria *tmp = src.createMateria("ice");
+		bob.equip(tmp);
+		tmp = src.createMateria("ice");
+		bob.equip(tmp);
+		anne = bob;
+	}
 	return 0;
 }
