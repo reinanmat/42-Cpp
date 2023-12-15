@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:42:48 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/14 19:12:06 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/15 13:10:07 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ Character::~Character()
 }
 
 /* OPERATORS OVERLOADING */
-Character	&Character::operator=(const Character *other)
+Character	&Character::operator=(const Character &other)
 {
-	if (this != other)
+	if (this != &other)
 	{
-		this->_name = other->_name;
-		this->_currSize = other->_currSize;
+		this->_name = other._name;
+		this->_currSize = other._currSize;
 		deleteInventory(this->_inventory);
-		copyInventory(this->_inventory, const_cast<AMateria **>(other->_inventory));
+		copyInventory(this->_inventory, const_cast<AMateria **>(other._inventory));
 	}
 	return (*this);
 }
