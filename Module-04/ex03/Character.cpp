@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:42:48 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/15 13:10:07 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/15 14:57:59 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,22 +61,30 @@ std::string const &Character::getName() const
 /* MEMBER FUNCTIONS */
 void Character::equip(AMateria* m)
 {
-	if (this->_currSize + 1 > MAX_ITEMS)
-		return ;
-	this->_currSize++;
-	for (int i = 0; i < 4; i++)
+	if (!m)
+		std::cout << RED "Invalid materia" RESET << std::endl;
+	else if (this->_currSize + 1 > MAX_SLOTS)
 	{
-		if (!this->_inventory[i])
+		std::cout << YEL "Inventory full" RESET << std::endl;
+		delete m;
+	}
+	else
+	{
+		this->_currSize++;
+		for (int i = 0; i < 4; i++)
 		{
-			this->_inventory[i] = m;
-			break ;
+			if (!this->_inventory[i])
+			{
+				this->_inventory[i] = m;
+				break ;
+			}
 		}
 	}
 }
 
 void Character::unequip(int idx)
 {
-	if (idx < 0 || idx >= MAX_ITEMS)
+	if (idx < 0 || idx >= MAX_SLOTS)
 		std::cout << "Invalid index" << std::endl;
 	else if (this->_inventory[idx] == NULL)
 		std::cout << "Nothing to be unequipped" << std::endl;
@@ -90,10 +98,10 @@ void Character::unequip(int idx)
 
 void Character::use(int idx, ICharacter& target)
 {
-	if (idx < 0 || idx >= MAX_ITEMS)
-		std::cout << "Invalid index" << std::endl;
+	if (idx < 0 || idx >= MAX_SLOTS)
+		std::cout << RED "Invalid index" RESET << std::endl;
 	else if (!this->_inventory[idx])
-		std::cout << "nothing to be used" << std::endl;
+		std::cout << YEL "nothing to be used" RESET << std::endl;
 	else
 		this->_inventory[idx]->use(target);
 }
@@ -101,20 +109,20 @@ void Character::use(int idx, ICharacter& target)
 /* UTILS */
 static void	initInventory(AMateria **inventory)
 {
-	std::memset(inventory, 0, sizeof(AMateria *) * MAX_ITEMS);
+	std::memset(inventory, 0, sizeof(AMateria *) * MAX_SLOTS);
 }
 
 static void copyInventory(AMateria **dest, AMateria **src)
 {
-	for (int i = 0; i < MAX_ITEMS; i++)
+	for (int i = 0; i < MAX_SLOTS; i++)
 		if (src[i])
 			dest[i] = src[i]->clone();
 }
 
 static void	deleteInventory(AMateria **inventory)
 {
-	for (int i = 0; i < MAX_ITEMS; i++)
+	for (int i = 0; i < MAX_SLOTS; i++)
 		if (inventory[i])
 			delete inventory[i];
-	std::memset(inventory, 0, sizeof(AMateria *) * MAX_ITEMS);
+	std::memset(inventory, 0, sizeof(AMateria *) * MAX_SLOTS);
 }

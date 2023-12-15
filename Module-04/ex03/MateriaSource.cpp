@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:12:42 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/14 16:30:50 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/15 14:55:54 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,18 @@ MateriaSource	&MateriaSource::operator=(const MateriaSource &other)
 /* MEMBER FUNCTIONS */
 void MateriaSource::learnMateria(AMateria *m)
 {
-	if (this->_currSize + 1 > MAX_MATERIALS)
+	if (!m)
+		std::cout << RED "Invalid materia" RESET << std::endl;
+	else if (this->_currSize + 1 > MAX_MATERIALS)
 	{
-		std::cout << "Maximum number of materials learned" << std::endl;
-		return ;
+		std::cout << YEL "Maximum number of materials learned" RESET << std::endl;
+		delete m;
 	}
-	this->_materials[this->_currSize] = m;
-	this->_currSize++;
+	else
+	{
+		this->_materials[this->_currSize] = m;
+		this->_currSize++;
+	}
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type)
