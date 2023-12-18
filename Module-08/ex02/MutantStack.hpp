@@ -6,18 +6,17 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:28:05 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/12 18:31:14 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:13:49 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <stack>
-#include <deque>
 #include <iterator>
 
-template <typename T, class Container = std::deque<T> >
-class MutantStack : public std::stack<T, Container>
+template <typename T>
+class MutantStack : public std::stack<T>
 {
 	public:
 		MutantStack() {}
@@ -30,15 +29,17 @@ class MutantStack : public std::stack<T, Container>
 		MutantStack	&operator=(const MutantStack &other)
 		{
 			if (this != &other)
-				std::stack<T, Container>::operator=(other);
+				std::stack<T>::operator=(other);
 			return (*this);
 		}
-		typedef typename Container::iterator iterator;
-		typename Container::iterator	begin(void)
+
+		typedef typename std::stack<T>::container_type::iterator iterator;
+
+		iterator	begin(void)
 		{
 			return (this->c.begin());
 		}
-		typename Container::iterator	end(void)
+		iterator	end(void)
 		{
 			return (this->c.end());
 		}
