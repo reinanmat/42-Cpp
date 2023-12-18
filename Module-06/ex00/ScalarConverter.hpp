@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:54:38 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/06 14:48:23 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/15 15:20:02 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <limits>
+#include <iomanip>
 #include <limits>
 
 class ScalarConverter

@@ -1,4 +1,4 @@
-NAME = a.out
+NAME = converter
 
 PATH_INCS = ./
 PATH_SRCS = ./
