@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:29:26 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/14 18:37:41 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/19 15:00:14 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ Ice::Ice(const Ice &obj) : AMateria("ice")
 		*this = obj;
 }
 
-Ice::~Ice()
-{
-	return ;
-}
+Ice::~Ice() {}
 
 /* OPERATORS OVERLOADING */
 Ice	&Ice::operator=(const Ice &obj)
