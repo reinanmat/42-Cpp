@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 15:31:39 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/01 13:47:41 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:47:11 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,3 @@ class AAnimal
 		void			setType(std::string type);
 		virtual void	makeSound(void) const = 0;
 };
-
-void	prevTests(void);
