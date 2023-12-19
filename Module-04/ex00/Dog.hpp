@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 18:13:03 by revieira          #+#    #+#             */
-/*   Updated: 2023/10/16 15:12:05 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/19 16:24:34 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ class Dog : public Animal
 		Dog();
 		Dog(const Dog &obj);
 		~Dog();
-		Dog	&operator=(Dog const &other);
-		void  makeSound(void) const;
+		Dog		&operator=(Dog const &other);
+		void	makeSound(void) const;
 };
