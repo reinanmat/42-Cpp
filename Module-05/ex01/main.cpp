@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:53:10 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/05 15:15:34 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/20 14:29:12 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,30 @@ static void	tryCreateAForm(std::string name, int gradeToSign, int gradeToExec)
 	std::cout << std::endl;
 }
 
+static void	orthodoxCanonicalForm()
+{
+	Form	*a = new Form("abc", 75, 75);
+	Form	*b = new Form(*a);
+	Form	*c = new Form();
+
+	*c = *a;
+
+	std::cout << *a << std::endl;
+	std::cout << *b << std::endl;
+	std::cout << *c << std::endl;
+
+	delete a;
+	delete b;
+	delete c;
+}
+
 int	main(void)
 {
+	{
+		std::cout << "TEST 1 (ORTHODOX CANONICAL FORM)" << std::endl;
+		orthodoxCanonicalForm();
+	}
+	std::cout << std::endl;
 	{
 		std::cout << "TEST 1" << std::endl;
 		tryCreateAForm("InvalidForm1", 151, 151);
