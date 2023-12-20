@@ -6,27 +6,21 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:37:25 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/18 15:02:53 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/20 17:01:44 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
 /* CONSTRUCTORS AND DESTRUTORS */
-ScalarConverter::ScalarConverter()
-{
-
-}
+ScalarConverter::ScalarConverter() {}
 
 ScalarConverter::ScalarConverter(const ScalarConverter &obj)
 {
 	(void)obj;
 }
 
-ScalarConverter::~ScalarConverter()
-{
-
-}
+ScalarConverter::~ScalarConverter() {}
 
 /* OPERATORS OVERLOADING */
 ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
@@ -140,12 +134,12 @@ static void	printFloat(std::string parameter)
 	else
 		std::cout << "int : " << static_cast<int>(converter) << std::endl;
 
-	if (parameter != "0" && (converter < std::numeric_limits<float>::min() || converter > std::numeric_limits<float>::max()))
+	if (parameter != "0" && (std::abs(converter) < std::numeric_limits<float>::min() || std::abs(converter) > std::numeric_limits<float>::max()))
 		std::cout << "float : impossible" << std::endl;
 	else
 		std::cout << "float : " << std::fixed << std::setprecision(decimalPlaces) << static_cast<float>(converter) << "f" << std::endl;
 
-	if (parameter != "0" && (converter < std::numeric_limits<double>::min() || converter > std::numeric_limits<double>::max()))
+	if (parameter != "0" && (std::abs(converter) < std::numeric_limits<double>::min() || std::abs(converter) > std::numeric_limits<double>::max()))
 		std::cout << "double : impossible" << std::endl;
 	else
 		std::cout << "double : " << std::fixed << std::setprecision(decimalPlaces) << static_cast<double>(converter) << std::endl;
@@ -173,12 +167,12 @@ static void	printDouble(std::string parameter)
 	else
 		std::cout << "int : " << static_cast<int>(converter) << std::endl;
 
-	if (parameter != "0" && (converter < std::numeric_limits<float>::min() || converter > std::numeric_limits<float>::max()))
+	if (parameter != "0" && (std::abs(converter) < std::numeric_limits<float>::min() || std::abs(converter) > std::numeric_limits<float>::max()))
 		std::cout << "float : impossible" << std::endl;
 	else
 		std::cout << "float : " << std::fixed << std::setprecision(decimalPlaces) << static_cast<float>(converter) << "f" << std::endl;
 
-	if (parameter != "0" && (converter < std::numeric_limits<double>::min() || converter > std::numeric_limits<double>::max()))
+	if (parameter != "0" && (std::abs(converter) < std::numeric_limits<double>::min() || std::abs(converter) > std::numeric_limits<double>::max()))
 		std::cout << "double : impossible" << std::endl;
 	else
 		std::cout << "double : " << std::fixed << std::setprecision(decimalPlaces) << static_cast<double>(converter) << std::endl;
@@ -216,7 +210,11 @@ static bool	isInt(std::string parameter)
 
 static bool isChar(std::string parameter)
 {
-	if (isascii(parameter[0]) && !isdigit(parameter[0]))
+	int	i = 0;
+	
+	if (parameter[i] == '-' || parameter[i] == '+')
+		i++;
+	if (isascii(parameter[i]) && !isdigit(parameter[i]))
 		return (true);
 	return (false);
 }
@@ -270,9 +268,6 @@ static int	getType(std::string parameter)
 void	ScalarConverter::convert(std::string parameter)
 {
 	switch (getType(parameter)) {
-		case -1:
-			std::cerr << "Error" << std::endl;
-			break ;
 		case 0:
 			std::cout << "Pseudo Literals" << std::endl;
 			printPseudoLiterals(parameter);
@@ -292,6 +287,9 @@ void	ScalarConverter::convert(std::string parameter)
 		case 4:
 			std::cout << "Double" << std::endl;
 			printDouble(parameter);
+			break ;
+		default:
+			std::cerr << "Error" << std::endl;
 			break ;
 	}
 }
