@@ -1,4 +1,4 @@
-NAME = converter
+NAME = convert
 
 PATH_INCS = ./
 PATH_SRCS = ./
