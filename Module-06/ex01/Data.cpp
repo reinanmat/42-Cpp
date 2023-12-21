@@ -6,22 +6,16 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:58:55 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/07 15:03:09 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/21 15:10:58 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Data.hpp"
 
 /* CONSTRUCTORS AND DESTRUCTOR */
-Data::Data() : _value(0)
-{
-	return ;
-}
+Data::Data() : _value(0) {}
 
-Data::Data(int value) : _value(value)
-{
-	return ;
-}
+Data::Data(int value) : _value(value) {}
 
 Data::Data(const Data &obj)
 {
@@ -29,10 +23,7 @@ Data::Data(const Data &obj)
 		*this = obj;
 }
 
-Data::~Data()
-{
-	return ;
-}
+Data::~Data() {}
 
 /* OPERATORS OVERLOADING */
 Data	&Data::operator=(const Data &other)
