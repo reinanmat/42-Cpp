@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 14:04:48 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/21 14:33:43 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/21 16:47:49 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void printChar(std::string str)
 
 void printInt(std::string str)
 {
-	int	converted = atof(str.c_str());
+	double	converted = atof(str.c_str());
 
 	if (converted < 0 || converted < std::numeric_limits<char>::min() || converted > std::numeric_limits<char>::max())
 		std::cout << "char : impossible" << std::endl;
@@ -96,11 +96,11 @@ void	printFloat(std::string str)
 		std::cout << "int : impossible" << std::endl;
 	else
 		std::cout << "int : " << static_cast<int>(converted) << std::endl;
-	if (str != "0" && (std::abs(converted) < std::numeric_limits<float>::min() || std::abs(converted) > std::numeric_limits<float>::max()))
+	if (converted != 0 && (std::abs(converted) < std::numeric_limits<float>::min() || std::abs(converted) > std::numeric_limits<float>::max()))
 		std::cout << "float : impossible" << std::endl;
 	else
 		std::cout << "float : " << std::fixed << std::setprecision(decimalPlaces) << static_cast<float>(converted) << "f" << std::endl;
-	if (str != "0" && (std::abs(converted) < std::numeric_limits<double>::min() || std::abs(converted) > std::numeric_limits<double>::max()))
+	if (converted != 0 && (std::abs(converted) < std::numeric_limits<double>::min() || std::abs(converted) > std::numeric_limits<double>::max()))
 		std::cout << "double : impossible" << std::endl;
 	else
 		std::cout << "double : " << std::fixed << std::setprecision(decimalPlaces) << static_cast<double>(converted) << std::endl;
@@ -122,11 +122,11 @@ void	printDouble(std::string str)
 		std::cout << "int : impossible" << std::endl;
 	else
 		std::cout << "int : " << static_cast<int>(converted) << std::endl;
-	if (str != "0" && (std::abs(converted) < std::numeric_limits<float>::min() || std::abs(converted) > std::numeric_limits<float>::max()))
+	if (converted != 0 && (std::abs(converted) < std::numeric_limits<float>::min() || std::abs(converted) > std::numeric_limits<float>::max()))
 		std::cout << "float : impossible" << std::endl;
 	else
 		std::cout << "float : " << std::fixed << std::setprecision(decimalPlaces) << static_cast<float>(converted) << "f" << std::endl;
-	if (str != "0" && (std::abs(converted) < std::numeric_limits<double>::min() || std::abs(converted) > std::numeric_limits<double>::max()))
+	if (converted != 0 && (std::abs(converted) < std::numeric_limits<double>::min() || std::abs(converted) > std::numeric_limits<double>::max()))
 		std::cout << "double : impossible" << std::endl;
 	else
 		std::cout << "double : " << std::fixed << std::setprecision(decimalPlaces) << static_cast<double>(converted) << std::endl;
