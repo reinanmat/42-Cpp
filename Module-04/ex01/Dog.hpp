@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 18:13:03 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/29 18:00:06 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/19 16:23:44 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ class Dog : public Animal
 		Dog();
 		Dog(const Dog &obj);
 		~Dog();
-		Dog	&operator=(Dog const &other);
+		Dog			&operator=(Dog const &other);
 		std::string	getIdeaOfBrain(size_t index) const;
 		void		setIdeaOfBrain(size_t index, std::string idea);
-		void  makeSound(void) const;
+		void		makeSound(void) const;
 
 	private:
 		Brain	*_brain;

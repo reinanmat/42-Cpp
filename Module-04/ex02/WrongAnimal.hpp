@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:53:54 by revieira          #+#    #+#             */
-/*   Updated: 2023/11/29 15:44:12 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/19 17:11:12 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ class WrongAnimal
 		WrongAnimal();
 		WrongAnimal(const WrongAnimal &obj);
 		~WrongAnimal();
-		WrongAnimal		&operator=(WrongAnimal const &other);
+		WrongAnimal	&operator=(WrongAnimal const &other);
 		std::string	getType(void) const;
 		void		setType(std::string type);
 		void		makeSound(void) const;

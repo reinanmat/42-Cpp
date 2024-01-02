@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:00:32 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/05 15:20:02 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/20 14:49:16 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,13 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 	return (*this);
 }
 
+std::ostream	&operator<<(std::ostream &out, const Bureaucrat &obj)
+{
+	out << CYN << obj.getName() << ", bureaucrat grade "
+		<< obj.getGrade() << RESET;
+	return (out);
+}
+
 /* GETTERS */
 std::string	Bureaucrat::getName(void) const
 {
@@ -69,16 +76,6 @@ std::string	Bureaucrat::getName(void) const
 int	Bureaucrat::getGrade(void) const
 {
 	return this->_grade;
-}
-
-std::ostream	&operator<<(std::ostream &out, const Bureaucrat &obj)
-{
-	out << CYN;
-	out <<  "=================Bureaucrat=================" << std::endl;
-	out << "Name:\t" << obj.getName() << std::endl;
-	out << "Grade:\t" << obj.getGrade() << RESET;
-	out << RESET;
-	return (out);
 }
 
 /* MEMBER FUNCTIONS */

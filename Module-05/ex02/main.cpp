@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:53:10 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/04 17:43:52 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/20 14:37:04 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	main(void)
 		RobotomyRequestForm		formB("bob");
 		PresidentialPardonForm	formC("me");
 
+		std::cout << marvin << std::endl;
+
 		marvin.signForm(formA);
 		marvin.signForm(formB);
 		marvin.signForm(formC);
@@ -48,7 +50,9 @@ int	main(void)
 		std::cout << formC << std::endl;
 		std::cout << std::endl;
 		marvin.executeForm(formA);
+		std::cout << std::endl;
 		marvin.executeForm(formB);
+		std::cout << std::endl;
 		marvin.executeForm(formC);
 	}
 	std::cout << std::endl;
@@ -61,6 +65,7 @@ int	main(void)
 		RobotomyRequestForm		formB("Bob");
 		PresidentialPardonForm	formC("Me");
 
+		std::cout << marvin << std::endl;
 		std::cout << bob << std::endl;
 		std::cout << std::endl;
 

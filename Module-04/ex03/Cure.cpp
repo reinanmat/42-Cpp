@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:39:34 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/14 18:38:17 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:59:57 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ Cure::Cure(const Cure &obj) : AMateria("cure")
 		*this = obj;
 }
 
-Cure::~Cure()
-{
-	return ;
-}
+Cure::~Cure() {}
 
 /* OPERATORS OVERLOADING */
 Cure	&Cure::operator=(const Cure &obj)
