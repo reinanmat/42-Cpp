@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:37:25 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/18 15:02:53 by revieira         ###   ########.fr       */
+/*   Updated: 2023/12/19 11:19:05 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,8 @@ static bool	isInt(std::string parameter)
 
 static bool isChar(std::string parameter)
 {
+	if (parameter.size() > 1 && (parameter[0] == '-' || parameter[0] == '+') && isdigit(parameter[1]))
+		return (false);
 	if (isascii(parameter[0]) && !isdigit(parameter[0]))
 		return (true);
 	return (false);
