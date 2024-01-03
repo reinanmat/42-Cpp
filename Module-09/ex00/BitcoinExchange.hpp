@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:57:39 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/03 15:27:10 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:33:45 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 #include <map>
 
 #define DATAFILE "./data.csv"
-
-typedef std::map<std::string, float> t_map;
 
 class BitcoinExchange
 {
@@ -37,5 +35,5 @@ class BitcoinExchange
 		void	printDataBase();
 
 	private:
-		t_map	_dataBase;
+		std::map<std::string, float>	_dataBase;
 };

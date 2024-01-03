@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:39:02 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/03 15:32:52 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:44:41 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static bool	validDate(const std::string &date)
 		std::cout << "Error: no date has been passed" << std::endl;
 		return (false);
 	}
-	if (strptime(date.c_str(), "%Y-%m-%d", &time))
+	if (strptime(date.c_str(), "%Y-%m-%d", &time) && std::atoi(date.c_str()) >= 2009)
 		return (true);
 	std::cout << "Error: bad input => " << date << std::endl;
 	return (false);
@@ -132,11 +132,17 @@ void	BitcoinExchange::seachInDataBase(std::string date, std::string value)
 	if (!validDate(date) || !validValue(value))
 		return ;
 	amount = convertToFloat(value);
-	try {
-		finalValue = this->_dataBase.at(date) * amount;
-	}
-	catch (const std::exception&) {
-		finalValue = this->_dataBase.lower_bound(date)->second * amount;
+	std::map<std::string, float>::iterator	it;
+	it = this->_dataBase.find(date);
+	if (it != this->_dataBase.end())
+		finalValue = amount * this->_dataBase.at(date);
+	else
+	{
+		this->_dataBase[date] = 0;
+		it = this->_dataBase.find(date);
+		it--;
+		finalValue = amount * it->second;
+		this->_dataBase.erase(date);
 	}
 	std::cout << date << " => " << value << " = " << finalValue << std::endl;
 }
@@ -163,7 +169,7 @@ void	BitcoinExchange::readInputFile(const std::string &filename)
 
 void	BitcoinExchange::printDataBase()
 {
-	t_map::iterator	it;
+	std::map<std::string, float>::iterator	it;
 
 	for (it = this->_dataBase.begin(); it != this->_dataBase.end(); it++)
 		std::cout << it->first << " : " << it->second << std::endl;
