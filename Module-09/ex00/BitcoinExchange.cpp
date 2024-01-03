@@ -40,7 +40,6 @@ void	BitcoinExchange::initDataBase()
 	float			value;
 
 	std::getline(file, line);
-	line = "";
 	while (std::getline(file, line))
 	{
 		std::string			tmpString;
@@ -49,7 +48,6 @@ void	BitcoinExchange::initDataBase()
 		std::getline(inputString, tmpString, ',');
 		value = std::atof(tmpString.c_str());
 		this->_dataBase.insert(std::make_pair(key, value));
-		line = "";
 	}
 }
 
