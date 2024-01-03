@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 16:11:24 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/02 19:55:14 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:02:43 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,8 @@ int	main(int argc, char **argv)
 {
 	if (!validArgs(argc, argv))
 		return (1);
-
 	BitcoinExchange data;
-
 	data.initDataBase();
-	data.printDataBase();
-
-	std::cout << "Sucess" << std::endl;
+	data.readInputFile(argv[1]);
 	return (0);
 }

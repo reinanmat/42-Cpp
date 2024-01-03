@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:57:39 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/02 19:58:48 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:27:10 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <fstream>
 #include <sstream>
 #include <cstdlib>
+#include <ctime>
 #include <map>
 
 #define DATAFILE "./data.csv"
@@ -31,8 +32,9 @@ class BitcoinExchange
 		~BitcoinExchange();
 		BitcoinExchange	&operator=(const BitcoinExchange &other);
 		void	initDataBase();
+		void	readInputFile(const std::string &filename);
+		void	seachInDataBase(std::string date, std::string value);
 		void	printDataBase();
-		
 
 	private:
 		t_map	_dataBase;
