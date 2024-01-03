@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:39:02 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/03 16:44:41 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:57:35 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,6 @@ BitcoinExchange	&BitcoinExchange::operator=(const BitcoinExchange &other)
 }
 
 /* MEMBER FUNCTIONS */
-void	BitcoinExchange::initDataBase()
-{
-	std::string		line;
-	std::ifstream	file(DATAFILE);
-	std::string		key;
-	float			value;
-
-	std::getline(file, line);
-	while (std::getline(file, line))
-	{
-		std::string			tmpString;
-		std::stringstream	inputString(line);
-		std::getline(inputString, key, ',');
-		std::getline(inputString, tmpString, ',');
-		value = std::atof(tmpString.c_str());
-		this->_dataBase.insert(std::make_pair(key, value));
-	}
-}
-
 static void	trim(std::string &str)
 {
     str.erase(str.find_last_not_of(' ') + 1);
@@ -122,6 +103,31 @@ static bool	validValue(const std::string &value)
 	return (true);
 }
 
+void	BitcoinExchange::initDataBase(std::string filename)
+{
+	float			value;
+	std::string		line;
+	std::string		key;
+	std::ifstream	file(filename.c_str());
+
+	if (!file.is_open())
+	{
+		std::cout << "Error: Unable to open " << filename <<  " file" << std::endl;
+		std::exit(1);
+	}
+	std::getline(file, line);
+	while (std::getline(file, line))
+	{
+		std::string			tmpString;
+		std::stringstream	inputString(line);
+		std::getline(inputString, key, ',');
+		std::getline(inputString, tmpString, ',');
+		value = std::atof(tmpString.c_str());
+		this->_dataBase.insert(std::make_pair(key, value));
+	}
+	file.close();
+}
+
 void	BitcoinExchange::seachInDataBase(std::string date, std::string value)
 {
 	float	finalValue;
@@ -163,6 +169,7 @@ void	BitcoinExchange::readInputFile(const std::string &filename)
 		trim(value);
 		this->seachInDataBase(date, value);
 	}
+	file.close();
 }
 
 void	BitcoinExchange::printDataBase()

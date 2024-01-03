@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:57:39 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/03 16:33:45 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:56:09 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class BitcoinExchange
 		BitcoinExchange(const BitcoinExchange &obj);
 		~BitcoinExchange();
 		BitcoinExchange	&operator=(const BitcoinExchange &other);
-		void	initDataBase();
+		void	initDataBase(std::string filename);
 		void	readInputFile(const std::string &filename);
 		void	seachInDataBase(std::string date, std::string value);
 		void	printDataBase();
