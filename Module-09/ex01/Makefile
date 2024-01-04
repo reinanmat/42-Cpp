@@ -7,12 +7,7 @@ PATH_OBJS = ./objects/
 FILES = main RPN
 SRCS = ${FILES:%=$(PATH_OBJS)%.cpp}
 OBJS = ${FILES:%=$(PATH_OBJS)%.o}
-
-ifeq ($(DEBUG), 1)
-	FLAGS = -Wall -Wextra -Werror -std=c++98 -g3 -D DEBUG
-else
-	FLAGS = -Wall -Wextra -Werror -std=c++98 -g3
-endif
+FLAGS = -Wall -Wextra -Werror -std=c++98 -g3
 
 all: $(NAME)
 
@@ -32,8 +27,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-debug: fclean
-	@make DEBUG=1 --no-print-directory
 
 .PHONY: all clean fclean re

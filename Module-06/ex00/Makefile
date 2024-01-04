@@ -7,7 +7,6 @@ PATH_OBJS = ./objects/
 FILES = main ScalarConverter printTypes
 SRCS = ${FILES:%=$(PATH_OBJS)%.cpp}
 OBJS = ${FILES:%=$(PATH_OBJS)%.o}
-
 FLAGS = -Wall -Wextra -Werror -std=c++98 -g3
 
 all: $(NAME)
