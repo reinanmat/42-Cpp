@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:51:32 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/08 18:20:09 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/08 18:17:35 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,12 @@ class Array
 			if (this != &obj)
 				*this = obj;
 		}
+
 		~Array()
 		{
 			delete[] this->_array;
 		};
+
 		Array	&operator=(const Array &other)
 		{
 			if (this != &other)
@@ -50,6 +52,7 @@ class Array
 					this->_array[i] = other._array[i];
 			}
 		}
+
 		T		&operator[](int index)
 		{
 			if (index >= (int)this->_size)
@@ -57,6 +60,7 @@ class Array
 			return (this->_array[index]);
 
 		}
+
 		int		size(void)
 		{
 			return (this->_size);	
