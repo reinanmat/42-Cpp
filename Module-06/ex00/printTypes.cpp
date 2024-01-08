@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 14:04:48 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/21 16:47:49 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/08 14:59:10 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@ void	printPseudoLiterals(std::string str)
 	std::cout << "char : impossible" << std::endl;
 	if (str == "inf" || str == "+inf" || str == "-inf")
 		std::cout << "int : " << str << std::endl;
+	else if (str == "inff" || str == "+inff" || str == "-inff")
+		std::cout << "int : " << str.erase(str.size() - 1) << std::endl;
 	else
 		std::cout << "int : impossible" << std::endl;
-	if (str == "inf" || str == "+inf" || str == "-inf")
+	if (str == "inf" || str == "+inf" || str == "-inf" || str == "nan")
 		std::cout << "float : " << str << "f" << std::endl;
 	else
 		std::cout << "float : " << str << std::endl;
-	if (str == "inff" || str == "+inff" || str == "-inff")
+	if (str == "inff" || str == "+inff" || str == "-inff" || str == "nanf")
 		std::cout << "double : " << str.erase(str.length() - 1) << std::endl;
 	else
 		std::cout << "double : " << str << std::endl;
