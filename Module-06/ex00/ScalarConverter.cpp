@@ -30,7 +30,7 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
 }
 
 /* MEMBERS FUNCTIONS */
-static bool	checkPseudoLiterals(std::string parameter)
+static bool	isPseudoLiterals(std::string parameter)
 {
 	std::string pseudoLiterals[]= {
 		"inf",
@@ -101,16 +101,16 @@ static bool	isDouble(std::string parameter)
 
 static int	getType(std::string parameter)
 {
-	if (checkPseudoLiterals(parameter))
-		return (0);
+	if (isPseudoLiterals(parameter))
+		return (PSEUDOLITERALS);
 	else if (isChar(parameter))
-		return (1);
+		return (CHAR);
 	else if (isFloat(parameter))
-		return (3);
+		return (FLOAT);
 	else if (isDouble(parameter))
-		return (4);
+		return (DOUBLE);
 	else if (isInt(parameter))
-		return (2);
+		return (INT);
 	else
 		return(-1);
 }
@@ -118,20 +118,20 @@ static int	getType(std::string parameter)
 void	ScalarConverter::convert(std::string parameter)
 {
 	switch (getType(parameter)) {
-		case 0:
-			printPseudoLiterals(parameter);
-			break ;
-		case 1:
+		case CHAR:
 			printChar(parameter);
 			break ;
-		case 2:
+		case INT:
 			printInt(parameter);
 			break ;
-		case 3:
+		case FLOAT:
 			printFloat(parameter);
 			break ;
-		case 4:
+		case DOUBLE:
 			printDouble(parameter);
+			break ;
+		case PSEUDOLITERALS:
+			printPseudoLiterals(parameter);
 			break ;
 		default:
 			std::cerr << "Error: unexpected error" << std::endl;

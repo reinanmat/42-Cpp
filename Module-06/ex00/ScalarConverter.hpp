@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:54:38 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/21 15:19:54 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/08 14:30:33 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 #include <limits>
 #include <iomanip>
 #include <limits>
+
+#define PSEUDOLITERALS 0
+#define CHAR 1
+#define INT 2
+#define FLOAT 3
+#define DOUBLE 4
 
 class ScalarConverter
 {
