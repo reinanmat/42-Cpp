@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:36:36 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/07 16:32:03 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/08 16:21:10 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,46 @@ void	identify(Base &p)
 
 int	main(void)
 {
-	Base	*ptr = generate();
-	identify(ptr);
+	{
+		std::cout << "TEST 1" << std::endl;
 
-	Base	&ref = *ptr;
-	identify(ref);
-	
-	delete ptr;
+		Base	*ptrA = new A();
+		Base	&refA = *ptrA;
+		std::cout << "generated A type class" << std::endl;
+		Base	*ptrB = new B();
+		Base	&refB = *ptrB;
+		std::cout << "generated B type class" << std::endl;
+		Base	*ptrC = new C();
+		Base	&refC = *ptrC;
+		std::cout << "generated C type class" << std::endl;
+
+		std::cout << std::endl;
+
+		std::cout << "identify pointers:" << std::endl;
+		identify(ptrA);
+		identify(ptrB);
+		identify(ptrC);
+
+		std::cout << std::endl;
+
+		std::cout << "identify references:" << std::endl;
+		identify(refA);
+		identify(refB);
+		identify(refC);
+
+		delete ptrA;
+		delete ptrB;
+		delete ptrC;
+	}
+	std::cout << std::endl;
+	{
+		std::cout << "TEST 2 (RANDOM)" << std::endl;
+		Base	*ptr = generate();
+		identify(ptr);
+
+		Base	&ref = *ptr;
+		identify(ref);
+		delete ptr;
+	}
 	return (0);
 }
