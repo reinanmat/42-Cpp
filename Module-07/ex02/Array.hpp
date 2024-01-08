@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:51:32 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/08 18:17:35 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/08 18:37:18 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ class Array
 
 		Array(const Array &obj)
 		{
+			this->_size = 0;
+			this->_array = new T[0];
 			if (this != &obj)
 				*this = obj;
 		}
@@ -45,23 +47,24 @@ class Array
 		{
 			if (this != &other)
 			{
-				delete this->_array;
+				this->~Array();
 				this->_size = other._size;
 				this->_array = new T[other._size];
 				for (size_t i = 0; i < other._size; i++)
 					this->_array[i] = other._array[i];
 			}
+			return (*this);
 		}
 
-		T		&operator[](int index)
+		T	&operator[](int index)
 		{
-			if (index >= (int)this->_size)
+			if (index < 0 || index >= (int)this->_size)
 				throw ("index out of range");
 			return (this->_array[index]);
 
 		}
 
-		int		size(void)
+		int	size(void)
 		{
 			return (this->_size);	
 		}
