@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 14:04:48 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/08 14:59:10 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/09 15:10:02 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void printInt(std::string str)
 		std::cout << "int : impossible" << std::endl;
 	else
 		std::cout << "int : " << static_cast<int>(converted) << std::endl;
-	std::cout << "float : " << static_cast<int>(converted) << ".0f" << std::endl;
-	std::cout << "double : " << static_cast<int>(converted) << ".0" << std::endl;
+	std::cout << "float : " << static_cast<float>(converted) << ".0f" << std::endl;
+	std::cout << "double : " << static_cast<double>(converted) << ".0" << std::endl;
 }
 
 static int	countDecimalPlaces(std::string num)
