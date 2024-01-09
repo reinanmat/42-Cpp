@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:31:56 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/08 14:37:25 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/09 15:52:22 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,11 @@ static bool	isInt(std::string parameter)
 
 	if (parameter[i] == '-' || parameter[i] == '+')
 		i++;
-	if (isdigit(parameter[i]))
-		return (true);
-	return (false);
+	if (!isdigit(parameter[i]))
+		return (false);
+	if (atof(parameter.c_str()) < std::numeric_limits<int>::min() || atof(parameter.c_str()) > std::numeric_limits<int>::max())
+		return (false);
+	return (true);
 }
 
 static bool isChar(std::string parameter)
@@ -81,9 +83,11 @@ static bool	isFloat(std::string parameter)
 		i++;
 	while (isdigit(parameter[i]))
 		i++;
-	if (parameter[i] == 'f' && isdigit(parameter[i - 1]))
-		return (true);
-	return (false);
+	if (!(parameter[i] == 'f' && isdigit(parameter[i - 1])))
+		return (false);
+	if (std::abs(atof(parameter.c_str())) < std::numeric_limits<float>::min() || std::abs(atof(parameter.c_str())) > std::numeric_limits<float>::max())
+		return (false);
+	return (true);
 }
 
 static bool	isDouble(std::string parameter)
@@ -94,9 +98,11 @@ static bool	isDouble(std::string parameter)
 		i++;
 	while (isdigit(parameter[i]))
 		i++;
-	if (parameter[i] == '.' && isdigit(parameter[i + 1]))
-		return (true);
-	return (false);
+	if (!(parameter[i] == '.' && isdigit(parameter[i + 1])))
+		return (false);
+	if (std::abs(atof(parameter.c_str())) < std::numeric_limits<double>::min() || std::abs(atof(parameter.c_str())) > std::numeric_limits<double>::max())
+		return (false);
+	return (true);
 }
 
 static int	getType(std::string parameter)
@@ -134,7 +140,7 @@ void	ScalarConverter::convert(std::string parameter)
 			printPseudoLiterals(parameter);
 			break ;
 		default:
-			std::cerr << "Error: unexpected error" << std::endl;
+			printImpossible();
 			break ;
 	}
 }

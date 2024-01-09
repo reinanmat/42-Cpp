@@ -23,58 +23,59 @@ void	printImpossible(void)
 void	printPseudoLiterals(std::string str)
 {
 	std::cout << "char : impossible" << std::endl;
-	if (str == "inf" || str == "+inf" || str == "-inf")
-		std::cout << "int : " << str << std::endl;
-	else if (str == "inff" || str == "+inff" || str == "-inff")
-		std::cout << "int : " << str.erase(str.size() - 1) << std::endl;
-	else
+	if (str == "nan" || str == "nanf")
+	{
 		std::cout << "int : impossible" << std::endl;
-	if (str == "inf" || str == "+inf" || str == "-inf" || str == "nan")
+		std::cout << "float : nanf" << std::endl;
+		std::cout << "double : nan" << std::endl;
+	}
+	else if (str == "inf" || str == "+inf" || str == "-inf")
+	{
+		std::cout << "int : " << str << std::endl;
 		std::cout << "float : " << str << "f" << std::endl;
-	else
-		std::cout << "float : " << str << std::endl;
-	if (str == "inff" || str == "+inff" || str == "-inff" || str == "nanf")
-		std::cout << "double : " << str.erase(str.length() - 1) << std::endl;
-	else
 		std::cout << "double : " << str << std::endl;
+	}
+	else
+	{
+		std::cout << "int : " << str.erase(str.length() - 1) << std::endl;
+		std::cout << "float : " << str << std::endl;
+		std::cout << "double : " << str.erase(str.length() - 1) << std::endl;
+	}
 }
 
 void printChar(std::string str)
 {
-	int	converted = str[0];
+	char	converted = str[0];
 
-	if (converted < std::numeric_limits<char>::min() || converted > std::numeric_limits<char>::max())
+	if (converted < 0 || converted < std::numeric_limits<char>::min() || converted > std::numeric_limits<char>::max())
 		std::cout << "char : impossible" << std::endl;
-	else if  (!std::isprint(converted))
+	else if (!std::isprint(converted))
 		std::cout << "char : Non displayable" << std::endl;
 	else
 		std::cout << "char : \'" << static_cast<char>(converted) << "\'" << std::endl;
 	std::cout << "int : " << static_cast<int>(converted) << std::endl;
-	std::cout << "float : " << static_cast<int>(converted) << ".0f" << std::endl;
-	std::cout << "double : " << static_cast<int>(converted) << ".0" << std::endl;
+	std::cout << "float : " << static_cast<float>(converted) << ".0f" << std::endl;
+	std::cout << "double : " << static_cast<double>(converted) << ".0" << std::endl;
 }
 
 void printInt(std::string str)
 {
-	double	converted = atof(str.c_str());
+	int	converted = atoi(str.c_str());
 
 	if (converted < 0 || converted < std::numeric_limits<char>::min() || converted > std::numeric_limits<char>::max())
 		std::cout << "char : impossible" << std::endl;
-	else if  (!std::isprint(converted))
+	else if (!std::isprint(converted))
 		std::cout << "char : Non displayable" << std::endl;
 	else
 		std::cout << "char : \'" << static_cast<char>(converted) << "\'" << std::endl;
-	if (converted < std::numeric_limits<int>::min() || converted > std::numeric_limits<int>::max())
-		std::cout << "int : impossible" << std::endl;
-	else
-		std::cout << "int : " << static_cast<int>(converted) << std::endl;
+	std::cout << "int : " << static_cast<int>(converted) << std::endl;
 	std::cout << "float : " << static_cast<float>(converted) << ".0f" << std::endl;
 	std::cout << "double : " << static_cast<double>(converted) << ".0" << std::endl;
 }
 
 static int	countDecimalPlaces(std::string num)
 {
-	int	count = 0;
+	int		count = 0;
 	size_t	found;
 
 	found = num.find(".");
@@ -92,7 +93,7 @@ static int	countDecimalPlaces(std::string num)
 
 void	printFloat(std::string str)
 {
-	double	converted = atof(str.c_str());
+	float	converted = atof(str.c_str());
 	int		wholePart = converted;
 	int		decimalPlaces = countDecimalPlaces(str);
 
@@ -102,18 +103,9 @@ void	printFloat(std::string str)
 		std::cout << "char : Non displayable" << std::endl;
 	else
 		std::cout << "char : \'" << static_cast<char>(wholePart) << "\'" << std::endl;
-	if (converted < std::numeric_limits<int>::min() || converted > std::numeric_limits<int>::max())
-		std::cout << "int : impossible" << std::endl;
-	else
-		std::cout << "int : " << static_cast<int>(converted) << std::endl;
-	if (converted != 0 && (std::abs(converted) < std::numeric_limits<float>::min() || std::abs(converted) > std::numeric_limits<float>::max()))
-		std::cout << "float : impossible" << std::endl;
-	else
-		std::cout << "float : " << std::fixed << std::setprecision(decimalPlaces) << static_cast<float>(converted) << "f" << std::endl;
-	if (converted != 0 && (std::abs(converted) < std::numeric_limits<double>::min() || std::abs(converted) > std::numeric_limits<double>::max()))
-		std::cout << "double : impossible" << std::endl;
-	else
-		std::cout << "double : " << std::fixed << std::setprecision(decimalPlaces) << static_cast<double>(converted) << std::endl;
+	std::cout << "int : " << static_cast<int>(converted) << std::endl;
+	std::cout << "float : " << std::fixed << std::setprecision(decimalPlaces) << static_cast<float>(converted) << "f" << std::endl;
+	std::cout << "double : " << std::fixed << std::setprecision(decimalPlaces) << static_cast<double>(converted) << std::endl;
 }
 
 void	printDouble(std::string str)
@@ -128,16 +120,7 @@ void	printDouble(std::string str)
 		std::cout << "char : Non displayable" << std::endl;
 	else
 		std::cout << "char : \'" << static_cast<char>(wholePart) << "\'" << std::endl;
-	if (converted < std::numeric_limits<int>::min() || converted > std::numeric_limits<int>::max())
-		std::cout << "int : impossible" << std::endl;
-	else
-		std::cout << "int : " << static_cast<int>(converted) << std::endl;
-	if (converted != 0 && (std::abs(converted) < std::numeric_limits<float>::min() || std::abs(converted) > std::numeric_limits<float>::max()))
-		std::cout << "float : impossible" << std::endl;
-	else
-		std::cout << "float : " << std::fixed << std::setprecision(decimalPlaces) << static_cast<float>(converted) << "f" << std::endl;
-	if (converted != 0 && (std::abs(converted) < std::numeric_limits<double>::min() || std::abs(converted) > std::numeric_limits<double>::max()))
-		std::cout << "double : impossible" << std::endl;
-	else
-		std::cout << "double : " << std::fixed << std::setprecision(decimalPlaces) << static_cast<double>(converted) << std::endl;
+	std::cout << "int : " << static_cast<int>(converted) << std::endl;
+	std::cout << "float : " << std::fixed << std::setprecision(decimalPlaces) << static_cast<float>(converted) << "f" << std::endl;
+	std::cout << "double : " << std::fixed << std::setprecision(decimalPlaces) << static_cast<double>(converted) << std::endl;
 }
