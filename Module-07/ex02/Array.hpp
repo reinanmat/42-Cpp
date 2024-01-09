@@ -6,13 +6,15 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:51:32 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/08 18:37:18 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:37:46 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
+#include <cstdlib>
+#include <stdexcept>
 
 template <typename T>
 class Array
@@ -59,7 +61,7 @@ class Array
 		T	&operator[](int index)
 		{
 			if (index < 0 || index >= (int)this->_size)
-				throw ("index out of range");
+				throw (std::out_of_range("Index out of range"));
 			return (this->_array[index]);
 
 		}
