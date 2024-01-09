@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:07:17 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/12 17:23:24 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:19:16 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(void)
 		test.push_back(5);
 
 		Span	a(5);
-		a.addNumber(test.begin(), test.end());
+		a.addRange(test.begin(), test.end());
 		std::cout << a << std::endl;
 	}
 	std::cout << std::endl;
@@ -69,7 +69,7 @@ int	main(void)
 
 		Span	a = randSpan(10, 0);
 		Span	b = randSpan(10, 100);
-		Span	c = randSpan(10, 10000);
+		Span	c = randSpan(10, time(NULL));
 
 		std::cout << a << std::endl;
 		std::cout << "shortest Span: " << a.shortestSpan() << std::endl;
