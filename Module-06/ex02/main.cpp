@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:36:36 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/08 16:21:10 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:20:49 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,27 @@ int	main(void)
 	std::cout << std::endl;
 	{
 		std::cout << "TEST 2 (RANDOM)" << std::endl;
+
 		Base	*ptr = generate();
+
+		std::cout << "identify pointers:" << std::endl;
 		identify(ptr);
 
+		std::cout << std::endl;
+
+		std::cout << "identify references:" << std::endl;
 		Base	&ref = *ptr;
 		identify(ref);
 		delete ptr;
+	}
+	std::cout << std::endl;
+	{
+		std::cout << "TEST 3 (INVALID POINTER)" << std::endl;
+
+		Base	*ptr = NULL;
+		std::cout << "generated a invalid pointer" << std::endl;
+
+		identify(ptr);
 	}
 	return (0);
 }
