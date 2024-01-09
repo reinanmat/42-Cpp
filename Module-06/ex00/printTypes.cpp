@@ -6,11 +6,19 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 14:04:48 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/09 15:10:02 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/09 16:08:58 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+
+void	printImpossible(void)
+{
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: impossible" << std::endl;
+	std::cout << "double: impossible" << std::endl;
+}
 
 void	printPseudoLiterals(std::string str)
 {
