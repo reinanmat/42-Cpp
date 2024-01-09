@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:54:38 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/09 15:47:28 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:32:34 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <cstdlib>
 #include <limits>
 #include <iomanip>
-#include <limits>
 
 #define PSEUDOLITERALS 0
 #define CHAR 1
