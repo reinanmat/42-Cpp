@@ -6,21 +6,16 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:34:42 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/12 17:19:44 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:21:53 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
 /* CONSTRUCTORS AND DESTRUCTORS */
-Span::Span() : _size(0)
-{
-	
-}
+Span::Span() : _size(0) {}
 
-Span::Span(size_t size) : _size(size)
-{
-}
+Span::Span(size_t size) : _size(size) {}
 
 Span::Span(const Span &obj)
 {
@@ -28,10 +23,7 @@ Span::Span(const Span &obj)
 		*this = obj;
 }
 
-Span::~Span()
-{
-	
-}
+Span::~Span() {}
 
 /* OPERATORS OVERLOADING */
 Span	&Span::operator=(const Span &other)
@@ -39,7 +31,7 @@ Span	&Span::operator=(const Span &other)
 	if (this != &other)
 	{
 		this->_size = other._size;
-		this->_vec = other._vec;
+		this->_numbers = other._numbers;
 	}
 	return (*this);
 }
@@ -48,7 +40,7 @@ std::ostream &operator<<(std::ostream &out, const Span &obj)
 {
 	std::vector<int> tmp;
 
-	tmp = obj.getVector();
+	tmp = obj.getNumbers();
 	out << "size: " << obj.getSize() << std::endl;
 	out << "[";
 	for (std::vector<int>::iterator it = tmp.begin(); it != tmp.end(); it++)
@@ -57,32 +49,23 @@ std::ostream &operator<<(std::ostream &out, const Span &obj)
 }
 
 /* GETTERS */
-std::vector<int>	Span::getVector(void) const
-{
-	return (this->_vec);
-}
-
 size_t	Span::getSize(void) const
 {
 	return (this->_size);
 }
 
+std::vector<int>	Span::getNumbers(void) const
+{
+	return (this->_numbers);
+}
+
 /* MEMBER FUNCTIONS */
 void	Span::addNumber(int number)
 {
-	if (this->_vec.size() >= this->_size)
-		throw std::out_of_range("Unable to add (int number) maximum capacity reached");
+	if (this->_numbers.size() >= this->_size)
+		throw (std::out_of_range("Unable to add (int number) maximum capacity reached"));
 	else
-		this->_vec.push_back(number);
-}
-
-void	Span::addNumber(std::vector<int>::const_iterator itBegin, std::vector<int>::const_iterator itEnd)
-{
-	while (itBegin != itEnd)
-	{
-		this->addNumber(*itBegin);
-		itBegin++;
-	}
+		this->_numbers.push_back(number);
 }
 
 size_t	Span::shortestSpan(void) const
@@ -92,7 +75,7 @@ size_t	Span::shortestSpan(void) const
 	std::vector<int>::iterator	itNext;
 	size_t	smallest = -1;
 
-	tmp = this->_vec;
+	tmp = this->_numbers;
 	std::sort(tmp.begin(), tmp.end());
 	it = tmp.begin();
 	for (itNext = (tmp.begin() + 1); itNext != tmp.end(); itNext++)
@@ -108,7 +91,7 @@ size_t	Span::shortestSpan(void) const
 
 size_t	Span::longestSpan(void) const
 {
-	std::vector<int> tmp = this->_vec;
+	std::vector<int> tmp = this->_numbers;
 
 	std::sort(tmp.begin(), tmp.end());
 	return (*(tmp.end() - 1) - *tmp.begin());
