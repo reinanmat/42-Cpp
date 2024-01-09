@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 18:12:55 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/08 18:33:34 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:31:21 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,21 @@ int	main(void)
 			array[i] = "abc";
 		for (int i = 0; i < 5; i++)
 			std::cout << array[i] << std::endl;
+	}
+	std::cout << std::endl;
+	{
+		std::cout << "TEST 3 (INVALID INDEX)" << std::endl;
+
+		Array<float>	array(5);
+		try {
+			for (int i = 0; i < 10; i++)
+			{
+				array[i] = i;
+				std::cout << array[i] << std::endl;
+			}
+		} catch (...) {
+			std::cout << "Index out of range" << std::endl;
+		}
 	}
 	return (0);
 }
