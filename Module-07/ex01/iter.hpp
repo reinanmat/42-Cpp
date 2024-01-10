@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 17:58:53 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/08 17:26:07 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:04:49 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ template <typename T>
 void	iter(const T array[], size_t size, void f(const T))
 {
 	for (size_t i = 0; i < size; i++)
-	  f(array[i]);
+		f(array[i]);
 }
 
 template <typename T>

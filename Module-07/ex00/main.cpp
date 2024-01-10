@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:38:17 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/08 17:09:07 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:03:50 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(void)
 		std::cout << "TEST 3" << std::endl;
 		
 		std::string a = "42sp";
-		std::string b = "42sp";
+		std::string b = "42fr";
 
 		std::cout << "a = " << a << ", b = " << b << std::endl;
 		std::cout << "min = " << ::min(a, b) << std::endl;
