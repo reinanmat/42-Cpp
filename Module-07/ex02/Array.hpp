@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:51:32 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/09 17:37:46 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:53:57 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Array
 			this->_array = new T[0];
 		};
 
-		Array(unsigned int size)
+		Array(size_t size)
 		{
 			this->_size = size;
 			this->_array = new T[size];
@@ -61,7 +61,7 @@ class Array
 		T	&operator[](int index)
 		{
 			if (index < 0 || index >= (int)this->_size)
-				throw (std::out_of_range("Index out of range"));
+				throw (std::runtime_error("Error: Index out of range"));
 			return (this->_array[index]);
 
 		}
