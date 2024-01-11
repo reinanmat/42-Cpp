@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:51:32 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/10 17:53:57 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/11 15:54:04 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Array
 		Array()
 		{
 			this->_size = 0;
-			this->_array = new T[0];
+			this->_array = NULL;
 		};
 
 		Array(size_t size)
@@ -35,14 +35,18 @@ class Array
 		Array(const Array &obj)
 		{
 			this->_size = 0;
-			this->_array = new T[0];
+			this->_array = NULL;
 			if (this != &obj)
 				*this = obj;
 		}
 
 		~Array()
 		{
-			delete[] this->_array;
+			if (this->_array)
+			{
+				delete[] this->_array;
+				this->_array = NULL;
+			}
 		};
 
 		Array	&operator=(const Array &other)
@@ -50,8 +54,9 @@ class Array
 			if (this != &other)
 			{
 				this->~Array();
-				this->_size = other._size;
-				this->_array = new T[other._size];
+				if (other._size == 0)
+					return (*this);
+				new(this) Array(other._size);
 				for (size_t i = 0; i < other._size; i++)
 					this->_array[i] = other._array[i];
 			}
@@ -61,7 +66,7 @@ class Array
 		T	&operator[](int index)
 		{
 			if (index < 0 || index >= (int)this->_size)
-				throw (std::runtime_error("Error: Index out of range"));
+				throw (std::out_of_range("Error: Index out of range"));
 			return (this->_array[index]);
 
 		}
