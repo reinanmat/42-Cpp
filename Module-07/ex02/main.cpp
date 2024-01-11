@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 18:12:55 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/10 18:17:23 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/11 15:58:05 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	main(void)
 	}
 	std::cout << std::endl;
 	{
-		std::cout << "TEST 3 (INVALID INDEX)" << std::endl;
+		std::cout << "TEST 3 (ACESSING INDEXS)" << std::endl;
 
 		Array<int>	array(5);
 		for (int i = 0; i < 5; i++)
@@ -88,10 +88,10 @@ int	main(void)
 		std::cout << array[4] << "]" << std::endl ;
 		tryingAcessIndexInArray(array, 0);
 		tryingAcessIndexInArray(array, 1);
+		tryingAcessIndexInArray(array, 2);
 		tryingAcessIndexInArray(array, -1);
 		tryingAcessIndexInArray(array, 5);
-		tryingAcessIndexInArray(array, 42);
-		tryingAcessIndexInArray(array, 42);
+		tryingAcessIndexInArray(array, -42);
 	}
 	return (0);
 }
