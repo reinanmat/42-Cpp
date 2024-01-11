@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:51:32 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/11 15:54:04 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/11 16:01:57 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Array
 			this->_array = NULL;
 		};
 
-		Array(size_t size)
+		Array(unsigned int size)
 		{
 			this->_size = size;
 			this->_array = new T[size];
@@ -57,7 +57,7 @@ class Array
 				if (other._size == 0)
 					return (*this);
 				new(this) Array(other._size);
-				for (size_t i = 0; i < other._size; i++)
+				for (unsigned int i = 0; i < other._size; i++)
 					this->_array[i] = other._array[i];
 			}
 			return (*this);
@@ -77,6 +77,6 @@ class Array
 		}
 	
 	private:
-		T		*_array;
-		size_t	_size;
+		T				*_array;
+		unsigned int	_size;
 };
