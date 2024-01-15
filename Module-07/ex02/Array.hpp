@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:51:32 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/11 16:01:57 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/15 16:47:38 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ class Array
 			if (this->_array)
 			{
 				delete[] this->_array;
+				this->_size = 0;
 				this->_array = NULL;
 			}
 		};
