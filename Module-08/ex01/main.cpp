@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:07:17 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/09 18:19:16 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/15 16:56:49 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,31 @@ int	main(void)
 	}
 	std::cout << std::endl;
 	{
-		std::cout << "TEST 4 RANDOM" << std::endl;
+		std::cout << "TEST 4" << std::endl;
 
 		Span	a = randSpan(10, 0);
-		Span	b = randSpan(10, 100);
-		Span	c = randSpan(10, time(NULL));
+		Span	b = randSpan(10, 42);
+		Span	c = randSpan(10, 100);
+
+		std::cout << a << std::endl;
+		std::cout << "shortest Span: " << a.shortestSpan() << std::endl;
+		std::cout << "longest Span: " << a.longestSpan() << std::endl;
+		std::cout << std::endl;
+		std::cout << b << std::endl;
+		std::cout << "shortest Span: " << b.shortestSpan() << std::endl;
+		std::cout << "longest Span: " << b.longestSpan() << std::endl;
+		std::cout << std::endl;
+		std::cout << c << std::endl;
+		std::cout << "shortest Span: " << c.shortestSpan() << std::endl;
+		std::cout << "longest Span: " << c.longestSpan() << std::endl;
+	}
+	std::cout << std::endl;
+	{
+		std::cout << "TEST 5 (RANDOM)" << std::endl;
+
+		Span	a = randSpan(5, time(NULL));
+		Span	b = randSpan(5, time(NULL) * 10);
+		Span	c = randSpan(5, time(NULL) * 42);
 
 		std::cout << a << std::endl;
 		std::cout << "shortest Span: " << a.shortestSpan() << std::endl;
