@@ -6,13 +6,24 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 17:11:48 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/03 18:32:37 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/17 19:10:18 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-bool isNumber(const std::string &str)
+static bool withinLimits(std::string str)
+{
+	long long	n;
+	std::stringstream	ss(str);
+	ss >> n;
+
+	if (n < std::numeric_limits<int>::min() || n > std::numeric_limits<int>::max())
+		return (false);
+	return (true);
+}
+
+static bool isNumber(const std::string &str)
 {
 	std::string::const_iterator     it = str.begin();
 
@@ -20,19 +31,24 @@ bool isNumber(const std::string &str)
 		it++;
     while (it != str.end() && std::isdigit(*it))
 		it++;
-	return (!str.empty() && it == str.end());
+	return (!str.empty() && it == str.end() && withinLimits(str));
 }
 
-int	checkOperation(std::string word)
+static int	checkOperation(std::string parameter)
 {
 	std::string validOperations[4] = {
 		"+", "-", "*", "/"
 	};
 
 	for (int i = 0; i < 4; i++)
-		if (word == validOperations[i])
+		if (parameter == validOperations[i])
 			return (i);
 	return (-1);
+}
+
+static bool isOperation(const std::string &str)
+{
+	return (checkOperation(str) != -1);
 }
 
 static void	execOperation(std::stack<int> &stack, std::string operation)
@@ -70,8 +86,12 @@ void	rpn(std::string parameters)
 	{
 		if (isNumber(word))	
 			stack.push(std::atoi(word.c_str()));
-		else
+		else if (isOperation(word) && stack.size() > 1)
 			execOperation(stack, word);
+		else
+			throw std::runtime_error("Error");
 	}
+	if (stack.size() > 1)
+		throw std::runtime_error("Error");
 	std::cout << stack.top() << std::endl;
 }
