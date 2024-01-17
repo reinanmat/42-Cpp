@@ -6,24 +6,28 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 18:27:23 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/11 18:34:06 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/17 15:36:25 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#define RED   "\x1B[31m"
-#define GRN   "\x1B[32m"
-#define RESET "\x1B[0m"
-
 #include <iostream>
+#include <exception>
 #include <algorithm>
+#include <iterator>
 
 template <typename T>
-void	easyfind(T array, int find)
+void	easyfind(const T &container, int find)
 {
-	if (std::find(array.begin(), array.end(), find) == array.end())
-		std::cout << RED "Not Found " << find << RESET << std::endl;
+	typename T::const_iterator	it;
+	std::cout << "Element: " << find << "\t->\t";
+	it = std::find(container.begin(), container.end(), find);
+	if (it != container.end())
+	{
+		int index = std::distance(container.begin(), it);
+		std::cout << "found in the index: " << index << std::endl;
+	}
 	else
-		std::cout << GRN "Found " << find << RESET << std::endl;
+		throw std::runtime_error("Error: element not found");
 }
