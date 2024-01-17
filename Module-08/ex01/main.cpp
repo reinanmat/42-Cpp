@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:07:17 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/17 16:35:23 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/17 18:07:41 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(void)
 	}
 	std::cout << std::endl;
 	{
-		std::cout << "TEST 2" << std::endl;
+		std::cout << "TEST 2 (RANGE OF ITERATORS)" << std::endl;
 		std::vector<int>	test;
 		test.push_back(1);
 		test.push_back(2);
@@ -86,7 +86,7 @@ int	main(void)
 	}
 	std::cout << std::endl;
 	{
-		std::cout << "TEST 4" << std::endl;
+		std::cout << "TEST 4 (SHORTEST SPAN AND LONGEST SPAN)" << std::endl;
 
 		Span	a = randSpan(5, 0);
 		Span	b = randSpan(5, 42);
