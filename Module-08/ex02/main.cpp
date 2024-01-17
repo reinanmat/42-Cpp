@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:54:27 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/15 18:42:50 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/17 17:25:48 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(void)
 		std::cout << std::endl;
 		std::stack<int> s(mstack);
 		std::cout << "Stack created using MutantStack" << std::endl;
-		std::cout << "Print Stack, size: " << s.size() << std::endl;
+		std::cout << "Print Stack(inverse), size: " << s.size() << std::endl;
 		while (s.size() != 0)
 		{
 			std::cout << s.top() << std::endl;
@@ -73,7 +73,7 @@ int	main(void)
 
 		MutantStack<int>::iterator	itA = a.begin();
 		MutantStack<int>::iterator	iteA = a.end();
-		std::cout << "MutantStack A, size: " << a.size() <<	" -> [";
+		std::cout << "MutantStack A(ORIGINAL), size: " << a.size() <<	" -> [";
 		while (itA != iteA)
 		{
 			std::cout << *itA << (itA + 1 != iteA ? ", " : "]");
@@ -84,7 +84,7 @@ int	main(void)
 		MutantStack<int>::iterator	itB = a.begin();
 		MutantStack<int>::iterator	iteB = a.end();
 
-		std::cout << "MutantStack B, size: " << b.size() <<	" -> [";
+		std::cout << "MutantStack B(COPY CONSTRUCTOR), size: " << b.size() <<	" -> [";
 		while (itB != iteB)
 		{
 			std::cout << *itB << (itB + 1 != iteB ? ", " : "]");
@@ -95,7 +95,7 @@ int	main(void)
 
 		MutantStack<int>::iterator	itC = a.begin();
 		MutantStack<int>::iterator	iteC = a.end();
-		std::cout << "MutantStack C, size: " << c.size() <<	" -> [";
+		std::cout << "MutantStack C(ASSIGNMENT OPERATOR OVERLOADING), size: " << c.size() <<	" -> [";
 		while (itC != iteC)
 		{
 			std::cout << *itC << (itC + 1 != iteC ? ", " : "]");
@@ -106,7 +106,37 @@ int	main(void)
 	}
 	std::cout << std::endl;
 	{
-		std::cout << "TEST 3 (MUTANTSTACK VS LIST)" << std::endl;
+		std::cout << "TEST 3 (ITERATORS)" << std::endl;
+		MutantStack<int>	mstack;
+		mstack.push(1);
+		mstack.push(2);
+		mstack.push(3);
+		mstack.push(4);
+		mstack.push(5);
+
+		MutantStack<int>::iterator	it = mstack.begin();
+		MutantStack<int>::iterator	ite = mstack.end();
+		std::cout << "MutantStack (NORMAL ITERATOR),	size: " << mstack.size() <<	" -> [";
+		while (it != ite)
+		{
+			std::cout << *it << (it + 1 != ite ? ", " : "]");
+			++it;
+		}
+		std::cout << std::endl;
+
+		MutantStack<int>::reverse_iterator	rIt = mstack.rbegin();
+		MutantStack<int>::reverse_iterator	rIte = mstack.rend();
+		std::cout << "MutantStack (REVERSE ITERATOR),	size: " << mstack.size() <<	" -> [";
+		while (rIt != rIte)
+		{
+			std::cout << *rIt << (rIt + 1 != rIte ? ", " : "]");
+			++rIt;
+		}
+		std::cout << std::endl;
+	}
+	std::cout << std::endl;
+	{
+		std::cout << "TEST 4 (MUTANTSTACK VS LIST)" << std::endl;
 		srand(time(NULL));
 		size_t	size = 10;
 		int *numbers = randomNumbers(size);
