@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:07:17 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/15 16:56:49 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/17 16:35:23 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ static Span	randSpan(size_t size, int seed)
 int	main(void)
 {
 	{
-		std::cout << "TEST 1 (SUBJECT)" << std::endl;
+		std::cout << "TEST 1 (SUBJECT TEST)" << std::endl;
 		Span sp = Span(5);
 		sp.addNumber(6);
 		sp.addNumber(3);
 		sp.addNumber(17);
 		sp.addNumber(9);
 		sp.addNumber(11);
+		std::cout << sp << std::endl;
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
 	}
@@ -51,25 +52,45 @@ int	main(void)
 	}
 	std::cout << std::endl;
 	{
-		std::cout << "TEST 3" << std::endl;
-		Span	b(5);
+		std::cout << "TEST 3 (ERROR HANDLING)" << std::endl;
+		Span	a(5);
+		std::cout << "Create a empty Span" << std::endl;
 
+		std::cout << a << std::endl;
+		std::cout << std::endl;
+		try {
+			std::cout << "Trying to call member function shortestSpan without any number stored" << std::endl;
+			a.shortestSpan();
+		} catch (std::exception &e) {
+			std::cerr << e.what() << std::endl;
+		}
+		std::cout << std::endl;
+		try {
+			std::cout << "Trying to call member function longestSpan without any number stored" << std::endl;
+			a.longestSpan();
+		} catch (std::exception &e) {
+			std::cerr << e.what() << std::endl;
+		}
+		std::cout << std::endl;
+		std::cout << "Adding the maximum size of numbers + 1" << std::endl;
 		for (int i = 0; i < 6; i++)
 		{
 			try {
-				b.addNumber(i);
+				a.addNumber(i);
 			} catch (std::exception & e) {
 				std::cerr << e.what() << std::endl;
 			}
 		}
+		std::cout << std::endl;
+		std::cout << a << std::endl;
 	}
 	std::cout << std::endl;
 	{
 		std::cout << "TEST 4" << std::endl;
 
-		Span	a = randSpan(10, 0);
-		Span	b = randSpan(10, 42);
-		Span	c = randSpan(10, 100);
+		Span	a = randSpan(5, 0);
+		Span	b = randSpan(5, 42);
+		Span	c = randSpan(5, 100);
 
 		std::cout << a << std::endl;
 		std::cout << "shortest Span: " << a.shortestSpan() << std::endl;
