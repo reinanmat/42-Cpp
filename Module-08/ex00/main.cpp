@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:36:46 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/17 15:31:24 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/17 18:00:02 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ int	main(void)
 		n.push_back(5);
 		n.push_back(7);
 		n.push_back(10);
+		std::cout << "Numbers in Cointaner:	[";
+		for (std::vector<int>::iterator it = n.begin(); it != n.end(); it++)
+			std::cout << *it << (it != (n.end() - 1) ? ", " : "]");
+		std::cout << std::endl;
 		try {
 			easyfind(n, 1);
 		} catch (std::exception &e) {
@@ -61,8 +65,12 @@ int	main(void)
 	{
 		std::cout << "TEST 2 (LIST)" << std::endl;
 		std::list<int>	n;
-		for (int i = 0; i <= 42; i++)
+		std::cout << "Numbers in Cointaner:	[";
+		for (int i = 0; i <= 42; i++) {
 			n.push_back(i);
+			std::cout << i << (i != 42 ? ", " : "]");
+		}
+		std::cout << std::endl;
 		try {
 			easyfind(n, 0);
 		} catch (std::exception &e) {
@@ -86,11 +94,18 @@ int	main(void)
 	}
 	std::cout << std::endl;
 	{
-		std::cout << "TEST 3 (DEQUE)" << std::endl;
-		std::deque<int>	n;
+		std::cout << "TEST 3 (RANDOM DEQUE)" << std::endl;
 		srand(time(NULL));
-		for (int i = 0; i < 3; i++)
-			n.push_back(rand() % 10 + 1);
+		std::deque<int>	n;
+		int	size = 5;
+		std::cout << "Numbers in Cointaner:	[";
+		for (int i = 0; i < size; i++)
+		{
+			int number = rand() % 10 + 1;
+			n.push_back(number);
+			std::cout << number << (i != size - 1 ? ", " : "]");
+		}
+		std::cout << std::endl;
 		try {
 			easyfind(n, rand() % 10 + 1);
 		} catch (std::exception &e) {
