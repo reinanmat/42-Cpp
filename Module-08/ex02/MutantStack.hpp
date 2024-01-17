@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:28:05 by revieira          #+#    #+#             */
-/*   Updated: 2023/12/18 17:13:49 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/17 17:23:15 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ class MutantStack : public std::stack<T>
 		}
 
 		typedef typename std::stack<T>::container_type::iterator iterator;
-
 		iterator	begin(void)
 		{
 			return (this->c.begin());
@@ -42,5 +41,15 @@ class MutantStack : public std::stack<T>
 		iterator	end(void)
 		{
 			return (this->c.end());
+		}
+
+		typedef typename std::stack<T>::container_type::reverse_iterator reverse_iterator;
+		reverse_iterator	rbegin(void)
+		{
+			return (this->c.rbegin());
+		}
+		reverse_iterator	rend(void)
+		{
+			return (this->c.rend());
 		}
 };
