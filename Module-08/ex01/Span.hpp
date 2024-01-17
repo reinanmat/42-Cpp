@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:45:47 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/09 18:22:12 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/17 16:03:05 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ class Span
 		Span	&operator=(const Span &other);
 		size_t	getSize(void) const;
 		std::vector<int>	getNumbers(void) const;
-		size_t	shortestSpan(void) const;
-		size_t	longestSpan(void) const;
+		int		shortestSpan(void) const;
+		int		longestSpan(void) const;
 		void	addNumber(int number);
 		template <typename Iterator>
 		void	addRange(Iterator itBegin, Iterator itEnd)

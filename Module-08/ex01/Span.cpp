@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:34:42 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/09 18:21:53 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/17 16:33:22 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ std::ostream &operator<<(std::ostream &out, const Span &obj)
 
 	tmp = obj.getNumbers();
 	out << "size: " << obj.getSize() << std::endl;
+	if (tmp.size() < 1)
+	{
+		out << "[]";
+		return (out);
+	}
 	out << "[";
 	for (std::vector<int>::iterator it = tmp.begin(); it != tmp.end(); it++)
 		out << *it << ((it + 1) != tmp.end() ? ", " : "]");
@@ -63,36 +68,29 @@ std::vector<int>	Span::getNumbers(void) const
 void	Span::addNumber(int number)
 {
 	if (this->_numbers.size() >= this->_size)
-		throw (std::out_of_range("Unable to add (int number) maximum capacity reached"));
+		throw std::runtime_error("Error: Unable to add (int number) maximum capacity reached");
 	else
 		this->_numbers.push_back(number);
 }
 
-size_t	Span::shortestSpan(void) const
+int	Span::shortestSpan(void) const
 {
-	std::vector<int>			tmp;
-	std::vector<int>::iterator	it;
-	std::vector<int>::iterator	itNext;
-	size_t	smallest = -1;
-
+	if (this->_numbers.size() <= 1)
+		throw std::runtime_error("Error: No span can be found");
+	std::vector<int>	tmp;
 	tmp = this->_numbers;
 	std::sort(tmp.begin(), tmp.end());
-	it = tmp.begin();
-	for (itNext = (tmp.begin() + 1); itNext != tmp.end(); itNext++)
-	{
-		if (smallest == 1)
-			break ;
-		if (*itNext != *it && size_t(*itNext - *it) < smallest)
-			smallest = *itNext - *it;
-		it++;
-	}
-	return (smallest);
+	int	shortest = std::abs(tmp[0] - tmp[1]);
+	for (size_t i = 1; i + 1 < tmp.size(); i++)
+		shortest = std::min(shortest, std::abs(tmp[i] - tmp[i + 1]));
+	return (shortest);
 }
 
-size_t	Span::longestSpan(void) const
+int	Span::longestSpan(void) const
 {
+	if (this->_numbers.size() <= 1)
+		throw std::runtime_error("Error: No span can be found");
 	std::vector<int> tmp = this->_numbers;
-
 	std::sort(tmp.begin(), tmp.end());
-	return (*(tmp.end() - 1) - *tmp.begin());
+	return (std::abs(*(tmp.end() - 1) - *tmp.begin()));
 }
