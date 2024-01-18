@@ -6,19 +6,19 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:07:17 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/17 18:07:41 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/18 14:56:20 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-static Span	randSpan(size_t size, int seed)
+static Span	randSpan(size_t size, int range, int seed)
 {
 	srand(seed);
 	Span span(size);
 
 	for (size_t i = 0; i < size; i++)
-		span.addNumber(rand() % 100);
+		span.addNumber(rand() % range);
 	return (span);
 }
 
@@ -88,9 +88,9 @@ int	main(void)
 	{
 		std::cout << "TEST 4 (SHORTEST SPAN AND LONGEST SPAN)" << std::endl;
 
-		Span	a = randSpan(5, 0);
-		Span	b = randSpan(5, 42);
-		Span	c = randSpan(5, 100);
+		Span	a = randSpan(5, 100, 0);
+		Span	b = randSpan(5, 100, 42);
+		Span	c = randSpan(5, 100, 100);
 
 		std::cout << a << std::endl;
 		std::cout << "shortest Span: " << a.shortestSpan() << std::endl;
@@ -108,9 +108,8 @@ int	main(void)
 	{
 		std::cout << "TEST 5 (RANDOM)" << std::endl;
 
-		Span	a = randSpan(5, time(NULL));
-		Span	b = randSpan(5, time(NULL) * 10);
-		Span	c = randSpan(5, time(NULL) * 42);
+		Span	a = randSpan(5,  100, time(NULL));
+		Span	b = randSpan(50, 10000, time(NULL) * 10);
 
 		std::cout << a << std::endl;
 		std::cout << "shortest Span: " << a.shortestSpan() << std::endl;
@@ -119,10 +118,11 @@ int	main(void)
 		std::cout << b << std::endl;
 		std::cout << "shortest Span: " << b.shortestSpan() << std::endl;
 		std::cout << "longest Span: " << b.longestSpan() << std::endl;
-		std::cout << std::endl;
-		std::cout << c << std::endl;
-		std::cout << "shortest Span: " << c.shortestSpan() << std::endl;
-		std::cout << "longest Span: " << c.longestSpan() << std::endl;
+		// Span	c = randSpan(10000, 1000000000, time(NULL) * 42);
+		// std::cout << std::endl;
+		// std::cout << c << std::endl;
+		// std::cout << "shortest Span: " << c.shortestSpan() << std::endl;
+		// std::cout << "longest Span: " << c.longestSpan() << std::endl;
 	}
 	return (0);
 }
