@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 18:27:23 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/17 15:36:25 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/18 14:34:09 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 #include <iterator>
 
 template <typename T>
-void	easyfind(const T &container, int find)
+void	easyfind(T &container, int find)
 {
-	typename T::const_iterator	it;
+	typename T::iterator	it;
 	std::cout << "Element: " << find << "\t->\t";
 	it = std::find(container.begin(), container.end(), find);
 	if (it != container.end())
