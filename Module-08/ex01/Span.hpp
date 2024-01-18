@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:45:47 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/17 16:03:05 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/18 15:17:28 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@
 
 class Span
 {
-	protected:
-		Span();
-
 	public:
+		Span();
 		Span(size_t size);
 		Span(const Span &obj);
 		~Span();
