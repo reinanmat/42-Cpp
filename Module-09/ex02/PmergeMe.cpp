@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:57:58 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/16 18:35:34 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/20 11:45:24 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,30 +75,80 @@ static void	printPairs(std::vector< std::pair<int, int> > &pairs)
 		std::cout << it->first << ", " << it->second << std::endl;
 }
 
+static void	merge(std::vector<std::pair<int, int> >	&pairs, int left, int mid, int right)
+{
+	size_t	leftSize = mid - left + 1;
+	size_t	rightSize = right - mid;
+	std::vector<std::pair<int, int> >	leftPairs(leftSize);
+	std::vector<std::pair<int, int> >	rightPairs(rightSize);
+
+	for (size_t i = 0; i < leftSize; i++)
+		leftPairs[i] = pairs[left + i];
+	for (size_t j = 0; j < rightSize; j++)
+		rightPairs[j] = pairs[mid + 1 + j];
+
+	size_t	indexOfLeft = 0;
+	size_t	indexOfRight = 0;
+	size_t	indexOfMerged = left;
+
+	while (indexOfLeft < leftSize && indexOfRight < rightSize)
+	{
+		if (leftPairs[indexOfLeft].first <= rightPairs[indexOfRight].first)
+		{
+			pairs[indexOfMerged] = leftPairs[indexOfLeft];
+			indexOfLeft++;
+		}
+		else
+		{
+			pairs[indexOfMerged] = rightPairs[indexOfRight];
+			indexOfRight++;
+		}
+		indexOfMerged++;
+	}
+	while (indexOfLeft < leftSize)
+	{
+		pairs[indexOfMerged] = leftPairs[indexOfLeft];
+		indexOfMerged++;
+		indexOfLeft++;
+	}
+	while (indexOfRight < rightSize)
+	{
+		pairs[indexOfMerged] = rightPairs[indexOfRight];
+		indexOfMerged++;
+		indexOfRight++;
+	}
+}
+
+static void	mergeSort(std::vector<std::pair<int, int> > &pairs, int begin, int end)
+{
+	if (begin >= end)
+		return ;
+	int mid = begin + (end - begin) / 2;
+	mergeSort(pairs, begin, mid);
+	mergeSort(pairs, mid + 1, end);
+	merge(pairs, begin, mid, end);
+}
+
 static void	sortPairs(std::vector<std::pair<int, int> > &pairs)
 {
-	std::vector< std::pair<int, int> >::iterator it;
-
-	for (it = pairs.begin(); it != pairs.end(); it++)
-		if (it->first > it->second)
-			std::swap(it->first, it->second);
+	mergeSort(pairs, 0, pairs.size() - 1);
 }
 
-static std::vector<int>	createMainChain(std::vector<std::pair<int, int> > &pairs)
-{
-	std::vector<int> mainChain;
-	std::vector<std::pair<int, int> >::iterator	it;
+// static std::vector<int>	createMainChain(std::vector<std::pair<int, int> > &pairs)
+// {
+// 	std::vector<int> mainChain;
+// 	std::vector<std::pair<int, int> >::iterator	it;
+//
+// 	for (it = pairs.begin(); it != pairs.end(); it++)
+// 		mainChain.push_back(it->first);
+// 	return (mainChain);
+// }
 
-	for (it = pairs.begin(); it != pairs.end(); it++)
-		mainChain.push_back(it->first);
-	return (mainChain);
-}
-
-static void	insertRemainingElements(std::vector<int> &mainChain, std::vector<std::pair<int, int> > &pairs)
-{
-	
-	
-}
+// static void	insertRemainingElements(std::vector<int> &mainChain, std::vector<std::pair<int, int> > &pairs)
+// {
+// 	
+// 	
+// }
 
 void	PmergeMe::_sortVector(void)
 {
@@ -109,8 +159,8 @@ void	PmergeMe::_sortVector(void)
 	printPairs(pairs);
 	std::cout << std::endl;
 	sortPairs(pairs);
-	mainChain = createMainChain(pairs);
 	printPairs(pairs);
+	// mainChain = createMainChain(pairs);
 }
 
 /* LIST */
