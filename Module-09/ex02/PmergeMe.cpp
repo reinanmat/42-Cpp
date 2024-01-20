@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:57:58 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/20 11:55:06 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:37:50 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static void	merge(std::vector<std::pair<int, int> >	&pairs, int left, int mid, i
 
 	while (itLeft != leftPairs.end() && itRight != rightPairs.end())
 	{
-		if (itLeft->second <= itRight->second)
+		if (itLeft->first <= itRight->first)
 		{
 			pairs[indexOfMerged] = *itLeft;
 			itLeft++;
