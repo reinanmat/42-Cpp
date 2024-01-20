@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:57:58 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/20 11:45:24 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/20 11:55:06 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,35 +87,35 @@ static void	merge(std::vector<std::pair<int, int> >	&pairs, int left, int mid, i
 	for (size_t j = 0; j < rightSize; j++)
 		rightPairs[j] = pairs[mid + 1 + j];
 
-	size_t	indexOfLeft = 0;
-	size_t	indexOfRight = 0;
+	std::vector<std::pair<int, int> >::iterator	itLeft = leftPairs.begin();
+	std::vector<std::pair<int, int> >::iterator	itRight = rightPairs.begin();
 	size_t	indexOfMerged = left;
 
-	while (indexOfLeft < leftSize && indexOfRight < rightSize)
+	while (itLeft != leftPairs.end() && itRight != rightPairs.end())
 	{
-		if (leftPairs[indexOfLeft].first <= rightPairs[indexOfRight].first)
+		if (itLeft->second <= itRight->second)
 		{
-			pairs[indexOfMerged] = leftPairs[indexOfLeft];
-			indexOfLeft++;
+			pairs[indexOfMerged] = *itLeft;
+			itLeft++;
 		}
 		else
 		{
-			pairs[indexOfMerged] = rightPairs[indexOfRight];
-			indexOfRight++;
+			pairs[indexOfMerged] = *itRight;
+			itRight++;
 		}
 		indexOfMerged++;
 	}
-	while (indexOfLeft < leftSize)
+	while (itLeft != leftPairs.end())
 	{
-		pairs[indexOfMerged] = leftPairs[indexOfLeft];
+		pairs[indexOfMerged] = *itLeft;
+		itLeft++;
 		indexOfMerged++;
-		indexOfLeft++;
 	}
-	while (indexOfRight < rightSize)
+	while (itRight != rightPairs.end())
 	{
-		pairs[indexOfMerged] = rightPairs[indexOfRight];
+		pairs[indexOfMerged] = *itRight;
+		itRight++;
 		indexOfMerged++;
-		indexOfRight++;
 	}
 }
 
