@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:57:58 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/20 18:37:50 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/21 10:57:51 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,45 +77,38 @@ static void	printPairs(std::vector< std::pair<int, int> > &pairs)
 
 static void	merge(std::vector<std::pair<int, int> >	&pairs, int left, int mid, int right)
 {
-	size_t	leftSize = mid - left + 1;
-	size_t	rightSize = right - mid;
-	std::vector<std::pair<int, int> >	leftPairs(leftSize);
-	std::vector<std::pair<int, int> >	rightPairs(rightSize);
-
-	for (size_t i = 0; i < leftSize; i++)
-		leftPairs[i] = pairs[left + i];
-	for (size_t j = 0; j < rightSize; j++)
-		rightPairs[j] = pairs[mid + 1 + j];
+	std::vector<std::pair<int, int> >	leftPairs(pairs.begin() + left, pairs.begin() + mid + 1);
+	std::vector<std::pair<int, int> >	rightPairs(pairs.begin() + mid + 1, pairs.begin() + right + 1);
 
 	std::vector<std::pair<int, int> >::iterator	itLeft = leftPairs.begin();
 	std::vector<std::pair<int, int> >::iterator	itRight = rightPairs.begin();
-	size_t	indexOfMerged = left;
+	std::vector<std::pair<int, int> >::iterator	itMerged = pairs.begin() + left;
 
 	while (itLeft != leftPairs.end() && itRight != rightPairs.end())
 	{
 		if (itLeft->first <= itRight->first)
 		{
-			pairs[indexOfMerged] = *itLeft;
+			*itMerged = *itLeft;
 			itLeft++;
 		}
 		else
 		{
-			pairs[indexOfMerged] = *itRight;
+			*itMerged = *itRight;
 			itRight++;
 		}
-		indexOfMerged++;
+		itMerged++;
 	}
 	while (itLeft != leftPairs.end())
 	{
-		pairs[indexOfMerged] = *itLeft;
+		*itMerged = *itLeft;
 		itLeft++;
-		indexOfMerged++;
+		itMerged++;
 	}
 	while (itRight != rightPairs.end())
 	{
-		pairs[indexOfMerged] = *itRight;
+		*itMerged = *itRight;
 		itRight++;
-		indexOfMerged++;
+		itMerged++;
 	}
 }
 
