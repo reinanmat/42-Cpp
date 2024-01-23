@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:57:58 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/21 10:57:51 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/22 23:04:57 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ PmergeMe::PmergeMe(std::vector<int> vector, std::list<int> list)
 {
 	this->_unsortedVector = vector;
 	this->_unsortedList = list;
+	if (vector.size() % 2 == 1)
+	{
+		this->_hasStraggler = true;
+		this->_straggler = vector.back();
+		this->_unsortedVector.pop_back();
+		this->_unsortedList.pop_back();
+	}
 }
 
 PmergeMe::PmergeMe(const PmergeMe &obj)
@@ -33,7 +40,12 @@ PmergeMe::~PmergeMe() {}
 PmergeMe &PmergeMe::operator=(const PmergeMe &other)
 {
 	if (this != &other)
-		return (*this);
+	{
+		this->_straggler = other._straggler;
+		this->_hasStraggler = other._hasStraggler;
+		this->_unsortedList = other._unsortedList;
+		this->_unsortedVector = other._unsortedVector;
+	}
 	return (*this);
 }
 
@@ -63,16 +75,13 @@ static std::vector< std::pair<int, int> >	groupElementsIntoPairs(const std::vect
 	std::vector< std::pair<int, int> >	pairs;
 
 	for (size_t i = 0; i < vector.size(); i+=2)
-		pairs.push_back(std::make_pair(vector[i], vector[i + 1]));
+	{
+		if (vector[i] > vector[i + 1])
+			pairs.push_back(std::make_pair(vector[i], vector[i + 1]));
+		else
+			pairs.push_back(std::make_pair(vector[i + 1], vector[i]));
+	}
 	return (pairs);
-}
-
-static void	printPairs(std::vector< std::pair<int, int> > &pairs)
-{
-	std::vector< std::pair<int, int> >::iterator it;
-
-	for (it = pairs.begin(); it != pairs.end(); it++)
-		std::cout << it->first << ", " << it->second << std::endl;
 }
 
 static void	merge(std::vector<std::pair<int, int> >	&pairs, int left, int mid, int right)
@@ -87,29 +96,14 @@ static void	merge(std::vector<std::pair<int, int> >	&pairs, int left, int mid, i
 	while (itLeft != leftPairs.end() && itRight != rightPairs.end())
 	{
 		if (itLeft->first <= itRight->first)
-		{
-			*itMerged = *itLeft;
-			itLeft++;
-		}
+			*itMerged++ = *itLeft++;
 		else
-		{
-			*itMerged = *itRight;
-			itRight++;
-		}
-		itMerged++;
+			*itMerged++ = *itRight++;
 	}
 	while (itLeft != leftPairs.end())
-	{
-		*itMerged = *itLeft;
-		itLeft++;
-		itMerged++;
-	}
+		*itMerged++ = *itLeft++;
 	while (itRight != rightPairs.end())
-	{
-		*itMerged = *itRight;
-		itRight++;
-		itMerged++;
-	}
+		*itMerged++ = *itRight++;
 }
 
 static void	mergeSort(std::vector<std::pair<int, int> > &pairs, int begin, int end)
@@ -127,33 +121,27 @@ static void	sortPairs(std::vector<std::pair<int, int> > &pairs)
 	mergeSort(pairs, 0, pairs.size() - 1);
 }
 
-// static std::vector<int>	createMainChain(std::vector<std::pair<int, int> > &pairs)
-// {
-// 	std::vector<int> mainChain;
-// 	std::vector<std::pair<int, int> >::iterator	it;
-//
-// 	for (it = pairs.begin(); it != pairs.end(); it++)
-// 		mainChain.push_back(it->first);
-// 	return (mainChain);
-// }
-
-// static void	insertRemainingElements(std::vector<int> &mainChain, std::vector<std::pair<int, int> > &pairs)
-// {
-// 	
-// 	
-// }
-
 void	PmergeMe::_sortVector(void)
 {
-	std::vector< std::pair<int, int> > pairs;
-	std::vector<int> mainChain;
+	if (this->_unsortedVector.size() < 1)
+		return ;
 
+	std::vector< std::pair<int, int> > pairs;
 	pairs = groupElementsIntoPairs(this->_unsortedVector);
-	printPairs(pairs);
-	std::cout << std::endl;
 	sortPairs(pairs);
-	printPairs(pairs);
-	// mainChain = createMainChain(pairs);
+
+	std::vector<std::pair<int, int> >::iterator	it;
+	std::vector<int>	mainChain;
+	std::vector<int>	pendChain;
+	for (it = pairs.begin(); it != pairs.end(); it++)
+	{
+		mainChain.push_back(it->first);
+		pendChain.push_back(it->second);
+	}
+
+	if (this->_hasStraggler)
+		pendChain.push_back(this->_straggler);
+
 }
 
 /* LIST */
