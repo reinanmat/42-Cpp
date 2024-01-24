@@ -39,17 +39,17 @@ class PmergeMe
 			typename T::iterator	it;
 
 			for (it = container.begin(); it != container.end(); it++)
-				std::cout << *it;
+				std::cout << *it << (it + 1 != container.end() ? ", " : "");
 			std::cout << std::endl;
 		}
 
-		// int jacobshal(int num);
-		//
-		// template<typename T>
-		// T createJacobsthalSequence(size_t size)
-		// {
-		// 	return ;
-		// }
+		int jacobshal(int n);
+
+		template<typename T>
+		T buildJacobnsertionSequence(size_t size)
+		{
+			return ;
+		}
 	
 	private:
 		bool				_hasStraggler;
