@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:57:58 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/22 23:04:57 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/24 10:52:33 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 /* CONSTRUCTORS AND DESTRUTORS */
 PmergeMe::PmergeMe() {}
 
-PmergeMe::PmergeMe(std::vector<int> vector, std::list<int> list)
+PmergeMe::PmergeMe(std::vector<int> vector, std::deque<int> deque)
 {
 	this->_unsortedVector = vector;
-	this->_unsortedList = list;
+	this->_unsortedDeque = deque;
 	if (vector.size() % 2 == 1)
 	{
 		this->_hasStraggler = true;
 		this->_straggler = vector.back();
 		this->_unsortedVector.pop_back();
-		this->_unsortedList.pop_back();
+		this->_unsortedDeque.pop_back();
 	}
 }
 
@@ -43,7 +43,7 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other)
 	{
 		this->_straggler = other._straggler;
 		this->_hasStraggler = other._hasStraggler;
-		this->_unsortedList = other._unsortedList;
+		this->_unsortedDeque = other._unsortedDeque;
 		this->_unsortedVector = other._unsortedVector;
 	}
 	return (*this);
@@ -55,9 +55,9 @@ std::vector<int>	PmergeMe::getSortedVector(void) const
 	return (this->_sortedVector);
 }
 
-std::list<int>	PmergeMe::getSortedList(void) const
+std::deque<int>	PmergeMe::getSortedDeque(void) const
 {
-	return (this->_sortedList);
+	return (this->_sortedDeque);
 }
 
 /* MEMBERS FUNCTIONS */
@@ -65,8 +65,9 @@ void	PmergeMe::sort(int cointainerType)
 {
 	if (cointainerType ==  VECTOR)
 		this->_sortVector();
-	else if (cointainerType == LIST)
-		this->_sortList();
+	else if (cointainerType == DEQUE)
+		this->_sortDeque();
+}
 }
 
 /* VECTOR */

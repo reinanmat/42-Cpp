@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:45:05 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/22 23:05:21 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/24 10:52:52 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,24 @@
 
 #include <iostream>
 #include <vector>
-#include <list>
+#include <deque>
 #include <cstdlib>
+#include <algorithm>
 
 #define VECTOR 0
-#define LIST 1
+#define DEQUE 1
 
 class PmergeMe
 {
 	public:
 		PmergeMe();
-		PmergeMe(std::vector<int> vector, std::list<int> list);
+		PmergeMe(std::vector<int> vector, std::deque<int> deque);
 		PmergeMe(const PmergeMe &obj);
 		~PmergeMe();
 		PmergeMe &operator=(const PmergeMe &other);
 		void				sort(int containertype);
 		std::vector<int>	getSortedVector() const;
-		std::list<int>		getSortedList() const;
+		std::deque<int>		getSortedDeque() const;
 
 		template<typename T>
 		static void	printContainer(T container)
@@ -60,11 +61,10 @@ class PmergeMe
 		std::vector<int>	_pendChain;
 
 		void	_sortVector();
-		void	_initMainAndPendChains(std::vector<std::pair<int, int> > &pairs);
 
 
-		std::list<int>		_unsortedList;
-		std::list<int>		_sortedList;
+		std::deque<int>		_unsortedDeque;
+		std::deque<int>		_sortedDeque;
 
-		void	_sortList();
+		void	_sortDeque();
 };
