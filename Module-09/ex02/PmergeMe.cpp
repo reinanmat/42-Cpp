@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:57:58 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/24 10:52:33 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:31:51 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ PmergeMe::PmergeMe(std::vector<int> vector, std::deque<int> deque)
 {
 	this->_unsortedVector = vector;
 	this->_unsortedDeque = deque;
-	if (vector.size() % 2 == 1)
+	if (vector.size() % 2 == 0)
+		this->_straggler = -1;
+	else
 	{
-		this->_hasStraggler = true;
 		this->_straggler = vector.back();
 		this->_unsortedVector.pop_back();
 		this->_unsortedDeque.pop_back();
@@ -42,7 +43,6 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other)
 	if (this != &other)
 	{
 		this->_straggler = other._straggler;
-		this->_hasStraggler = other._hasStraggler;
 		this->_unsortedDeque = other._unsortedDeque;
 		this->_unsortedVector = other._unsortedVector;
 	}
@@ -148,7 +148,7 @@ void	PmergeMe::_sortVector(void)
 		pendChain.push_back(it->second);
 	}
 
-	if (this->_hasStraggler)
+	if (this->_straggler != -1)
 		pendChain.push_back(this->_straggler);
 
 	std::cout << "Main Chain: ";
@@ -227,7 +227,7 @@ void	PmergeMe::_sortDeque(void)
 		pendChain.push_back(it->second);
 	}
 
-	if (this->_hasStraggler)
+	if (this->_straggler != -1)
 		pendChain.push_back(this->_straggler);
 
 	mainChain.insert(mainChain.begin(), pendChain[0]);

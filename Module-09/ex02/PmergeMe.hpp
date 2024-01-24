@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:45:05 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/24 10:52:52 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/24 16:09:19 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,16 @@ class PmergeMe
 		std::vector<int>	getSortedVector() const;
 		std::deque<int>		getSortedDeque() const;
 
-		template<typename T>
-		static void	printContainer(T container)
-		{
-			typename T::iterator	it;
-
-			for (it = container.begin(); it != container.end(); it++)
-				std::cout << *it << (it + 1 != container.end() ? ", " : "");
-			std::cout << std::endl;
-		}
 
 		int jacobshal(int n);
 
-		template<typename T>
-		T buildJacobnsertionSequence(size_t size)
-		{
-			return ;
-		}
+		// template<typename T>
+		// T buildJacobnsertionSequence(size_t size)
+		// {
+		// 	return ;
+		// }
 	
 	private:
-		bool				_hasStraggler;
 		int					_straggler;
 
 		std::vector<int>	_unsortedVector;
@@ -68,3 +58,23 @@ class PmergeMe
 
 		void	_sortDeque();
 };
+
+template <typename T>
+T createContainer(size_t size, char **numbers)
+{
+	T	container;
+
+	for (size_t	i = 0; i < size; i++)
+		container.push_back(std::atoi(numbers[i]));
+	return (container);
+}
+
+template<typename T>
+static void	printContainer(T container)
+{
+	typename T::iterator	it;
+
+	for (it = container.begin(); it != container.end(); it++)
+		std::cout << *it << (it + 1 != container.end() ? ", " : "");
+	std::cout << std::endl;
+}
