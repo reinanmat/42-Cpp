@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:45:05 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/24 16:09:19 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/26 18:21:26 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,19 @@ class PmergeMe
 
 		int jacobshal(int n);
 
-		// template<typename T>
-		// T buildJacobnsertionSequence(size_t size)
-		// {
-		// 	return ;
-		// }
+		template<typename T>
+		T buildJacobnsertionSequence(int size)
+		{
+			T	sequence;
+			int	indexJacob = 3;
+
+			while (jacobshal(indexJacob) < size - 1)
+			{
+				sequence.push_back(jacobshal(indexJacob));
+				indexJacob++;
+			}
+			return (sequence);
+		}
 	
 	private:
 		int					_straggler;

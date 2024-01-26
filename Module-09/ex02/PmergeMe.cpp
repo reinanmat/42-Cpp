@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:57:58 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/24 15:31:51 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/26 18:43:31 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,10 +151,56 @@ void	PmergeMe::_sortVector(void)
 	if (this->_straggler != -1)
 		pendChain.push_back(this->_straggler);
 
-	std::cout << "Main Chain: ";
-	printContainer(mainChain);
-	std::cout << "Pend Chain: ";
-	printContainer(pendChain);
+	mainChain.insert(mainChain.begin(), pendChain[0]);
+	pendChain.erase(pendChain.begin());
+
+	std::vector<int>	jacobSequence = buildJacobnsertionSequence<std::vector<int> >(pendChain.size());
+	std::vector<int> indexSequence;
+	indexSequence.push_back(1);
+	int	iter = 0;
+	int	item = 0;
+	bool	lastIsJacob = 0;
+
+	while (iter <= (int)pendChain.size())
+	{
+		if (!jacobSequence.empty() && !lastIsJacob)
+		{
+			indexSequence.push_back(jacobSequence[0]);
+			item = pendChain[jacobSequence[0] - 1];
+			jacobSequence.erase(jacobSequence.begin());
+			lastIsJacob = true;
+		}
+		else
+		{
+			if (std::find(indexSequence.begin(), indexSequence.end(), iter) != indexSequence.end())
+				iter++;
+			item = pendChain[(iter - 1 <= 0 ? 0 : iter - 1)];
+			indexSequence.push_back(iter);
+			lastIsJacob = false;
+		}
+
+		if (mainChain[0] > item)
+			mainChain.insert(mainChain.begin(), item);
+		else
+		{
+			for (size_t i = 0; i < mainChain.size(); i++)
+			{
+				if (mainChain[i] > item)
+				{
+					mainChain.insert(mainChain.begin() + i, item);
+					break ;
+				}
+			}
+		}
+		iter++;
+	}
+
+	this->_sortedVector = mainChain;
+
+	// std::cout << "Main Chain: ";
+	// printContainer(mainChain);
+	// std::cout << "Pend Chain: ";
+	// printContainer(pendChain);
 }
 
 /* LIST */
@@ -231,12 +277,58 @@ void	PmergeMe::_sortDeque(void)
 		pendChain.push_back(this->_straggler);
 
 	mainChain.insert(mainChain.begin(), pendChain[0]);
-	// pendChain.erase(mainChain.begin());
+	pendChain.erase(pendChain.begin());
 
-	std::cout << "Main Chain: ";
-	printContainer(mainChain);
+	std::deque<int>	jacobSequence = buildJacobnsertionSequence<std::deque<int> >(pendChain.size());
+	std::deque<int> indexSequence;
+	indexSequence.push_back(1);
+	int	iter = 0;
+	int	item = 0;
+	bool	lastIsJacob = 0;
 
-	std::cout << "Pend Chain: ";
-	printContainer(pendChain);
+	while (iter <= (int)pendChain.size())
+	{
+		if (!jacobSequence.empty() && !lastIsJacob)
+		{
+			indexSequence.push_back(jacobSequence[0]);
+			item = pendChain[jacobSequence[0] - 1];
+			jacobSequence.erase(jacobSequence.begin());
+			lastIsJacob = true;
+		}
+		else
+		{
+			if (std::find(indexSequence.begin(), indexSequence.end(), iter) != indexSequence.end())
+				iter++;
+			item = pendChain[(iter - 1 <= 0 ? 0 : iter - 1)];
+			indexSequence.push_back(iter);
+			lastIsJacob = false;
+		}
+
+		if (mainChain[0] > item)
+			mainChain.insert(mainChain.begin(), item);
+		else
+		{
+			for (size_t i = 0; i < mainChain.size(); i++)
+			{
+				if (mainChain[i] > item)
+				{
+					mainChain.insert(mainChain.begin() + i, item);
+					break ;
+				}
+			}
+		}
+		iter++;
+	}
+
+	this->_sortedDeque = mainChain;
+
+	// std::cout << "Main Chain: ";
+	// printContainer(mainChain);
+	//
+	// std::cout << "Pend Chain: ";
+	// printContainer(pendChain);
+
+	// std::cout << "Sequence:\t";
+	// printContainer(indexSequence);
 
 }
