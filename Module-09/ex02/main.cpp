@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:21:32 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/24 16:18:55 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/26 18:11:54 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,11 @@ int	main(int argc, char **argv)
 	if (expectedVector == pmerge.getSortedVector() && expectedDeque == pmerge.getSortedDeque())
 		printContainer(pmerge.getSortedDeque());
 	else
-		std::cout << "Not sorted";
+	{
+		std::cout << "ERROR: NOT SORTED: ";
+		printContainer(pmerge.getSortedDeque());
+	}
+	
 	std::cout << std::endl;
 
 	std::cout << "Time to process a range of " << argc - 1 << " elements with ";
