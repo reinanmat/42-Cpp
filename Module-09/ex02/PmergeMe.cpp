@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:57:58 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/26 18:43:31 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/28 23:58:12 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	PmergeMe::sort(int cointainerType)
 		this->_sortDeque();
 }
 
-int	PmergeMe::jacobshal(int n)
+int	jacobshal(int n)
 {
 	if (n == 0)
 		return (0);
@@ -93,56 +93,17 @@ static std::vector< std::pair<int, int> >	groupElementsIntoPairs(const std::vect
 	return (pairs);
 }
 
-static void	merge(std::vector<std::pair<int, int> >	&pairs, int left, int mid, int right)
-{
-	std::vector<std::pair<int, int> >	leftPairs(pairs.begin() + left, pairs.begin() + mid + 1);
-	std::vector<std::pair<int, int> >	rightPairs(pairs.begin() + mid + 1, pairs.begin() + right + 1);
-
-	std::vector<std::pair<int, int> >::iterator	itLeft = leftPairs.begin();
-	std::vector<std::pair<int, int> >::iterator	itRight = rightPairs.begin();
-	std::vector<std::pair<int, int> >::iterator	itMerged = pairs.begin() + left;
-
-	while (itLeft != leftPairs.end() && itRight != rightPairs.end())
-	{
-		if (itLeft->first <= itRight->first)
-			*itMerged++ = *itLeft++;
-		else
-			*itMerged++ = *itRight++;
-	}
-	while (itLeft != leftPairs.end())
-		*itMerged++ = *itLeft++;
-	while (itRight != rightPairs.end())
-		*itMerged++ = *itRight++;
-}
-
-static void	mergeSort(std::vector<std::pair<int, int> > &pairs, int begin, int end)
-{
-	if (begin >= end)
-		return ;
-	int mid = begin + (end - begin) / 2;
-	mergeSort(pairs, begin, mid);
-	mergeSort(pairs, mid + 1, end);
-	merge(pairs, begin, mid, end);
-}
-
-static void	sortPairs(std::vector<std::pair<int, int> > &pairs)
-{
-	mergeSort(pairs, 0, pairs.size() - 1);
-}
-
 void	PmergeMe::_sortVector(void)
 {
 	if (this->_unsortedVector.size() < 1)
 		return ;
 
-	std::vector< std::pair<int, int> > pairs;
-	pairs = groupElementsIntoPairs(this->_unsortedVector);
-	sortPairs(pairs);
+	std::vector<t_pairsInts>	pairs = groupElementsIntoPairs(this->_unsortedVector);
+	mergeSort(pairs, pairs.begin(), pairs.end() - 1);
 
-	std::vector<std::pair<int, int> >::iterator	it;
 	std::vector<int>	mainChain;
 	std::vector<int>	pendChain;
-	for (it = pairs.begin(); it != pairs.end(); it++)
+	for (std::vector<t_pairsInts>::iterator it = pairs.begin(); it != pairs.end(); it++)
 	{
 		mainChain.push_back(it->first);
 		pendChain.push_back(it->second);
@@ -152,61 +113,35 @@ void	PmergeMe::_sortVector(void)
 		pendChain.push_back(this->_straggler);
 
 	mainChain.insert(mainChain.begin(), pendChain[0]);
-	pendChain.erase(pendChain.begin());
 
-	std::vector<int>	jacobSequence = buildJacobnsertionSequence<std::vector<int> >(pendChain.size());
-	std::vector<int> indexSequence;
-	indexSequence.push_back(1);
-	int	iter = 0;
-	int	item = 0;
-	bool	lastIsJacob = 0;
-
-	while (iter <= (int)pendChain.size())
+	std::vector<int>	insertionSequence = buildJacobInsertionSequence<std::vector<int> >(pendChain.size() - 1);
+	if (!insertionSequence.empty())
 	{
-		if (!jacobSequence.empty() && !lastIsJacob)
+		for (size_t i = 0; i < pendChain.size() - 1; i++)
 		{
-			indexSequence.push_back(jacobSequence[0]);
-			item = pendChain[jacobSequence[0] - 1];
-			jacobSequence.erase(jacobSequence.begin());
-			lastIsJacob = true;
-		}
-		else
-		{
-			if (std::find(indexSequence.begin(), indexSequence.end(), iter) != indexSequence.end())
-				iter++;
-			item = pendChain[(iter - 1 <= 0 ? 0 : iter - 1)];
-			indexSequence.push_back(iter);
-			lastIsJacob = false;
-		}
-
-		if (mainChain[0] > item)
-			mainChain.insert(mainChain.begin(), item);
-		else
-		{
-			for (size_t i = 0; i < mainChain.size(); i++)
+			int item = pendChain[insertionSequence[i]];
+			if (item < mainChain[0])
 			{
-				if (mainChain[i] > item)
+				mainChain.insert(mainChain.begin(), item);
+				continue ;
+			}
+			for (std::vector<int>::iterator it = mainChain.begin(); it != mainChain.end(); it++)
+			{
+				if (item > *it && (item < *(it + 1) || it + 1 == mainChain.end()))
 				{
-					mainChain.insert(mainChain.begin() + i, item);
+					mainChain.insert(it + 1, item);
 					break ;
 				}
 			}
 		}
-		iter++;
 	}
-
 	this->_sortedVector = mainChain;
-
-	// std::cout << "Main Chain: ";
-	// printContainer(mainChain);
-	// std::cout << "Pend Chain: ";
-	// printContainer(pendChain);
 }
 
-/* LIST */
-static std::deque< std::pair<int, int> >	groupElementsIntoPairs(std::deque<int> &deque)
+/* DEQUE */
+static std::deque<t_pairsInts>	groupElementsIntoPairs(std::deque<int> &deque)
 {
-	std::deque< std::pair<int, int> >	pairs;
+	std::deque<t_pairsInts>	pairs;
 
 	for (size_t i = 0; i < deque.size(); i+=2)
 	{
@@ -218,56 +153,17 @@ static std::deque< std::pair<int, int> >	groupElementsIntoPairs(std::deque<int> 
 	return (pairs);
 }
 
-static void	merge(std::deque<std::pair<int, int> >	&pairs, int left, int mid, int right)
-{
-	std::deque<std::pair<int, int> >	leftPairs(pairs.begin() + left, pairs.begin() + mid + 1);
-	std::deque<std::pair<int, int> >	rightPairs(pairs.begin() + mid + 1, pairs.begin() + right + 1);
-
-	std::deque<std::pair<int, int> >::iterator	itLeft = leftPairs.begin();
-	std::deque<std::pair<int, int> >::iterator	itRight = rightPairs.begin();
-	std::deque<std::pair<int, int> >::iterator	itMerged = pairs.begin() + left;
-
-	while (itLeft != leftPairs.end() && itRight != rightPairs.end())
-	{
-		if (itLeft->first <= itRight->first)
-			*itMerged++ = *itLeft++;
-		else
-			*itMerged++ = *itRight++;
-	}
-	while (itLeft != leftPairs.end())
-		*itMerged++ = *itLeft++;
-	while (itRight != rightPairs.end())
-		*itMerged++ = *itRight++;
-}
-
-static void	mergeSort(std::deque<std::pair<int, int> > &pairs, int begin, int end)
-{
-	if (begin >= end)
-		return ;
-	int mid = begin + (end - begin) / 2;
-	mergeSort(pairs, begin, mid);
-	mergeSort(pairs, mid + 1, end);
-	merge(pairs, begin, mid, end);
-}
-
-static void	sortPairs(std::deque<std::pair<int, int> > &pairs)
-{
-	mergeSort(pairs, 0, pairs.size() - 1);
-}
-
 void	PmergeMe::_sortDeque(void)
 {
 	if (this->_unsortedDeque.size() < 1)
 		return ;
 
-	std::deque<std::pair<int, int> >	pairs = groupElementsIntoPairs(this->_unsortedDeque);
+	std::deque<t_pairsInts>	pairs = groupElementsIntoPairs(this->_unsortedDeque);
+	mergeSort(pairs, pairs.begin(), pairs.end() - 1);
 
-	sortPairs(pairs);
-
-	std::deque<std::pair<int, int> >::iterator	it;
 	std::deque<int>	mainChain;
 	std::deque<int>	pendChain;
-	for (it = pairs.begin(); it != pairs.end(); it++)
+	for (std::deque<t_pairsInts>::iterator it = pairs.begin(); it != pairs.end(); it++)
 	{
 		mainChain.push_back(it->first);
 		pendChain.push_back(it->second);
@@ -277,58 +173,27 @@ void	PmergeMe::_sortDeque(void)
 		pendChain.push_back(this->_straggler);
 
 	mainChain.insert(mainChain.begin(), pendChain[0]);
-	pendChain.erase(pendChain.begin());
 
-	std::deque<int>	jacobSequence = buildJacobnsertionSequence<std::deque<int> >(pendChain.size());
-	std::deque<int> indexSequence;
-	indexSequence.push_back(1);
-	int	iter = 0;
-	int	item = 0;
-	bool	lastIsJacob = 0;
-
-	while (iter <= (int)pendChain.size())
+	std::deque<int>	insertionSequence = buildJacobInsertionSequence<std::deque<int> >(pendChain.size() - 1);
+	if (!insertionSequence.empty())
 	{
-		if (!jacobSequence.empty() && !lastIsJacob)
+		for (size_t i = 0; i < pendChain.size() - 1; i++)
 		{
-			indexSequence.push_back(jacobSequence[0]);
-			item = pendChain[jacobSequence[0] - 1];
-			jacobSequence.erase(jacobSequence.begin());
-			lastIsJacob = true;
-		}
-		else
-		{
-			if (std::find(indexSequence.begin(), indexSequence.end(), iter) != indexSequence.end())
-				iter++;
-			item = pendChain[(iter - 1 <= 0 ? 0 : iter - 1)];
-			indexSequence.push_back(iter);
-			lastIsJacob = false;
-		}
-
-		if (mainChain[0] > item)
-			mainChain.insert(mainChain.begin(), item);
-		else
-		{
-			for (size_t i = 0; i < mainChain.size(); i++)
+			int item = pendChain[insertionSequence[i]];
+			if (item < mainChain[0])
 			{
-				if (mainChain[i] > item)
+				mainChain.insert(mainChain.begin(), item);
+				continue ;
+			}
+			for (std::deque<int>::iterator it = mainChain.begin(); it != mainChain.end(); it++)
+			{
+				if (item > *it && (item < *(it + 1) || it + 1 == mainChain.end()))
 				{
-					mainChain.insert(mainChain.begin() + i, item);
+					mainChain.insert(it + 1, item);
 					break ;
 				}
 			}
 		}
-		iter++;
 	}
-
 	this->_sortedDeque = mainChain;
-
-	// std::cout << "Main Chain: ";
-	// printContainer(mainChain);
-	//
-	// std::cout << "Pend Chain: ";
-	// printContainer(pendChain);
-
-	// std::cout << "Sequence:\t";
-	// printContainer(indexSequence);
-
 }

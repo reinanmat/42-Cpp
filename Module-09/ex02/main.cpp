@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:21:32 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/26 18:11:54 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/28 22:14:45 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,10 @@ int	main(int argc, char **argv)
 	float			vecTime;
 	float			deqTime;
 
-	std::cout << "VECTOR:" << std::endl;
 	start = clock();
 	pmerge.sort(VECTOR);
 	vecTime = clock() - start;
 
-	std::cout << "DEQUE:" << std::endl;
 	start = clock();
 	pmerge.sort(DEQUE);
 	deqTime = clock() - start;
@@ -115,21 +113,21 @@ int	main(int argc, char **argv)
 		printContainer(pmerge.getSortedDeque());
 	else
 	{
-		std::cout << "ERROR: NOT SORTED: ";
+		std::cout << std::endl;
+		std::cout << "ERROR: NOT SORTED" << std::endl;
+		std::cout << "VECTOR:\t\t";
+		printContainer(pmerge.getSortedVector());
+		std::cout << "DEQUE:\t\t";
 		printContainer(pmerge.getSortedDeque());
+		std::cout << "EXPECTED:\t";
+		printContainer(expectedDeque);
 	}
 	
 	std::cout << std::endl;
 
 	std::cout << "Time to process a range of " << argc - 1 << " elements with ";
-	std::cout << "std::vector:\t" << std::fixed << vecTime / CLOCKS_PER_SEC << " us" << std::endl;
+	std::cout << "std::vector:  " << std::fixed << vecTime / CLOCKS_PER_SEC << " us" << std::endl;
 	std::cout << "Time to process a range of " << argc - 1 << " elements with ";
-	std::cout << "std::deque:\t" << std::fixed << deqTime / CLOCKS_PER_SEC << " us" << std::endl;
-	
-
-	// std::cout << "Before:\t";
-	// printArguments(argc, argv);
-	// std::cout << "After:\t";
-	// printContainer(vec, lst);
+	std::cout << "std::deque:   " << std::fixed << deqTime / CLOCKS_PER_SEC << " us" << std::endl;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:45:05 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/26 18:21:26 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/28 23:55:54 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 #define VECTOR 0
 #define DEQUE 1
 
+typedef std::pair<int, int> t_pairsInts;
+
 class PmergeMe
 {
 	public:
@@ -32,38 +34,16 @@ class PmergeMe
 		void				sort(int containertype);
 		std::vector<int>	getSortedVector() const;
 		std::deque<int>		getSortedDeque() const;
-
-
-		int jacobshal(int n);
-
-		template<typename T>
-		T buildJacobnsertionSequence(int size)
-		{
-			T	sequence;
-			int	indexJacob = 3;
-
-			while (jacobshal(indexJacob) < size - 1)
-			{
-				sequence.push_back(jacobshal(indexJacob));
-				indexJacob++;
-			}
-			return (sequence);
-		}
 	
 	private:
 		int					_straggler;
 
 		std::vector<int>	_unsortedVector;
 		std::vector<int>	_sortedVector;
-		std::vector<int>	_mainChain;
-		std::vector<int>	_pendChain;
-
 		void	_sortVector();
-
 
 		std::deque<int>		_unsortedDeque;
 		std::deque<int>		_sortedDeque;
-
 		void	_sortDeque();
 };
 
@@ -78,11 +58,75 @@ T createContainer(size_t size, char **numbers)
 }
 
 template<typename T>
-static void	printContainer(T container)
+void	printContainer(T container)
 {
 	typename T::iterator	it;
 
 	for (it = container.begin(); it != container.end(); it++)
 		std::cout << *it << (it + 1 != container.end() ? ", " : "");
 	std::cout << std::endl;
+}
+
+template <typename T>
+void	merge(typename T::iterator begin, typename T::iterator mid, typename T::iterator end)
+{
+	T	leftPairs(begin, mid + 1);
+	T	rightPairs(mid + 1, end + 1);
+
+	typename T::iterator	itLeft = leftPairs.begin();
+	typename T::iterator	itRight = rightPairs.begin();
+	typename T::iterator	itMerged = begin;
+
+	while (itLeft != leftPairs.end() && itRight != rightPairs.end())
+	{
+		if (itLeft->first <= itRight->first)
+			*itMerged++ = *itLeft++;
+		else
+			*itMerged++ = *itRight++;
+	}
+	while (itLeft != leftPairs.end())
+		*itMerged++ = *itLeft++;
+	while (itRight != rightPairs.end())
+		*itMerged++ = *itRight++;
+}
+
+template <typename T>
+void	mergeSort(T &pairs, typename T::iterator begin, typename T::iterator end)
+{
+	if (begin >= end)
+		return  ;
+	typename T::iterator mid = begin + std::distance(begin, end) / 2;
+	mergeSort<T>(pairs, begin, mid);
+	mergeSort<T>(pairs, mid + 1, end);
+	merge<T>(begin, mid, end);
+}
+
+int jacobshal(int n);
+
+template<typename T>
+T buildJacobInsertionSequence(size_t size)
+{
+	T	sequence;
+	int	indexJacob = 2;
+	int curr;
+
+	if (size < 1)
+		return (sequence);
+	curr = jacobshal(indexJacob);
+	sequence.push_back(curr);
+	indexJacob++;
+	while (sequence.size() < size)
+	{
+		curr = jacobshal(indexJacob++);
+		if (curr > (int)size)
+			curr = size;
+		while (sequence.size() < size && curr > 0)
+		{
+			sequence.push_back(curr);
+			if (std::find(sequence.begin(), sequence.end(), curr - 1) != sequence.end())
+				break ;
+			curr--;
+		}
+	}
+	return (sequence);
 }
