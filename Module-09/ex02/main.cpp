@@ -6,15 +6,11 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:21:32 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/28 22:14:45 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:21:30 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
-#include <sstream>
-#include <algorithm>
-#include <ctime>
-#include <limits>
 
 static bool withinLimits(const std::string &str)
 {
@@ -40,10 +36,12 @@ static bool isPositiveNumber(const std::string &str)
 
 static bool	hasDuplicateNumber(std::vector<int> &vec)
 {
-	std::vector<int>::iterator	curr = vec.begin();
-	std::vector<int>::iterator	next = vec.begin() + 1;
+	std::vector<int>	sorted(vec);
+	std::sort(sorted.begin(), sorted.end());
+	std::vector<int>::iterator	curr = sorted.begin();
+	std::vector<int>::iterator	next = sorted.begin() + 1;
 
-	while (next != vec.end())
+	while (next != sorted.end())
 	{
 		if (*curr == *next)
 			return (true);
@@ -51,6 +49,14 @@ static bool	hasDuplicateNumber(std::vector<int> &vec)
 		next++;
 	}
 	return (false);
+}
+
+static bool	isSorted(std::vector<int> &vec)
+{
+	std::vector<int>	sorted(vec);
+	std::sort(sorted.begin(), sorted.end());
+
+	return (vec == sorted);
 }
 
 static bool	validArgs(int argc, char **argv)
@@ -63,71 +69,65 @@ static bool	validArgs(int argc, char **argv)
 	return (true);
 }
 
+static void	printNotSort(PmergeMe &pmerge, std::vector<int> &expected)
+{
+	std::cerr << "error: not sorted" << std::endl;
+	std::cerr << "VECTOR:\t\t";
+	printContainer(pmerge.getSortedVector());
+	std::cerr << "DEQUE:\t\t";
+	printContainer(pmerge.getSortedDeque());
+	std::cerr << "EXPECTED:\t";
+	printContainer(expected);
+}
+
 int	main(int argc, char **argv)
 {
 	if (!validArgs(argc, argv))
 	{
-		std::cerr << "Error" << std::endl;
+		std::cerr << "Error: invalid arguments" << std::endl;
+		std::cerr << "Usage ./PmergeMe [POSITIVE_INTEGER] [...]" << std::endl;
 		return (1);
 	}
-
 	argv++;
 	std::vector<int>	vec = createContainer<std::vector<int> >(argc - 1, argv);
 	std::deque<int>		deq = createContainer<std::deque<int> >(argc - 1, argv);
+	if (hasDuplicateNumber(vec))
+	{
+		std::cerr << "Error: contains duplicate numbers" << std::endl;
+		return (1);
+	}
+	else if (isSorted(vec))
+	{
+		std::cout << "numbers already sorted" << std::endl;
+		return (0);
+	}
 	std::vector<int>	expectedVector(vec);
 	std::deque<int>		expectedDeque(deq);
-	PmergeMe			pmerge(vec, deq);
-
 	std::sort(expectedVector.begin(), expectedVector.end());
 	std::sort(expectedDeque.begin(), expectedDeque.end());
-	if (hasDuplicateNumber(expectedVector))
-	{
-		std::cerr << "Error: Contains duplicate numbers" << std::endl;
-		return (1);
-	}
-	if (expectedVector == vec)
-	{
-		std::cerr << "Error: Numbers already sorted" << std::endl;
-		return (1);
-	}
 
-
-	std::clock_t	start;
-	float			vecTime;
-	float			deqTime;
-
-	start = clock();
+	PmergeMe		pmerge(vec, deq);
+	std::clock_t	vectorStart = clock();
 	pmerge.sort(VECTOR);
-	vecTime = clock() - start;
-
-	start = clock();
+	std::clock_t	vectorEnd = clock();
+	double vectorTime = double(vectorEnd - vectorStart) / CLOCKS_PER_SEC * 1e3;
+	std::clock_t	dequeStart = clock();
 	pmerge.sort(DEQUE);
-	deqTime = clock() - start;
+	std::clock_t	dequeEnd = clock();
+	double dequeTime = double(dequeEnd - dequeStart) / CLOCKS_PER_SEC * 1e3;
 
-	std::cout << std::endl;
-
-	std::cout << "Before:\t";
-	printContainer(deq);
-	std::cout << "After:\t";
-	if (expectedVector == pmerge.getSortedVector() && expectedDeque == pmerge.getSortedDeque())
-		printContainer(pmerge.getSortedDeque());
-	else
+	if (expectedVector != pmerge.getSortedVector() && expectedDeque != pmerge.getSortedDeque())
 	{
-		std::cout << std::endl;
-		std::cout << "ERROR: NOT SORTED" << std::endl;
-		std::cout << "VECTOR:\t\t";
-		printContainer(pmerge.getSortedVector());
-		std::cout << "DEQUE:\t\t";
-		printContainer(pmerge.getSortedDeque());
-		std::cout << "EXPECTED:\t";
-		printContainer(expectedDeque);
+		printNotSort(pmerge, expectedVector);
+		return (1);
 	}
-	
-	std::cout << std::endl;
-
-	std::cout << "Time to process a range of " << argc - 1 << " elements with ";
-	std::cout << "std::vector:  " << std::fixed << vecTime / CLOCKS_PER_SEC << " us" << std::endl;
-	std::cout << "Time to process a range of " << argc - 1 << " elements with ";
-	std::cout << "std::deque:   " << std::fixed << deqTime / CLOCKS_PER_SEC << " us" << std::endl;
+	std::cout << "Before:\t";
+	printContainer(vec);
+	std::cout << "After:\t";
+	printContainer(pmerge.getSortedVector());
+	std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector : ";
+	std::cout << std::fixed << std::setprecision(3) << vectorTime << " ms" << std::endl;
+	std::cout << "Time to process a range of " << argc - 1 << " elements with std::deque  : ";
+	std::cout << std::fixed << std::setprecision(3) << dequeTime << " ms" << std::endl;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:45:05 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/28 23:55:54 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:15:06 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 #include <deque>
 #include <cstdlib>
 #include <algorithm>
+#include <sstream>
+#include <ctime>
+#include <limits>
+#include <iomanip>
 
 #define VECTOR 0
 #define DEQUE 1
