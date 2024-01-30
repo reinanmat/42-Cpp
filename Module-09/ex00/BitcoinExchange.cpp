@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:39:02 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/03 16:57:35 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/30 17:49:59 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ static bool	validDate(const std::string &date)
 
 	if (date.empty())
 	{
-		std::cout << "Error: no date has been passed" << std::endl;
+		std::cerr << "Error: no date has been passed" << std::endl;
 		return (false);
 	}
 	if (strptime(date.c_str(), "%Y-%m-%d", &time) && std::atoi(date.c_str()) >= 2009)
 		return (true);
-	std::cout << "Error: bad input => " << date << std::endl;
+	std::cerr << "Error: bad input => " << date << std::endl;
 	return (false);
 }
 
@@ -81,23 +81,23 @@ static bool	validValue(const std::string &value)
 {
 	if (value.empty())
 	{
-		std::cout << "Error: no value was passed" << std::endl;
+		std::cerr << "Error: no value was passed" << std::endl;
 		return (false);
 	}
 	if (!isNumberOrFloatNumber(value))
 	{
-		std::cout << "Error: not a number" << std::endl;
+		std::cerr << "Error: not a number" << std::endl;
 		return (false);
 	}
 	float num = convertToFloat(value);
 	if (num < 0)
 	{
-		std::cout << "Error: not a positive number." << std::endl;
+		std::cerr << "Error: not a positive number." << std::endl;
 		return (false);
 	}
 	if (num > 1000)
 	{
-		std::cout << "Error: too large a number." << std::endl;
+		std::cerr << "Error: too large a number." << std::endl;
 		return (false);
 	}
 	return (true);
@@ -112,7 +112,7 @@ void	BitcoinExchange::initDataBase(std::string filename)
 
 	if (!file.is_open())
 	{
-		std::cout << "Error: Unable to open " << filename <<  " file" << std::endl;
+		std::cerr << "Error: Unable to open " << filename <<  " file" << std::endl;
 		std::exit(1);
 	}
 	std::getline(file, line);
