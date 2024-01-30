@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 17:11:48 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/30 15:32:32 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:35:50 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	execOperation(std::stack<int> &stack, const std::string &operation)
 			stack.push(b * a);
 			break ;
 		case DIV:
-			if (a == 0 && b == 0)
+			if (a == 0)
 				throw std::runtime_error("Error");
 			stack.push(b / a);
 			break ;
