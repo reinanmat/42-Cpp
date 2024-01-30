@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:21:32 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/29 18:21:30 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:55:49 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static bool withinLimits(const std::string &str)
 	std::stringstream	ss(str);
 	ss >> n;
 
-	if (n < std::numeric_limits<int>::min() || n > std::numeric_limits<int>::max())
+	if (n <= 0 || n > std::numeric_limits<int>::max())
 		return (false);
 	return (true);
 }
@@ -85,7 +85,7 @@ int	main(int argc, char **argv)
 	if (!validArgs(argc, argv))
 	{
 		std::cerr << "Error: invalid arguments" << std::endl;
-		std::cerr << "Usage ./PmergeMe [POSITIVE_INTEGER] [...]" << std::endl;
+		std::cerr << "Usage: ./PmergeMe [POSITIVE_INTEGER] [...]" << std::endl;
 		return (1);
 	}
 	argv++;
