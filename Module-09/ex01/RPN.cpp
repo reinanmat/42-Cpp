@@ -6,13 +6,13 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 17:11:48 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/30 15:20:44 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:32:32 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-static bool withinLimits(std::string str)
+static bool withinLimits(const std::string &str)
 {
 	long long	n;
 	std::stringstream	ss(str);
@@ -34,7 +34,7 @@ static bool isNumber(const std::string &str)
 	return (!str.empty() && it == str.end() && withinLimits(str));
 }
 
-static int	checkOperation(std::string parameter)
+static int	checkOperation(const std::string &parameter)
 {
 	std::string validOperations[4] = {
 		"+", "-", "*", "/"
@@ -51,7 +51,7 @@ static bool isOperation(const std::string &str)
 	return (checkOperation(str) != -1);
 }
 
-static void	execOperation(std::stack<int> &stack, std::string operation)
+static void	execOperation(std::stack<int> &stack, const std::string &operation)
 {
 	int	a;
 	int	b;
