@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:45:05 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/29 17:15:06 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/30 16:24:04 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ class PmergeMe
 	private:
 		int					_straggler;
 
+		void				_sortVector();
 		std::vector<int>	_unsortedVector;
 		std::vector<int>	_sortedVector;
-		void	_sortVector();
 
+		void				_sortDeque();
 		std::deque<int>		_unsortedDeque;
 		std::deque<int>		_sortedDeque;
-		void	_sortDeque();
 };
 
 template <typename T>

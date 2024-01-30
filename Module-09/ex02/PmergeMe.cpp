@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:57:58 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/30 16:02:57 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/30 16:20:29 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ int	jacobshal(int n)
 }
 
 /* VECTOR */
-static std::vector< std::pair<int, int> >	groupElementsIntoPairs(const std::vector<int> &vector)
+static std::vector<t_pairsInts>	groupElementsIntoPairs(const std::vector<int> &vector)
 {
-	std::vector< std::pair<int, int> >	pairs;
+	std::vector<t_pairsInts>	pairs;
 
 	for (size_t i = 0; i < vector.size(); i+=2)
 	{
@@ -95,12 +95,15 @@ static std::vector< std::pair<int, int> >	groupElementsIntoPairs(const std::vect
 
 void	PmergeMe::_sortVector(void)
 {
-	if (this->_unsortedVector.size() < 1)
-		return ;
-	std::vector<t_pairsInts>	pairs = groupElementsIntoPairs(this->_unsortedVector);
-	mergeSort(pairs, pairs.begin(), pairs.end() - 1);
+	std::vector<t_pairsInts>	pairs;
 	std::vector<int>	mainChain;
 	std::vector<int>	pendChain;
+	std::vector<int>	insertionSequence;
+
+	if (this->_unsortedVector.size() < 1)
+		return ;
+	pairs = groupElementsIntoPairs(this->_unsortedVector);
+	mergeSort(pairs, pairs.begin(), pairs.end() - 1);
 	for (std::vector<t_pairsInts>::iterator it = pairs.begin(); it != pairs.end(); it++)
 	{
 		mainChain.push_back(it->first);
@@ -109,7 +112,7 @@ void	PmergeMe::_sortVector(void)
 	if (this->_straggler != -1)
 		pendChain.push_back(this->_straggler);
 	mainChain.insert(mainChain.begin(), pendChain[0]);
-	std::vector<int>	insertionSequence = buildJacobInsertionSequence<std::vector<int> >(pendChain.size() - 1);
+	insertionSequence = buildJacobInsertionSequence<std::vector<int> >(pendChain.size() - 1);
 	if (!insertionSequence.empty())
 	{
 		for (size_t i = 0; i < pendChain.size() - 1; i++)
@@ -150,12 +153,15 @@ static std::deque<t_pairsInts>	groupElementsIntoPairs(std::deque<int> &deque)
 
 void	PmergeMe::_sortDeque(void)
 {
-	if (this->_unsortedDeque.size() < 1)
-		return ;
-	std::deque<t_pairsInts>	pairs = groupElementsIntoPairs(this->_unsortedDeque);
-	mergeSort(pairs, pairs.begin(), pairs.end() - 1);
+	std::deque<t_pairsInts>	pairs;
 	std::deque<int>	mainChain;
 	std::deque<int>	pendChain;
+	std::deque<int>	insertionSequence;
+
+	if (this->_unsortedDeque.size() < 1)
+		return ;
+	pairs = groupElementsIntoPairs(this->_unsortedDeque);
+	mergeSort(pairs, pairs.begin(), pairs.end() - 1);
 	for (std::deque<t_pairsInts>::iterator it = pairs.begin(); it != pairs.end(); it++)
 	{
 		mainChain.push_back(it->first);
@@ -164,7 +170,7 @@ void	PmergeMe::_sortDeque(void)
 	if (this->_straggler != -1)
 		pendChain.push_back(this->_straggler);
 	mainChain.insert(mainChain.begin(), pendChain[0]);
-	std::deque<int>	insertionSequence = buildJacobInsertionSequence<std::deque<int> >(pendChain.size() - 1);
+	insertionSequence = buildJacobInsertionSequence<std::deque<int> >(pendChain.size() - 1);
 	if (!insertionSequence.empty())
 	{
 		for (size_t i = 0; i < pendChain.size() - 1; i++)
