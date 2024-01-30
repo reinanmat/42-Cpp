@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:57:58 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/30 15:51:34 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/30 16:02:57 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,8 @@ void	PmergeMe::_sortVector(void)
 {
 	if (this->_unsortedVector.size() < 1)
 		return ;
-
 	std::vector<t_pairsInts>	pairs = groupElementsIntoPairs(this->_unsortedVector);
 	mergeSort(pairs, pairs.begin(), pairs.end() - 1);
-
 	std::vector<int>	mainChain;
 	std::vector<int>	pendChain;
 	for (std::vector<t_pairsInts>::iterator it = pairs.begin(); it != pairs.end(); it++)
@@ -108,12 +106,9 @@ void	PmergeMe::_sortVector(void)
 		mainChain.push_back(it->first);
 		pendChain.push_back(it->second);
 	}
-
 	if (this->_straggler != -1)
 		pendChain.push_back(this->_straggler);
-
 	mainChain.insert(mainChain.begin(), pendChain[0]);
-
 	std::vector<int>	insertionSequence = buildJacobInsertionSequence<std::vector<int> >(pendChain.size() - 1);
 	if (!insertionSequence.empty())
 	{
@@ -157,10 +152,8 @@ void	PmergeMe::_sortDeque(void)
 {
 	if (this->_unsortedDeque.size() < 1)
 		return ;
-
 	std::deque<t_pairsInts>	pairs = groupElementsIntoPairs(this->_unsortedDeque);
 	mergeSort(pairs, pairs.begin(), pairs.end() - 1);
-
 	std::deque<int>	mainChain;
 	std::deque<int>	pendChain;
 	for (std::deque<t_pairsInts>::iterator it = pairs.begin(); it != pairs.end(); it++)
@@ -168,12 +161,9 @@ void	PmergeMe::_sortDeque(void)
 		mainChain.push_back(it->first);
 		pendChain.push_back(it->second);
 	}
-
 	if (this->_straggler != -1)
 		pendChain.push_back(this->_straggler);
-
 	mainChain.insert(mainChain.begin(), pendChain[0]);
-
 	std::deque<int>	insertionSequence = buildJacobInsertionSequence<std::deque<int> >(pendChain.size() - 1);
 	if (!insertionSequence.empty())
 	{

@@ -105,7 +105,6 @@ int	main(int argc, char **argv)
 	std::deque<int>		expectedDeque(deq);
 	std::sort(expectedVector.begin(), expectedVector.end());
 	std::sort(expectedDeque.begin(), expectedDeque.end());
-
 	PmergeMe		pmerge(vec, deq);
 	std::clock_t	vectorStart = clock();
 	pmerge.sort(VECTOR);
@@ -115,7 +114,6 @@ int	main(int argc, char **argv)
 	pmerge.sort(DEQUE);
 	std::clock_t	dequeEnd = clock();
 	double dequeTime = double(dequeEnd - dequeStart) / CLOCKS_PER_SEC * 1e3;
-
 	if (expectedVector != pmerge.getSortedVector() && expectedDeque != pmerge.getSortedDeque())
 	{
 		printNotSort(pmerge, expectedVector);
