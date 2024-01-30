@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:57:58 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/29 15:57:40 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:51:34 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void	PmergeMe::_sortVector(void)
 			}
 			for (std::vector<int>::iterator it = mainChain.begin(); it != mainChain.end(); it++)
 			{
-				if (item > *it && (item < *(it + 1) || it + 1 == mainChain.end()))
+				if (item > *it && (it + 1 == mainChain.end() || item < *(it + 1)))
 				{
 					mainChain.insert(it + 1, item);
 					break ;
@@ -187,7 +187,7 @@ void	PmergeMe::_sortDeque(void)
 			}
 			for (std::deque<int>::iterator it = mainChain.begin(); it != mainChain.end(); it++)
 			{
-				if (item > *it && (item < *(it + 1) || it + 1 == mainChain.end()))
+				if (item > *it && (it + 1 == mainChain.end() || item < *(it + 1)))
 				{
 					mainChain.insert(it + 1, item);
 					break ;
