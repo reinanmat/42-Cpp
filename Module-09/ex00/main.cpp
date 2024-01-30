@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 16:11:24 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/03 17:01:09 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/30 17:57:11 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,12 @@ int	main(int argc, char **argv)
 {
 	if (!validArgs(argc, argv))
 		return (1);
-	BitcoinExchange data;
-	data.initDataBase(DATAFILE);
-	data.readInputFile(argv[1]);
+	try {
+		BitcoinExchange data;
+		data.initDataBase(DATAFILE);
+		data.readInputFile(argv[1]);
+	} catch (...) {
+		std::cerr << "Error: unexpected error" << std::endl;
+	}
 	return (0);
 }
