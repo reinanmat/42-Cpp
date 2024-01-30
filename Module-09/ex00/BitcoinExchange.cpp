@@ -48,7 +48,7 @@ static bool	validDate(const std::string &date)
 		std::cerr << "Error: no date has been passed" << std::endl;
 		return (false);
 	}
-	if (strptime(date.c_str(), "%Y-%m-%d", &time) && std::atoi(date.c_str()) >= 2009)
+	if (strptime(date.c_str(), "%Y-%m-%d", &time))
 		return (true);
 	std::cerr << "Error: bad input => " << date << std::endl;
 	return (false);
@@ -144,8 +144,13 @@ void	BitcoinExchange::seachInDataBase(std::string date, std::string value)
 	{
 		this->_dataBase[date] = 0;
 		it = this->_dataBase.find(date);
-		it--;
-		finalValue = amount * it->second;
+		if (it == this->_dataBase.begin())
+			finalValue = 0;
+		else
+		{
+			it--;
+			finalValue = amount * it->second;
+		}
 		this->_dataBase.erase(date);
 	}
 	std::cout << date << " => " << value << " = " << finalValue << std::endl;
