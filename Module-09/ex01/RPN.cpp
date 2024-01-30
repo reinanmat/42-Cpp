@@ -71,6 +71,8 @@ static void	execOperation(std::stack<int> &stack, std::string operation)
 			stack.push(b * a);
 			break ;
 		case DIV:
+			if (a == 0 && b == 0)
+				throw std::runtime_error("Error");
 			stack.push(b / a);
 			break ;
 	}
