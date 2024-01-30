@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 17:11:48 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/17 19:10:18 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:20:44 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	rpn(std::string parameters)
 	std::stringstream	ss(parameters);
 	std::string			word;
 
+	if (parameters.empty())
+		throw std::runtime_error("Error");
 	while (ss >> word)
 	{
 		if (isNumber(word))	
