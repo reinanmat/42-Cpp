@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:39:02 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/30 17:49:59 by revieira         ###   ########.fr       */
+/*   Updated: 2024/01/31 20:03:19 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,30 @@ static void	trim(std::string &str)
 		str.erase(0, str.find_first_not_of(' '));
 }
 
+static bool	isLeapYear(int year)
+{
+	return(year % 4 == 0);
+}
+
 static bool	validDate(const std::string &date)
 {
-	struct tm time;
-
-	if (date.empty())
+	std::cout << date << std::endl;
+	int	day = std::atoi(date.c_str() + 8);
+	int	moth = std::atoi(date.c_str() + 5);
+	int year = std::atoi(date.c_str());
+	std::cout << "day: " << day << std::endl;
+	std::cout << "moth: " << moth << std::endl;
+	std::cout << "year: " << year << std::endl;
+	std::exit(1);
+	if (date.length() > 10)
 	{
-		std::cerr << "Error: no date has been passed" << std::endl;
+		std::cerr << "Error: bad input => " << date << std::endl;
 		return (false);
 	}
-	if (strptime(date.c_str(), "%Y-%m-%d", &time))
-		return (true);
-	std::cerr << "Error: bad input => " << date << std::endl;
-	return (false);
+	if (moth < 1 || moth > 12)
+		return (false);
+	else if ()
+	return (true);
 }
 
 static bool	isNumberOrFloatNumber(const std::string &str)
@@ -169,9 +180,19 @@ void	BitcoinExchange::readInputFile(const std::string &filename)
 	{
 		std::stringstream	inputString(line);
 		std::getline(inputString, date, '|');
-		std::getline(inputString, value, '|');
+		std::getline(inputString, value, '\0');
 		trim(date);
 		trim(value);
+		if (date.empty())
+		{
+			std::cerr << "Error: no date was passed" << std::endl;
+			continue ;
+		}
+		else if (value.empty())
+		{
+			std::cerr << "Error: no value was passed" << std::endl;
+			continue ;
+		}
 		this->seachInDataBase(date, value);
 	}
 	file.close();
