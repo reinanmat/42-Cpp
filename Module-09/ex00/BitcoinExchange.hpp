@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:57:39 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/03 16:56:09 by revieira         ###   ########.fr       */
+/*   Updated: 2024/02/01 11:09:05 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 #include <map>
 
 #define DATAFILE "./data.csv"
+#define DATA 0
+#define INPUT 1
 
 class BitcoinExchange
 {

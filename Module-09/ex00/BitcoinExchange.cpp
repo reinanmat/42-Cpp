@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:39:02 by revieira          #+#    #+#             */
-/*   Updated: 2024/01/31 20:03:19 by revieira         ###   ########.fr       */
+/*   Updated: 2024/02/01 11:42:04 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,29 +39,66 @@ static void	trim(std::string &str)
 		str.erase(0, str.find_first_not_of(' '));
 }
 
-static bool	isLeapYear(int year)
+static bool	isLeapYear(const int year)
 {
-	return(year % 4 == 0);
+	return ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0);
+}
+
+static int	numberOfDaysThisMonth(const int year, const int month)
+{
+	if (month == 2)
+		return (isLeapYear(year) ? 29 : 28);
+	else if (month == 4 || month == 6 || month == 9 || month == 11)
+		return (30);
+	else
+		return (31);
+}
+
+static bool emptyDateOrValue(const std::string &date, const std::string &value)
+{
+	if (date.empty())
+	{
+		std::cerr << "Error: no date was passed" << std::endl;
+		return (true);
+	}
+	else if (value.empty())
+	{
+		std::cerr << "Error: no value was passed" << std::endl;
+		return (true);
+	}
+	return (false);
 }
 
 static bool	validDate(const std::string &date)
 {
-	std::cout << date << std::endl;
-	int	day = std::atoi(date.c_str() + 8);
-	int	moth = std::atoi(date.c_str() + 5);
-	int year = std::atoi(date.c_str());
-	std::cout << "day: " << day << std::endl;
-	std::cout << "moth: " << moth << std::endl;
-	std::cout << "year: " << year << std::endl;
-	std::exit(1);
+	if (date.empty())
+	{
+		std::cerr << "Error: no date has been passed" << std::endl;
+		return (false);
+	}
 	if (date.length() > 10)
 	{
 		std::cerr << "Error: bad input => " << date << std::endl;
 		return (false);
 	}
-	if (moth < 1 || moth > 12)
+	int year = std::atoi(date.c_str());
+	int	month = std::atoi(date.c_str() + 5);
+	int	day = std::atoi(date.c_str() + 8);
+	if (year < 1 || year > 9999)
+	{
+		std::cerr << "Error: bad input => " << date << std::endl;
 		return (false);
-	else if ()
+	}
+	if (month < 1 || month > 12)
+	{
+		std::cerr << "Error: bad input => " << date << std::endl;
+		return (false);
+	}
+	if (day < 1 || day > numberOfDaysThisMonth(year, month))
+	{
+		std::cerr << "Error: bad input => " << date << std::endl;
+		return (false);
+	}
 	return (true);
 }
 
@@ -80,7 +117,7 @@ static bool	isNumberOrFloatNumber(const std::string &str)
 	return (!str.empty() && it == str.end());
 }
 
-static float	convertToFloat(std::string str)
+static float	convertToFloat(const std::string &str)
 {
 	float	num;
 	std::stringstream	convert(str);
@@ -114,6 +151,32 @@ static bool	validValue(const std::string &value)
 	return (true);
 }
 
+static bool	validHeaderFile(std::string &headerFile, int type)
+{
+	std::string			date;
+	std::string			value;
+	std::stringstream	inputString(headerFile);
+	if (type == DATA)
+	{
+		std::getline(inputString, date, ',');
+		std::getline(inputString, value, '\0');
+		trim(date);
+		trim(value);
+		if (date != "date" && value != "exchange_rate")
+			return (false);
+	}
+	else if (type == INPUT)
+	{
+		std::getline(inputString, date, '|');
+		std::getline(inputString, value, '\0');
+		trim(date);
+		trim(value);
+		if (date != "date" && value != "value")
+			return (false);
+	}
+	return (true);
+}
+
 void	BitcoinExchange::initDataBase(std::string filename)
 {
 	float			value;
@@ -123,10 +186,12 @@ void	BitcoinExchange::initDataBase(std::string filename)
 
 	if (!file.is_open())
 	{
-		std::cerr << "Error: Unable to open " << filename <<  " file" << std::endl;
-		std::exit(1);
+		std::string errorMsg = "Error: " + filename + " file was not found";
+		throw std::runtime_error(errorMsg);
 	}
 	std::getline(file, line);
+	if (!validHeaderFile(line, DATA))
+		throw std::runtime_error("Error: data file or header in invalid format, use \"date,exchange_rate\"");
 	while (std::getline(file, line))
 	{
 		std::string			tmpString;
@@ -144,8 +209,6 @@ void	BitcoinExchange::seachInDataBase(std::string date, std::string value)
 	float	finalValue;
 	float	amount;
 
-	if (!validDate(date) || !validValue(value))
-		return ;
 	amount = convertToFloat(value);
 	std::map<std::string, float>::iterator	it;
 	it = this->_dataBase.find(date);
@@ -175,25 +238,23 @@ void	BitcoinExchange::readInputFile(const std::string &filename)
 	std::ifstream	file(filename.c_str());
 
 	std::getline(file, line);
-	line = "";
+	if (!validHeaderFile(line, INPUT))
+		throw std::runtime_error("Error: input file in invalid format, use \"date | value\"");
 	while (std::getline(file, line))
 	{
-		std::stringstream	inputString(line);
-		std::getline(inputString, date, '|');
-		std::getline(inputString, value, '\0');
-		trim(date);
-		trim(value);
-		if (date.empty())
+		if (!line.empty())
 		{
-			std::cerr << "Error: no date was passed" << std::endl;
-			continue ;
+			std::stringstream	inputString(line);
+			std::getline(inputString, date, '|');
+			std::getline(inputString, value, '\0');
+			trim(date);
+			trim(value);
+			if (emptyDateOrValue(date, value))
+				continue ;
+			else if (!validDate(date) || !validValue(value))
+				continue ;
+			this->seachInDataBase(date, value);
 		}
-		else if (value.empty())
-		{
-			std::cerr << "Error: no value was passed" << std::endl;
-			continue ;
-		}
-		this->seachInDataBase(date, value);
 	}
 	file.close();
 }
