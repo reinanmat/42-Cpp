@@ -6,11 +6,12 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:39:02 by revieira          #+#    #+#             */
-/*   Updated: 2024/02/01 11:42:04 by revieira         ###   ########.fr       */
+/*   Updated: 2024/02/01 15:17:17 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+#include <iomanip>
 
 /* CONSTRUCTORS AND DESTRUCTORS */
 BitcoinExchange::BitcoinExchange() {}
@@ -71,34 +72,17 @@ static bool emptyDateOrValue(const std::string &date, const std::string &value)
 
 static bool	validDate(const std::string &date)
 {
-	if (date.empty())
-	{
-		std::cerr << "Error: no date has been passed" << std::endl;
-		return (false);
-	}
 	if (date.length() > 10)
-	{
-		std::cerr << "Error: bad input => " << date << std::endl;
 		return (false);
-	}
 	int year = std::atoi(date.c_str());
 	int	month = std::atoi(date.c_str() + 5);
 	int	day = std::atoi(date.c_str() + 8);
 	if (year < 1 || year > 9999)
-	{
-		std::cerr << "Error: bad input => " << date << std::endl;
 		return (false);
-	}
 	if (month < 1 || month > 12)
-	{
-		std::cerr << "Error: bad input => " << date << std::endl;
 		return (false);
-	}
 	if (day < 1 || day > numberOfDaysThisMonth(year, month))
-	{
-		std::cerr << "Error: bad input => " << date << std::endl;
 		return (false);
-	}
 	return (true);
 }
 
@@ -162,7 +146,7 @@ static bool	validHeaderFile(std::string &headerFile, int type)
 		std::getline(inputString, value, '\0');
 		trim(date);
 		trim(value);
-		if (date != "date" && value != "exchange_rate")
+		if (date != "date" || value != "exchange_rate")
 			return (false);
 	}
 	else if (type == INPUT)
@@ -171,7 +155,7 @@ static bool	validHeaderFile(std::string &headerFile, int type)
 		std::getline(inputString, value, '\0');
 		trim(date);
 		trim(value);
-		if (date != "date" && value != "value")
+		if (date != "date" || value != "value")
 			return (false);
 	}
 	return (true);
@@ -180,8 +164,9 @@ static bool	validHeaderFile(std::string &headerFile, int type)
 void	BitcoinExchange::initDataBase(std::string filename)
 {
 	float			value;
+	std::string		tmpValue;
 	std::string		line;
-	std::string		key;
+	std::string		date;
 	std::ifstream	file(filename.c_str());
 
 	if (!file.is_open())
@@ -191,15 +176,26 @@ void	BitcoinExchange::initDataBase(std::string filename)
 	}
 	std::getline(file, line);
 	if (!validHeaderFile(line, DATA))
+	{
+		file.close();
 		throw std::runtime_error("Error: data file or header in invalid format, use \"date,exchange_rate\"");
+	}
 	while (std::getline(file, line))
 	{
-		std::string			tmpString;
-		std::stringstream	inputString(line);
-		std::getline(inputString, key, ',');
-		std::getline(inputString, tmpString, ',');
-		value = std::atof(tmpString.c_str());
-		this->_dataBase.insert(std::make_pair(key, value));
+		if (!line.empty())
+		{
+			std::stringstream	inputString(line);
+			std::getline(inputString, date, ',');
+			std::getline(inputString, tmpValue, ',');
+			if (date.empty() || tmpValue.empty())
+				continue ;
+			else if (!validDate(date))
+				continue ;
+			else if (!isNumberOrFloatNumber(tmpValue))
+				continue ;
+			value = std::atof(tmpValue.c_str());
+			this->_dataBase.insert(std::make_pair(date, value));
+		}
 	}
 	file.close();
 }
@@ -239,7 +235,10 @@ void	BitcoinExchange::readInputFile(const std::string &filename)
 
 	std::getline(file, line);
 	if (!validHeaderFile(line, INPUT))
-		throw std::runtime_error("Error: input file in invalid format, use \"date | value\"");
+	{
+		file.close();
+		throw std::runtime_error("Error: input file or header in invalid format, use \"date | value\"");
+	}
 	while (std::getline(file, line))
 	{
 		if (!line.empty())
@@ -251,7 +250,12 @@ void	BitcoinExchange::readInputFile(const std::string &filename)
 			trim(value);
 			if (emptyDateOrValue(date, value))
 				continue ;
-			else if (!validDate(date) || !validValue(value))
+			else if (!validDate(date))
+			{
+				std::cerr << "Error: bad input => " << date << std::endl;
+				continue ;
+			}
+			else if (!validValue(value))
 				continue ;
 			this->seachInDataBase(date, value);
 		}
