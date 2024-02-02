@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:39:02 by revieira          #+#    #+#             */
-/*   Updated: 2024/02/01 15:17:17 by revieira         ###   ########.fr       */
+/*   Updated: 2024/02/02 14:35:54 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,20 @@ static bool emptyDateOrValue(const std::string &date, const std::string &value)
 	return (false);
 }
 
+static bool	validFormat(const std::string &date)
+{
+	std::string	tmp(date);
+	const std::string	format = "XXXX-XX-XX";
+
+	for (size_t i = 0; i < tmp.length(); i++)
+		if (std::isdigit(tmp[i]))
+			tmp[i] = 'X';
+	return (tmp == format);
+}
+
 static bool	validDate(const std::string &date)
 {
-	if (date.length() > 10)
+	if (date.length() != 10 || !validFormat(date))
 		return (false);
 	int year = std::atoi(date.c_str());
 	int	month = std::atoi(date.c_str() + 5);
@@ -111,11 +122,6 @@ static float	convertToFloat(const std::string &str)
 
 static bool	validValue(const std::string &value)
 {
-	if (value.empty())
-	{
-		std::cerr << "Error: no value was passed" << std::endl;
-		return (false);
-	}
 	if (!isNumberOrFloatNumber(value))
 	{
 		std::cerr << "Error: not a number" << std::endl;
